@@ -1,5 +1,6 @@
 import asyncio
 import sys
+import socket
 
 import matplotlib.pyplot as plt
 from PySide6.QtCore import Slot
@@ -12,7 +13,8 @@ from qiskit import QuantumCircuit
 import server
 from qiskit.visualization import plot_bloch_vector
 
-server_start = server.Server('192.168.0.108', 8888)
+hostname = socket.gethostname()
+server_start = server.Server(socket.gethostbyname(hostname), 8888)
 
 
 class Window(QMainWindow):
