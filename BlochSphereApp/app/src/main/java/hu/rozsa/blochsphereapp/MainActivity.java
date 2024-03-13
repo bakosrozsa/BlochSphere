@@ -17,12 +17,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private SensorManager sensorManager;
     private Sensor sensor;
-    private SensorEventListener gyroscopeEventListener;
     private boolean clicked;
     Socket socket;
     PrintWriter outToServer;
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.button);
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        Button button2 = (Button) findViewById(R.id.button2);
+
         clicked = false;
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
@@ -69,35 +70,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-
-            gyroscopeEventListener = new SensorEventListener() {
+            button2.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onSensorChanged(SensorEvent sensorEvent) {
-                    if (clicked){
-                        angles = Float.toString((float) (sensorEvent.values[0] * (180/Math.PI))) + "," +
-                                 Float.toString((float) (sensorEvent.values[1] * (180/Math.PI))) + "," +
-                                 Float.toString((float) (sensorEvent.values[2]* (180/Math.PI)));
-                        outToServer.print(angles);
-                        outToServer.flush();
-                    }
+                public void onClick(View v) {
+                    sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+                    sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+                    sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
                 }
-
-                @Override
-                public void onAccuracyChanged(Sensor sensor, int i) {
-
-                }
-            };
+            });
         }
 
     }
+
     @Override
-    protected void onResume() {
-        super.onResume();
-        sensorManager.registerListener(gyroscopeEventListener,sensor,SensorManager.SENSOR_DELAY_FASTEST);
+    public void onSensorChanged(SensorEvent event) {
+        angles = event.values[0] + "," +
+                event.values[1];
+        outToServer.print(angles);
+        outToServer.flush();
     }
+
     @Override
-    protected void onPause(){
-        super.onPause();
-        sensorManager.unregisterListener(gyroscopeEventListener);
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
