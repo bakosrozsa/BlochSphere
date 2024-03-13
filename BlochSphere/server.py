@@ -27,6 +27,5 @@ class Server:
     def get_data(self):
         data = self.conn.recv(1024).decode()
         angles = data.split(',')
-        print(angles)
         return angles
         #self.conn.close()
