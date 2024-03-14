@@ -1,6 +1,8 @@
 import asyncio
+import math
 import sys
 import socket
+import random
 
 import matplotlib.pyplot as plt
 from PySide6.QtCore import Slot
@@ -31,8 +33,11 @@ class Window(QMainWindow):
         self.menu_base = self.menu.addMenu("Menu")
         self.menu_connect = QAction("Connect phone", self)
         self.menu_connect.triggered.connect(self.ConnectPhone)
+        self.menu_random = QAction("Random Bloch state", self)
+        self.menu_random.triggered.connect(self.RandomState)
 
         self.menu_base.addAction(self.menu_connect)
+        self.menu_base.addAction(self.menu_random)
         self.menu.addMenu(self.menu_base)
 
         self.gatescombo = QComboBox()
@@ -74,6 +79,14 @@ class Window(QMainWindow):
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
         self.startmessurebutton.clicked.connect(self.StartGateCheck)
 
+    def RandomState(self):
+        plt.close()
+        self.fig.canvas.flush_events()
+        self.fig = plot_bloch_vector([1, random.uniform(-math.pi,math.pi), random.uniform(0, 2 * math.pi)], coord_type='spherical')
+        self.canvas.figure = self.fig
+        self.fig.set_canvas(self.canvas)
+        self.canvas.draw()
+
     def StartGateCheck(self):
         asyncio.run(self.rotate())
         server_start.conn.close()
@@ -94,13 +107,13 @@ class Window(QMainWindow):
     async def rotate(self):
         angles = server_start.get_data()
         while True:
-            #plt.close()
-            #self.fig.canvas.flush_events()
+            plt.close()
+            self.fig.canvas.flush_events()
             print(angles)
-            #self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
-            #self.canvas.figure = self.fig
-            #self.fig.set_canvas(self.canvas)
-            #self.canvas.draw()
+            self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
+            self.canvas.figure = self.fig
+            self.fig.set_canvas(self.canvas)
+            self.canvas.draw()
             angles = server_start.get_data()
 
     @Slot()

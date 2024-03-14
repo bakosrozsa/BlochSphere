@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     {
                         clicked = true;
                         try {
-                            socket = new Socket("192.168.0.108",8888);
+                            socket = new Socket("192.168.0.105",8888);
                             outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                         }
                         catch (IOException e) {
