@@ -89,7 +89,7 @@ class Window(QMainWindow):
         self.canvas.draw()
 
     def StartGateCheck(self):
-        asyncio.run(self.rotate())
+        self.rotate()
         server_start.conn.close()
 
     def ConnectPhone(self):
@@ -105,9 +105,9 @@ class Window(QMainWindow):
             msg_conn.setText("Phone connection failed, check the host and port")
             msg_conn.exec()
 
-    async def rotate(self):
+    def rotate(self):
         angles = server_start.get_data()
-        while True:
+        while len(angles) == 2:
             plt.close()
             self.fig.canvas.flush_events()
             print(angles)

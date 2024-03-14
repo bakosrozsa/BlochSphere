@@ -9,9 +9,12 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Button button = (Button) findViewById(R.id.button);
         Button button2 = (Button) findViewById(R.id.button2);
 
+        EditText ipport= (EditText) findViewById(R.id.editTextText);
+
         clicked = false;
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
@@ -50,13 +55,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     if (!clicked)
                     {
                         clicked = true;
+                        String[] connectiondata = ipport.getText().toString().split(":");
                         try {
-                            socket = new Socket("192.168.0.105",8888);
+                            socket = new Socket(connectiondata[0],Integer.parseInt(connectiondata[1]) );
                             outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                         }
                         catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        ipport.getText().clear();
+                        ipport.setEnabled(false);
+                        button2.setEnabled(true);
                     }
                     else
                     {
@@ -67,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        ipport.setEnabled(true);
+                        button2.setEnabled(false);
                     }
                 }
             });
