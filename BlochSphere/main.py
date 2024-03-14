@@ -82,7 +82,8 @@ class Window(QMainWindow):
     def RandomState(self):
         plt.close()
         self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, random.uniform(-math.pi,math.pi), random.uniform(0, 2 * math.pi)], coord_type='spherical')
+        self.fig = plot_bloch_vector([1, random.uniform(0, math.pi), random.uniform(0, 2 * math.pi)],
+                                     coord_type='spherical')
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
