@@ -1,11 +1,11 @@
-import asyncio
 import math
 import sys
 import socket
 import random
+import threading
 
 import matplotlib.pyplot as plt
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, QObject, Signal
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from PySide6.QtGui import QAction, QPixmap, Qt
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QVBoxLayout, QWidget, QMessageBox,
@@ -17,6 +17,25 @@ from qiskit.visualization import plot_bloch_vector
 
 hostname = socket.gethostname()
 server_start = server.Server(socket.gethostbyname(hostname), 8888)
+
+
+def ConnectPhone():
+    phone_connector = PhoneConnector()
+    phone_connector.connected.connect(show_phone_connected_message)
+    phone_thread = threading.Thread(target=phone_connector.run)
+    phone_thread.start()
+
+def show_phone_connected_message():
+    msg_conn = QMessageBox()
+    msg_conn.setText("Phone connected")
+    msg_conn.exec()
+
+class PhoneConnector(QObject):
+    connected = Signal()
+
+    def run(self):
+        if server_start.hosting():
+            self.connected.emit()
 
 
 class Window(QMainWindow):
@@ -32,7 +51,7 @@ class Window(QMainWindow):
         self.menu = self.menuBar()
         self.menu_base = self.menu.addMenu("Menu")
         self.menu_connect = QAction("Connect phone", self)
-        self.menu_connect.triggered.connect(self.ConnectPhone)
+        self.menu_connect.triggered.connect(self.ConnectPhoneThread)
         self.menu_random = QAction("Random Bloch state", self)
         self.menu_random.triggered.connect(self.RandomState)
 
@@ -92,18 +111,8 @@ class Window(QMainWindow):
         self.rotate()
         server_start.conn.close()
 
-    def ConnectPhone(self):
-
-        msg_conn = QMessageBox()
-        if server_start.hosting():
-
-            msg_conn.setText("Phone connected")
-            msg_conn.exec()
-
-        else:
-            msg_conn.setIcon(QMessageBox.Critical)
-            msg_conn.setText("Phone connection failed, check the host and port")
-            msg_conn.exec()
+    def ConnectPhoneThread(self):
+        ConnectPhone()
 
     def rotate(self):
         angles = server_start.get_data()
