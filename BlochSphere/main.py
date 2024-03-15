@@ -25,10 +25,12 @@ def ConnectPhone():
     phone_thread = threading.Thread(target=phone_connector.run)
     phone_thread.start()
 
+
 def show_phone_connected_message():
     msg_conn = QMessageBox()
     msg_conn.setText("Phone connected")
     msg_conn.exec()
+
 
 class PhoneConnector(QObject):
     connected = Signal()
@@ -44,6 +46,8 @@ class Window(QMainWindow):
 
         self._main = QWidget()
         self.setCentralWidget(self._main)
+
+        self.setWindowTitle("Quantum logic gates teaching program")
 
         self.fig = plot_bloch_vector([1, 0, 0], coord_type='spherical')
         self.canvas = FigureCanvasQTAgg(self.fig)
@@ -96,7 +100,11 @@ class Window(QMainWindow):
         sphereLayout.addLayout(self.rside, 30)
 
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
-        self.startmessurebutton.clicked.connect(self.StartGateCheck)
+        self.startmessurebutton.clicked.connect(self.open_another_window)
+
+    def open_another_window(self):
+        self.another_window = AnimationWindow(self)
+        self.another_window.show()
 
     def RandomState(self):
         plt.close()
@@ -169,6 +177,25 @@ class Window(QMainWindow):
             self.pixmap.load('pauliz.png')
             self.startmessurebutton.setText("Try Pauli-Z gate!")
         self.label.setPixmap(self.pixmap)
+
+class AnimationWindow(QMainWindow):
+    def __init__(self, parent=None):
+        QMainWindow.__init__(self, parent)
+
+        self.setWindowTitle("Gate Animation")
+        self.setFixedSize(450, 450)
+
+        # Widgets for the second window
+        self.fig = plot_bloch_vector([1, 0, 0], coord_type='spherical')
+        self.canvas = FigureCanvasQTAgg(self.fig)
+
+        # Layout for the second window
+        layout = QVBoxLayout()
+        layout.addWidget(self.canvas)
+
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.setCentralWidget(widget)
 
 
 if __name__ == "__main__":
