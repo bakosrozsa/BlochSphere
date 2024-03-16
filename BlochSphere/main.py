@@ -83,14 +83,17 @@ class Window(QMainWindow):
         self.label = QLabel()
         self.pixmap = QPixmap()
         self.label.setPixmap(self.pixmap)
+        self.showAnim = QPushButton()
         self.startmessurebutton = QPushButton()
         self.label.setVisible(False)
+        self.showAnim.setVisible(False)
         self.startmessurebutton.setVisible(False)
 
         self.rside = QVBoxLayout()
         self.rside.addWidget(self.gatescombo)
         self.rside.addWidget(self.text)
         self.rside.addWidget(self.label)
+        self.rside.addWidget(self.showAnim)
         self.rside.addWidget(self.startmessurebutton)
         self.rside.setAlignment(self.label, Qt.AlignCenter)
 
@@ -101,7 +104,8 @@ class Window(QMainWindow):
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
 
         self.whichGate = ""
-        self.startmessurebutton.clicked.connect(self.open_another_window)
+        self.showAnim.clicked.connect(self.open_another_window)
+        self.startmessurebutton.clicked.connect(self.StartGateCheck)
 
     def open_another_window(self):
         if self.whichGate == "x":
@@ -146,6 +150,7 @@ class Window(QMainWindow):
     def gatescombo_options(self, text):
         self.text.clear()
         self.rside.update()
+        self.showAnim.setVisible(True)
         self.startmessurebutton.setVisible(True)
         self.label.setVisible(True)
         if text == "Hadamard":
@@ -156,6 +161,7 @@ class Window(QMainWindow):
 
             self.pixmap.load('hadamard.png')
             self.whichGate = "h"
+            self.showAnim.setText("See Hadamard gate animation!")
             self.startmessurebutton.setText("Try Hadamard gate!")
         elif text == "Pauli-X":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-X gate (or X gate)</h1>"
@@ -164,6 +170,7 @@ class Window(QMainWindow):
                               "|1⟩ to |0⟩.</p>")
             self.pixmap.load('paulix.png')
             self.whichGate = "x"
+            self.showAnim.setText("See Pauli-X gate animation!")
             self.startmessurebutton.setText("Try Pauli-X gate!")
         elif text == "Pauli-Y":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Y gate (or Y gate)</h1> <p style='font-size: "
@@ -171,6 +178,7 @@ class Window(QMainWindow):
                               "a global phase.</p>")
             self.pixmap.load('pauliy.png')
             self.whichGate = "y"
+            self.showAnim.setText("See Pauli-Y gate animation!")
             self.startmessurebutton.setText("Try Pauli-Y gate!")
         elif text == "Pauli-Z":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Z gate (or Z gate)</h1>"
@@ -178,6 +186,7 @@ class Window(QMainWindow):
                               "state, leaving the |0⟩ state unchanged.</p>")
             self.pixmap.load('pauliz.png')
             self.whichGate = "z"
+            self.showAnim.setText("See Pauli-Z gate animation!")
             self.startmessurebutton.setText("Try Pauli-Z gate!")
         self.label.setPixmap(self.pixmap)
 
