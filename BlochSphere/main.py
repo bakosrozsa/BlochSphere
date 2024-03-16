@@ -7,10 +7,9 @@ import threading
 import matplotlib.pyplot as plt
 from PySide6.QtCore import Slot, QObject, Signal
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
-from PySide6.QtGui import QAction, QPixmap, Qt
+from PySide6.QtGui import QAction, QPixmap, Qt, QMovie
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QVBoxLayout, QWidget, QMessageBox,
                                QComboBox, QTextEdit, QPushButton, QLabel)
-from qiskit import QuantumCircuit
 
 import server
 from qiskit.visualization import plot_bloch_vector
@@ -100,10 +99,19 @@ class Window(QMainWindow):
         sphereLayout.addLayout(self.rside, 30)
 
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
+
+        self.whichGate = ""
         self.startmessurebutton.clicked.connect(self.open_another_window)
 
     def open_another_window(self):
-        self.another_window = AnimationWindow(self)
+        if self.whichGate == "x":
+            self.another_window = AnimationWindow("x.gif", self)
+        elif self.whichGate == "y":
+            self.another_window = AnimationWindow("y.gif", self)
+        elif self.whichGate == "z":
+            self.another_window = AnimationWindow("z.gif", self)
+        elif self.whichGate == "h":
+            self.another_window = AnimationWindow("h.gif", self)
         self.another_window.show()
 
     def RandomState(self):
@@ -140,62 +148,59 @@ class Window(QMainWindow):
         self.rside.update()
         self.startmessurebutton.setVisible(True)
         self.label.setVisible(True)
-        circuit = QuantumCircuit(1)
         if text == "Hadamard":
             self.text.setHtml("<h1 style='text-align: center;'>Hadamard Gate</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
                               "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
                               "states.</p>")
 
-            circuit.h(0)
-            circuit.draw(output="mpl", filename='hadamard.png')
             self.pixmap.load('hadamard.png')
+            self.whichGate = "h"
             self.startmessurebutton.setText("Try Hadamard gate!")
         elif text == "Pauli-X":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-X gate (or X gate)</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate is analogous to the NOT "
                               "gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from "
                               "|1⟩ to |0⟩.</p>")
-            circuit.x(0)
-            circuit.draw(output="mpl", filename='paulix.png')
             self.pixmap.load('paulix.png')
+            self.whichGate = "x"
             self.startmessurebutton.setText("Try Pauli-X gate!")
         elif text == "Pauli-Y":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Y gate (or Y gate)</h1> <p style='font-size: "
                               "15px; text-align: justify;'>This gate is equivalent to applying both X and Z gates and "
                               "a global phase.</p>")
-            circuit.y(0)
-            circuit.draw(output="mpl", filename='pauliy.png')
             self.pixmap.load('pauliy.png')
+            self.whichGate = "y"
             self.startmessurebutton.setText("Try Pauli-Y gate!")
         elif text == "Pauli-Z":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Z gate (or Z gate)</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate flips the phase of the |1⟩ "
                               "state, leaving the |0⟩ state unchanged.</p>")
-            circuit.z(0)
-            circuit.draw(output="mpl", filename='pauliz.png')
             self.pixmap.load('pauliz.png')
+            self.whichGate = "z"
             self.startmessurebutton.setText("Try Pauli-Z gate!")
         self.label.setPixmap(self.pixmap)
 
+
 class AnimationWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, gate, parent=None):
         QMainWindow.__init__(self, parent)
 
-        self.setWindowTitle("Gate Animation")
-        self.setFixedSize(450, 450)
+        self.setWindowTitle("Gate animation")
+        self.setFixedSize(500, 500)
 
-        # Widgets for the second window
-        self.fig = plot_bloch_vector([1, 0, 0], coord_type='spherical')
-        self.canvas = FigureCanvasQTAgg(self.fig)
+        self.gif_label = QLabel(self)
+        self.gif_label.setFixedSize(500, 500)
 
-        # Layout for the second window
-        layout = QVBoxLayout()
-        layout.addWidget(self.canvas)
+        self.gif_path = gate
 
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
+        self.display_gif()
+
+    def display_gif(self):
+        # Load the GIF image and set it to the QLabel
+        movie = QMovie(self.gif_path)
+        self.gif_label.setMovie(movie)
+        movie.start()
 
 
 if __name__ == "__main__":
