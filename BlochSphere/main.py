@@ -39,6 +39,12 @@ class PhoneConnector(QObject):
             self.connected.emit()
 
 
+def show_done_rotating_message():
+    msg_done = QMessageBox()
+    msg_done.setText("Done rotating!")
+    msg_done.exec()
+
+
 class Window(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
@@ -55,6 +61,8 @@ class Window(QMainWindow):
         self.menu_base = self.menu.addMenu("Menu")
         self.menu_connect = QAction("Connect phone", self)
         self.menu_connect.triggered.connect(self.ConnectPhoneThread)
+
+        self.theta, self.phi = 0.0, 0.0
         self.menu_random = QAction("Random Bloch state", self)
         self.menu_random.triggered.connect(self.RandomState)
 
@@ -104,6 +112,7 @@ class Window(QMainWindow):
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
 
         self.whichGate = ""
+        self.continueRotating = True
         self.showAnim.clicked.connect(self.open_another_window)
         self.startmessurebutton.clicked.connect(self.StartGateCheck)
 
@@ -119,32 +128,56 @@ class Window(QMainWindow):
         self.another_window.show()
 
     def RandomState(self):
+        self.theta = random.uniform(0, math.pi)
+        self.phi = random.uniform(0, 2 * math.pi)
         plt.close()
         self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, random.uniform(0, math.pi), random.uniform(0, 2 * math.pi)],
+        self.fig = plot_bloch_vector([1, self.theta, self.phi],
                                      coord_type='spherical')
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
 
     def StartGateCheck(self):
-        self.rotate()
-        server_start.conn.close()
+        if self.whichGate == "x":
+            self.theta = math.pi - self.theta
+            self.phi = -self.phi
+            while self.continueRotating:
+                self.rotate()
+
+        elif self.whichGate == "y":
+            self.theta = math.pi - self.theta
+            self.phi = math.pi - self.phi
+            while self.continueRotating:
+                self.rotate()
+
+        elif self.whichGate == "z":
+            self.phi = math.pi + self.phi
+            while self.continueRotating:
+                self.rotate()
+        show_done_rotating_message()
+
+        """
+        elif self.whichGate == "h":
+            self.rotate()
+        server_start.conn.close()"""
 
     def ConnectPhoneThread(self):
         ConnectPhone()
 
     def rotate(self):
         angles = server_start.get_data()
-        while len(angles) == 2:
-            plt.close()
-            self.fig.canvas.flush_events()
-            print(angles)
-            self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
-            self.canvas.figure = self.fig
-            self.fig.set_canvas(self.canvas)
-            self.canvas.draw()
-            angles = server_start.get_data()
+        plt.close()
+        self.fig.canvas.flush_events()
+        self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
+        self.canvas.figure = self.fig
+        self.fig.set_canvas(self.canvas)
+        self.canvas.draw()
+        if ((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) and
+                (self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1)):
+            self.continueRotating = False
+        else:
+            self.continueRotating = True
 
     @Slot()
     def gatescombo_options(self, text):
