@@ -155,6 +155,7 @@ class Window(QMainWindow):
             self.phi = math.pi + self.phi
             while self.continueRotating:
                 self.rotate()
+        self.continueRotating = True
         show_done_rotating_message()
 
         """
@@ -173,8 +174,8 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
-        if ((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) and
-                (self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1)):
+        if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
+                (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
             self.continueRotating = False
         else:
             self.continueRotating = True

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private SensorManager sensorManager;
     private Sensor sensor;
-    private boolean clicked;
+    private boolean clicked, clickedSensor;
     Socket socket;
     PrintWriter outToServer;
     String angles;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         EditText ipport= (EditText) findViewById(R.id.editTextText);
 
         clicked = false;
+        clickedSensor = false;
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
         {
@@ -84,9 +85,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-                    sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-                    sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+                    if (!clickedSensor)
+                    {
+                        clickedSensor = true;
+                        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+                        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+                        sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+                    }
+                    else
+                    {
+                        clickedSensor = false;
+                        sensorManager.unregisterListener(MainActivity.this);
+                    }
                 }
             });
         }
