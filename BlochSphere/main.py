@@ -66,13 +66,21 @@ class Window(QMainWindow):
         self.menu_random = QAction("Random Bloch state", self)
         self.menu_random.triggered.connect(self.RandomState)
 
+        self.zeroState = QAction("|0> bloch state", self)
+        self.zeroState.triggered.connect(self.ZeroState)
+
+        self.oneState = QAction("|1> bloch state", self)
+        self.oneState.triggered.connect(self.OneState)
+
         self.menu_base.addAction(self.menu_connect)
         self.menu_base.addAction(self.menu_random)
+        self.menu_base.addAction(self.zeroState)
+        self.menu_base.addAction(self.oneState)
         self.menu.addMenu(self.menu_base)
 
         self.gatescombo = QComboBox()
         self.text = QTextEdit()
-        self.gatescombo.addItems(["Identity", "Phase", "Hadamard", "Pauli-X", "Pauli-Y", "Pauli-Z", "T"])
+        self.gatescombo.addItems(["Identity", "Hadamard", "Pauli-X", "Pauli-Y", "Pauli-Z"])
         self.gatescombo.setCurrentIndex(-1)
 
         self.text.insertHtml("<h1 style='text-align: center;'>Quantum logic gates</h1>"
@@ -138,9 +146,31 @@ class Window(QMainWindow):
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
 
+    def ZeroState(self):
+        self.theta = 0
+        self.phi = 0
+        plt.close()
+        self.fig.canvas.flush_events()
+        self.fig = plot_bloch_vector([1, self.theta, self.phi],
+                                     coord_type='spherical')
+        self.canvas.figure = self.fig
+        self.fig.set_canvas(self.canvas)
+        self.canvas.draw()
+
+    def OneState(self):
+        self.theta = math.pi
+        self.phi = 0
+        plt.close()
+        self.fig.canvas.flush_events()
+        self.fig = plot_bloch_vector([1, self.theta, self.phi],
+                                     coord_type='spherical')
+        self.canvas.figure = self.fig
+        self.fig.set_canvas(self.canvas)
+        self.canvas.draw()
+
     def StartGateCheck(self):
         if self.whichGate == "i":
-            #nullával szorzás
+            # nullával való szorzás?
             while self.continueRotating:
                 self.rotate()
 
@@ -164,7 +194,7 @@ class Window(QMainWindow):
             self.rotate()
         self.continueRotating = True
         show_done_rotating_message()
-        #server_start.conn.close()
+        # server_start.conn.close()
 
     def ConnectPhoneThread(self):
         ConnectPhone()
