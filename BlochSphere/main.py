@@ -72,7 +72,7 @@ class Window(QMainWindow):
 
         self.gatescombo = QComboBox()
         self.text = QTextEdit()
-        self.gatescombo.addItems(["Hadamard", "Pauli-X", "Pauli-Y", "Pauli-Z"])
+        self.gatescombo.addItems(["Identity", "Phase", "Hadamard", "Pauli-X", "Pauli-Y", "Pauli-Z", "T"])
         self.gatescombo.setCurrentIndex(-1)
 
         self.text.insertHtml("<h1 style='text-align: center;'>Quantum logic gates</h1>"
@@ -139,7 +139,12 @@ class Window(QMainWindow):
         self.canvas.draw()
 
     def StartGateCheck(self):
-        if self.whichGate == "x":
+        if self.whichGate == "i":
+            #nullával szorzás
+            while self.continueRotating:
+                self.rotate()
+
+        elif self.whichGate == "x":
             self.theta = math.pi - self.theta
             self.phi = -self.phi
             while self.continueRotating:
@@ -155,13 +160,11 @@ class Window(QMainWindow):
             self.phi = math.pi + self.phi
             while self.continueRotating:
                 self.rotate()
-        self.continueRotating = True
-        show_done_rotating_message()
-
-        """
         elif self.whichGate == "h":
             self.rotate()
-        server_start.conn.close()"""
+        self.continueRotating = True
+        show_done_rotating_message()
+        #server_start.conn.close()
 
     def ConnectPhoneThread(self):
         ConnectPhone()
@@ -187,7 +190,16 @@ class Window(QMainWindow):
         self.showAnim.setVisible(True)
         self.startmessurebutton.setVisible(True)
         self.label.setVisible(True)
-        if text == "Hadamard":
+        if text == "Identity":
+            self.text.setHtml("<h1 style='text-align: center;'>Identity Gate</h1>"
+                              "<p style='font-size: 15px; text-align: justify;'>The Identity gate is a single-qubit "
+                              "operation that leaves the basis states |0> and |1> unchanged.</p>")
+
+            self.pixmap.load('Identity.png')
+            self.whichGate = "i"
+            self.showAnim.setVisible(False)
+            self.startmessurebutton.setText("Try Identity gate!")
+        elif text == "Hadamard":
             self.text.setHtml("<h1 style='text-align: center;'>Hadamard Gate</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
                               "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
@@ -240,7 +252,6 @@ class AnimationWindow(QMainWindow):
         self.display_gif()
 
     def display_gif(self):
-        # Load the GIF image and set it to the QLabel
         movie = QMovie(self.gif_path)
         self.gif_label.setMovie(movie)
         movie.start()
