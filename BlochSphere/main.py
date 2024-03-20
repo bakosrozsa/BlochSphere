@@ -39,9 +39,22 @@ class PhoneConnector(QObject):
             self.connected.emit()
 
 
+# messagek átalakítása egy naggyá?
 def show_done_rotating_message():
     msg_done = QMessageBox()
     msg_done.setText("Done rotating!")
+    msg_done.exec()
+
+
+def show_disconnected_message():
+    msg_done = QMessageBox()
+    msg_done.setText("Phone disconnected! Please reconnect to continue!")
+    msg_done.exec()
+
+
+def show_connect_message():
+    msg_done = QMessageBox()
+    msg_done.setText("Connect your phone first!")
     msg_done.exec()
 
 
@@ -58,9 +71,8 @@ class Window(QMainWindow):
         self.canvas = FigureCanvasQTAgg(self.fig)
 
         self.menu = self.menuBar()
-        self.menu_base = self.menu.addMenu("Menu")
-        self.menu_connect = QAction("Connect phone", self)
-        self.menu_connect.triggered.connect(self.ConnectPhoneThread)
+        self.menu_states = self.menu.addMenu("States")
+        self.menu_connections = self.menu.addMenu("Connection")
 
         self.theta, self.phi = 0.0, 0.0
         self.menu_random = QAction("Random Bloch state", self)
@@ -72,11 +84,15 @@ class Window(QMainWindow):
         self.oneState = QAction("|1> bloch state", self)
         self.oneState.triggered.connect(self.OneState)
 
-        self.menu_base.addAction(self.menu_connect)
-        self.menu_base.addAction(self.menu_random)
-        self.menu_base.addAction(self.zeroState)
-        self.menu_base.addAction(self.oneState)
-        self.menu.addMenu(self.menu_base)
+        self.connected = False
+        self.menu_connect = QAction("Connect phone", self)
+        self.menu_connect.triggered.connect(self.ConnectPhoneThread)
+
+        self.menu_states.addAction(self.menu_random)
+        self.menu_states.addAction(self.zeroState)
+        self.menu_states.addAction(self.oneState)
+        self.menu_connections.addAction(self.menu_connect)
+        self.menu.addMenu(self.menu_states)
 
         self.gatescombo = QComboBox()
         self.text = QTextEdit()
@@ -169,38 +185,66 @@ class Window(QMainWindow):
         self.canvas.draw()
 
     def StartGateCheck(self):
-        if self.whichGate == "i":
-            # nullával való szorzás?
-            while self.continueRotating:
-                self.rotate()
+        if self.connected:
+            if self.whichGate == "i":
+                # nullával való szorzás?
+                while self.continueRotating:
+                    angles = server_start.get_data()
+                    if angles is None:
+                        self.connected = False
+                        show_disconnected_message()
+                        break
+                    else:
+                        self.rotate(angles)
 
-        elif self.whichGate == "x":
-            self.theta = math.pi - self.theta
-            self.phi = -self.phi
-            while self.continueRotating:
-                self.rotate()
+            elif self.whichGate == "x":
+                self.theta = math.pi - self.theta
+                self.phi = -self.phi
+                while self.continueRotating:
+                    angles = server_start.get_data()
+                    if angles is None:
+                        self.connected = False
+                        show_disconnected_message()
+                        break
+                    else:
+                        self.rotate(angles)
 
-        elif self.whichGate == "y":
-            self.theta = math.pi - self.theta
-            self.phi = math.pi - self.phi
-            while self.continueRotating:
-                self.rotate()
+            elif self.whichGate == "y":
+                self.theta = math.pi - self.theta
+                self.phi = math.pi - self.phi
+                while self.continueRotating:
+                    angles = server_start.get_data()
+                    if angles is None:
+                        self.connected = False
+                        show_disconnected_message()
+                        break
+                    else:
+                        self.rotate(angles)
 
-        elif self.whichGate == "z":
-            self.phi = math.pi + self.phi
-            while self.continueRotating:
+            elif self.whichGate == "z":
+                self.phi = math.pi + self.phi
+                while self.continueRotating:
+                    angles = server_start.get_data()
+                    if angles is None:
+                        self.connected = False
+                        show_disconnected_message()
+                        break
+                    else:
+                        self.rotate(angles)
+            """
+            elif self.whichGate == "h":
                 self.rotate()
-        elif self.whichGate == "h":
-            self.rotate()
-        self.continueRotating = True
-        show_done_rotating_message()
-        # server_start.conn.close()
+            self.continueRotating = True"""
+            show_done_rotating_message()
+            self.continueRotating = True
+        else:
+            show_connect_message()
 
     def ConnectPhoneThread(self):
         ConnectPhone()
+        self.connected = True
 
-    def rotate(self):
-        angles = server_start.get_data()
+    def rotate(self, angles):
         plt.close()
         self.fig.canvas.flush_events()
         self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
