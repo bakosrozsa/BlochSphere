@@ -39,22 +39,9 @@ class PhoneConnector(QObject):
             self.connected.emit()
 
 
-# messagek átalakítása egy naggyá?
-def show_done_rotating_message():
+def show_message(text):
     msg_done = QMessageBox()
-    msg_done.setText("Done rotating!")
-    msg_done.exec()
-
-
-def show_disconnected_message():
-    msg_done = QMessageBox()
-    msg_done.setText("Phone disconnected! Please reconnect to continue!")
-    msg_done.exec()
-
-
-def show_connect_message():
-    msg_done = QMessageBox()
-    msg_done.setText("Connect your phone first!")
+    msg_done.setText(text)
     msg_done.exec()
 
 
@@ -192,7 +179,7 @@ class Window(QMainWindow):
                     angles = server_start.get_data()
                     if angles is None:
                         self.connected = False
-                        show_disconnected_message()
+                        show_message("Phone disconnected! Please reconnect to continue!")
                         break
                     else:
                         self.rotate(angles)
@@ -204,7 +191,7 @@ class Window(QMainWindow):
                     angles = server_start.get_data()
                     if angles is None:
                         self.connected = False
-                        show_disconnected_message()
+                        show_message("Phone disconnected! Please reconnect to continue!")
                         break
                     else:
                         self.rotate(angles)
@@ -216,7 +203,7 @@ class Window(QMainWindow):
                     angles = server_start.get_data()
                     if angles is None:
                         self.connected = False
-                        show_disconnected_message()
+                        show_message("Phone disconnected! Please reconnect to continue!")
                         break
                     else:
                         self.rotate(angles)
@@ -227,7 +214,7 @@ class Window(QMainWindow):
                     angles = server_start.get_data()
                     if angles is None:
                         self.connected = False
-                        show_disconnected_message()
+                        show_message("Phone disconnected! Please reconnect to continue!")
                         break
                     else:
                         self.rotate(angles)
@@ -235,26 +222,29 @@ class Window(QMainWindow):
             elif self.whichGate == "h":
                 self.rotate()
             self.continueRotating = True"""
-            show_done_rotating_message()
+            show_message("Done rotating!")
             self.continueRotating = True
         else:
-            show_connect_message()
+            show_message("Connect your phone first!")
 
     def ConnectPhoneThread(self):
         ConnectPhone()
         self.connected = True
 
     def rotate(self, angles):
-        plt.close()
-        self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
-        self.canvas.figure = self.fig
-        self.fig.set_canvas(self.canvas)
-        self.canvas.draw()
-        if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
-                (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
-            self.continueRotating = False
-        else:
+        try:
+            plt.close()
+            self.fig.canvas.flush_events()
+            self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
+            self.canvas.figure = self.fig
+            self.fig.set_canvas(self.canvas)
+            self.canvas.draw()
+            if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
+                    (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
+                self.continueRotating = False
+            else:
+                self.continueRotating = True
+        except ValueError:
             self.continueRotating = True
 
     @Slot()

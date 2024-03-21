@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         clickedSensor = true;
                         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
                         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-                        sensorManager.registerListener(MainActivity.this,sensor,500000000);
+                        sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_FASTEST);
                     }
                     else
                     {
