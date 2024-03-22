@@ -71,7 +71,6 @@ class Window(QMainWindow):
         self.oneState = QAction("|1> bloch state", self)
         self.oneState.triggered.connect(self.OneState)
 
-        self.connected = False
         self.menu_connect = QAction("Connect phone", self)
         self.menu_connect.triggered.connect(self.ConnectPhoneThread)
 
@@ -129,13 +128,13 @@ class Window(QMainWindow):
 
     def open_another_window(self):
         if self.whichGate == "x":
-            self.another_window = AnimationWindow("x.gif", self)
+            self.another_window = AnimationWindow("images/x.gif", self)
         elif self.whichGate == "y":
-            self.another_window = AnimationWindow("y.gif", self)
+            self.another_window = AnimationWindow("images/y.gif", self)
         elif self.whichGate == "z":
-            self.another_window = AnimationWindow("z.gif", self)
+            self.another_window = AnimationWindow("images/z.gif", self)
         elif self.whichGate == "h":
-            self.another_window = AnimationWindow("h.gif", self)
+            self.another_window = AnimationWindow("images/h.gif", self)
         self.another_window.show()
 
     def RandomState(self):
@@ -172,80 +171,57 @@ class Window(QMainWindow):
         self.canvas.draw()
 
     def StartGateCheck(self):
-        if self.connected:
+        try:
             if self.whichGate == "i":
                 # nullával való szorzás?
-                while self.continueRotating:
-                    angles = server_start.get_data()
-                    if angles is None:
-                        self.connected = False
-                        show_message("Phone disconnected! Please reconnect to continue!")
-                        break
-                    else:
-                        self.rotate(angles)
+                self.rotate()
 
             elif self.whichGate == "x":
                 self.theta = math.pi - self.theta
                 self.phi = -self.phi
-                while self.continueRotating:
-                    angles = server_start.get_data()
-                    if angles is None:
-                        self.connected = False
-                        show_message("Phone disconnected! Please reconnect to continue!")
-                        break
-                    else:
-                        self.rotate(angles)
+                self.rotate()
 
             elif self.whichGate == "y":
                 self.theta = math.pi - self.theta
                 self.phi = math.pi - self.phi
-                while self.continueRotating:
-                    angles = server_start.get_data()
-                    if angles is None:
-                        self.connected = False
-                        show_message("Phone disconnected! Please reconnect to continue!")
-                        break
-                    else:
-                        self.rotate(angles)
+                self.rotate()
 
             elif self.whichGate == "z":
                 self.phi = math.pi + self.phi
-                while self.continueRotating:
-                    angles = server_start.get_data()
-                    if angles is None:
-                        self.connected = False
-                        show_message("Phone disconnected! Please reconnect to continue!")
-                        break
-                    else:
-                        self.rotate(angles)
+                self.rotate()
             """
             elif self.whichGate == "h":
                 self.rotate()
             self.continueRotating = True"""
             show_message("Done rotating!")
             self.continueRotating = True
-        else:
-            show_message("Connect your phone first!")
+        except OSError:
+            show_message("Connect your phone first")
+        except AttributeError:
+            show_message("Connect your phone first")
 
     def ConnectPhoneThread(self):
         ConnectPhone()
-        self.connected = True
 
-    def rotate(self, angles):
-        try:
-            plt.close()
-            self.fig.canvas.flush_events()
-            self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
-            self.canvas.figure = self.fig
-            self.fig.set_canvas(self.canvas)
-            self.canvas.draw()
-            if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
-                    (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
-                self.continueRotating = False
+    def rotate(self):
+        while True:
+            angles = server_start.get_data()
+            if angles is None:
+                show_message("Phone disconnected! Please reconnect to continue!")
+                break
             else:
-                self.continueRotating = True
-        except ValueError:
-            self.continueRotating = True
+                try:
+                    plt.close()
+                    self.fig.canvas.flush_events()
+                    self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
+                    self.canvas.figure = self.fig
+                    self.fig.set_canvas(self.canvas)
+                    self.canvas.draw()
+                except ValueError:
+                    continue
+                if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
+                        (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
+                    break
 
     @Slot()
     def gatescombo_options(self, text):
@@ -259,7 +235,7 @@ class Window(QMainWindow):
                               "<p style='font-size: 15px; text-align: justify;'>The Identity gate is a single-qubit "
                               "operation that leaves the basis states |0> and |1> unchanged.</p>")
 
-            self.pixmap.load('Identity.png')
+            self.pixmap.load('images/Identity.png')
             self.whichGate = "i"
             self.showAnim.setVisible(False)
             self.startmessurebutton.setText("Try Identity gate!")
@@ -269,7 +245,7 @@ class Window(QMainWindow):
                               "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
                               "states.</p>")
 
-            self.pixmap.load('hadamard.png')
+            self.pixmap.load('images/hadamard.png')
             self.whichGate = "h"
             self.showAnim.setText("See Hadamard gate animation!")
             self.startmessurebutton.setText("Try Hadamard gate!")
@@ -278,7 +254,7 @@ class Window(QMainWindow):
                               "<p style='font-size: 15px; text-align: justify;'>This gate is analogous to the NOT "
                               "gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from "
                               "|1⟩ to |0⟩.</p>")
-            self.pixmap.load('paulix.png')
+            self.pixmap.load('images/paulix.png')
             self.whichGate = "x"
             self.showAnim.setText("See Pauli-X gate animation!")
             self.startmessurebutton.setText("Try Pauli-X gate!")
@@ -286,7 +262,7 @@ class Window(QMainWindow):
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Y gate (or Y gate)</h1> <p style='font-size: "
                               "15px; text-align: justify;'>This gate is equivalent to applying both X and Z gates and "
                               "a global phase.</p>")
-            self.pixmap.load('pauliy.png')
+            self.pixmap.load('images/pauliy.png')
             self.whichGate = "y"
             self.showAnim.setText("See Pauli-Y gate animation!")
             self.startmessurebutton.setText("Try Pauli-Y gate!")
@@ -294,7 +270,7 @@ class Window(QMainWindow):
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-Z gate (or Z gate)</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate flips the phase of the |1⟩ "
                               "state, leaving the |0⟩ state unchanged.</p>")
-            self.pixmap.load('pauliz.png')
+            self.pixmap.load('images/pauliz.png')
             self.whichGate = "z"
             self.showAnim.setText("See Pauli-Z gate animation!")
             self.startmessurebutton.setText("Try Pauli-Z gate!")

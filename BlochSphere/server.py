@@ -22,7 +22,6 @@ class Server:
         data = self.conn.recv(1024).decode()
         if not data:
             self.conn.close()
-            print(self.conn, self.addr)
             return None
         else:
             angles = data.split(',')
