@@ -173,7 +173,6 @@ class Window(QMainWindow):
     def StartGateCheck(self):
         try:
             if self.whichGate == "i":
-                # nullával való szorzás?
                 self.rotate()
 
             elif self.whichGate == "x":
@@ -219,6 +218,7 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
+                #Az ellenőrzés nem jó, minél kisebb az érték, annál nagyobb szögtartományban fogad el
                 if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
                         (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
                     break
