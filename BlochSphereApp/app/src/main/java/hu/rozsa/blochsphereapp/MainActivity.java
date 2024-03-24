@@ -10,8 +10,11 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -21,10 +24,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private SensorManager sensorManager;
     private Sensor sensor;
-    private boolean clicked, clickedSensor;
+    private boolean clicked;
     Socket socket;
     PrintWriter outToServer;
     String angles;
+    String[] gates = new String[]{"Identity","Hadamard","Pauli-x","Pauli-y","Pauli-z"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         Button button = (Button) findViewById(R.id.button);
         EditText ipport= (EditText) findViewById(R.id.editTextText);
+        Spinner spinner = findViewById(R.id.spinner);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gates);
+        spinner.setAdapter(adapter);
 
         clicked = false;
-        clickedSensor = false;
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
         {

@@ -178,7 +178,6 @@ class Window(QMainWindow):
             elif self.whichGate == "x":
                 self.theta = math.pi - self.theta
                 self.phi = -self.phi
-                print("Ez kell:", self.theta, ",", self.phi)
                 self.rotate()
 
             elif self.whichGate == "y":
@@ -220,8 +219,10 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if ((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) and
-                        (self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1)):
+                if (((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) or
+                     (self.theta * 1.1 <= float(angles[0]) <= self.theta * 0.9)) and
+                        ((self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1) or
+                        (self.phi * 1.1 <= float(angles[1]) <= self.phi * 0.9))):
                     break
 
     @Slot()
