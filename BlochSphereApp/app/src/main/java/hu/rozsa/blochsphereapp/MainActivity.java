@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -38,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.button);
-        Button button2 = (Button) findViewById(R.id.button2);
-
         EditText ipport= (EditText) findViewById(R.id.editTextText);
 
         clicked = false;
@@ -64,14 +64,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+                        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+                        sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
                         ipport.getText().clear();
                         ipport.setEnabled(false);
-                        button2.setEnabled(true);
                     }
                     else
                     {
                         clicked = false;
-                        clickedSensor = false;
                         outToServer.flush();
                         sensorManager.unregisterListener(MainActivity.this);
                         try {
@@ -80,35 +81,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             throw new RuntimeException(e);
                         }
                         ipport.setEnabled(true);
-                        button2.setEnabled(false);
-                    }
-                }
-            });
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!clickedSensor)
-                    {
-                        clickedSensor = true;
-                        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-                        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-                        sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_FASTEST);
-                    }
-                    else
-                    {
-                        clickedSensor = false;
-                        sensorManager.unregisterListener(MainActivity.this);
                     }
                 }
             });
         }
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         angles = event.values[0] + "," +
-                event.values[1];
+                event.values[2];
         outToServer.print(angles);
         outToServer.flush();
     }

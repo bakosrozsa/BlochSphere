@@ -139,7 +139,7 @@ class Window(QMainWindow):
 
     def RandomState(self):
         self.theta = random.uniform(0, math.pi)
-        self.phi = random.uniform(0, 2 * math.pi)
+        self.phi = random.uniform(0, math.pi)
         plt.close()
         self.fig.canvas.flush_events()
         self.fig = plot_bloch_vector([1, self.theta, self.phi],
@@ -178,6 +178,7 @@ class Window(QMainWindow):
             elif self.whichGate == "x":
                 self.theta = math.pi - self.theta
                 self.phi = -self.phi
+                print("Ez kell:", self.theta, ",", self.phi)
                 self.rotate()
 
             elif self.whichGate == "y":
@@ -210,6 +211,7 @@ class Window(QMainWindow):
                 break
             else:
                 try:
+                    print(angles)
                     plt.close()
                     self.fig.canvas.flush_events()
                     self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
@@ -218,9 +220,8 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                #Az ellenőrzés nem jó, minél kisebb az érték, annál nagyobb szögtartományban fogad el
-                if ((self.theta * 0.9 <= float(angles[0]) or -(self.theta * 0.9) >= float(angles[0])) and
-                        (self.phi * 0.9 <= float(angles[1]) or -(self.phi * 0.9) >= float(angles[1]))):
+                if ((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) and
+                        (self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1)):
                     break
 
     @Slot()
