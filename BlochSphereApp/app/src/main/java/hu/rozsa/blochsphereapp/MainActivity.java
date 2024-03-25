@@ -10,10 +10,12 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Socket socket;
     PrintWriter outToServer;
     String angles;
-    String[] gates = new String[]{"Identity","Hadamard","Pauli-x","Pauli-y","Pauli-z"};
+    String[] gates = new String[]{"Home","Identity","Hadamard","Pauli-x","Pauli-y","Pauli-z"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Button button = (Button) findViewById(R.id.button);
         EditText ipport= (EditText) findViewById(R.id.editTextText);
         Spinner spinner = findViewById(R.id.spinner);
+        TextView textView = findViewById(R.id.textView2);
+        textView.setText(String.format("In quantum computing and specifically the quantum circuit " +
+                "model of computation,a quantum logic gate (or simply quantum gate) is a basic quantum" +
+                " circuit operating on a small number of qubits. Quantum logic gates are the building blocks of quantum circuits," +
+                " like classical logic gates are for conventional digital circuits." +
+                "\n\n\nThis app is for a quantum logic gates teaching program, to help the students learn " +
+                "them more easily, by interacting with the bloch sphere, by rotating the vector and " +
+                "using gates on it. Keep in mind, that there are several other quantum logic gates," +
+                "you only see one qubit versions in the program."));
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gates);
@@ -82,6 +93,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         }
                         ipport.setEnabled(true);
                     }
+                }
+            });
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
                 }
             });
         }
