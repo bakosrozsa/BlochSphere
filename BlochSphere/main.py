@@ -1,18 +1,20 @@
 import math
-import sys
-import socket
 import random
+import socket
+import sys
 import threading
 
 import matplotlib.pyplot as plt
 from PySide6.QtCore import Slot, QObject, Signal
-from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
-from PySide6.QtGui import QAction, QPixmap, Qt, QMovie
+from PySide6.QtGui import QAction, QPixmap, Qt
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QVBoxLayout, QWidget, QMessageBox,
                                QComboBox, QTextEdit, QPushButton, QLabel)
-
-import server
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from qiskit.visualization import plot_bloch_vector
+
+import AnimWindow
+import server
+import BlochVector
 
 hostname = socket.gethostname()
 server_start = server.Server(socket.gethostbyname(hostname), 8888)
@@ -54,14 +56,15 @@ class Window(QMainWindow):
 
         self.setWindowTitle("Quantum logic gates teaching program")
 
-        self.fig = plot_bloch_vector([1, 0, 0], coord_type='spherical')
+        self.bloch_vector = BlochVector.BlochVector(0.0, 0.0)
+
+        self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi], coord_type='spherical')
         self.canvas = FigureCanvasQTAgg(self.fig)
 
         self.menu = self.menuBar()
         self.menu_states = self.menu.addMenu("States")
         self.menu_connections = self.menu.addMenu("Connection")
 
-        self.theta, self.phi = 0.0, 0.0
         self.menu_random = QAction("Random Bloch state", self)
         self.menu_random.triggered.connect(self.RandomState)
 
@@ -122,49 +125,48 @@ class Window(QMainWindow):
         self.gatescombo.currentTextChanged.connect(self.gatescombo_options)
 
         self.whichGate = ""
-        self.continueRotating = True
         self.showAnim.clicked.connect(self.open_another_window)
         self.startmessurebutton.clicked.connect(self.StartGateCheck)
 
     def open_another_window(self):
         if self.whichGate == "x":
-            self.another_window = AnimationWindow("images/x.gif", self)
+            self.another_window = AnimWindow.AnimationWindow("images/x.gif", self)
         elif self.whichGate == "y":
-            self.another_window = AnimationWindow("images/y.gif", self)
+            self.another_window = AnimWindow.AnimationWindow("images/y.gif", self)
         elif self.whichGate == "z":
-            self.another_window = AnimationWindow("images/z.gif", self)
+            self.another_window = AnimWindow.AnimationWindow("images/z.gif", self)
         elif self.whichGate == "h":
-            self.another_window = AnimationWindow("images/h.gif", self)
+            self.another_window = AnimWindow.AnimationWindow("images/h.gif", self)
         self.another_window.show()
 
     def RandomState(self):
-        self.theta = random.uniform(0, math.pi)
-        self.phi = random.uniform(0, math.pi)
+        self.bloch_vector.theta = random.uniform(0.0, math.pi)
+        self.bloch_vector.phi = random.uniform(0.0, 2 * math.pi)
         plt.close()
         self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, self.theta, self.phi],
+        self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi],
                                      coord_type='spherical')
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
 
     def ZeroState(self):
-        self.theta = 0
-        self.phi = 0
+        self.bloch_vector.theta = 0.0
+        self.bloch_vector.phi = 0.0
         plt.close()
         self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, self.theta, self.phi],
+        self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi],
                                      coord_type='spherical')
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
 
     def OneState(self):
-        self.theta = math.pi
-        self.phi = 0
+        self.bloch_vector.theta = math.pi
+        self.bloch_vector.phi = 0.0
         plt.close()
         self.fig.canvas.flush_events()
-        self.fig = plot_bloch_vector([1, self.theta, self.phi],
+        self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi],
                                      coord_type='spherical')
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
@@ -173,27 +175,21 @@ class Window(QMainWindow):
     def StartGateCheck(self):
         try:
             if self.whichGate == "i":
-                self.rotate()
+                self.bloch_vector.identity()
 
             elif self.whichGate == "x":
-                self.theta = math.pi - self.theta
-                self.phi = -self.phi
-                self.rotate()
+                self.bloch_vector.pauli_x()
 
             elif self.whichGate == "y":
-                self.theta = math.pi - self.theta
-                self.phi = math.pi - self.phi
-                self.rotate()
+                self.bloch_vector.pauli_y()
 
             elif self.whichGate == "z":
-                self.phi = math.pi + self.phi
-                self.rotate()
-            """
+                self.bloch_vector.pauli_z()
+
             elif self.whichGate == "h":
-                self.rotate()
-            self.continueRotating = True"""
+                self.bloch_vector.hadamard()
+
             show_message("Done rotating!")
-            self.continueRotating = True
         except OSError:
             show_message("Connect your phone first")
         except AttributeError:
@@ -222,7 +218,7 @@ class Window(QMainWindow):
                 if (((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) or
                      (self.theta * 1.1 <= float(angles[0]) <= self.theta * 0.9)) and
                         ((self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1) or
-                        (self.phi * 1.1 <= float(angles[1]) <= self.phi * 0.9))):
+                         (self.phi * 1.1 <= float(angles[1]) <= self.phi * 0.9))):
                     break
 
     @Slot()
@@ -277,26 +273,6 @@ class Window(QMainWindow):
             self.showAnim.setText("See Pauli-Z gate animation!")
             self.startmessurebutton.setText("Try Pauli-Z gate!")
         self.label.setPixmap(self.pixmap)
-
-
-class AnimationWindow(QMainWindow):
-    def __init__(self, gate, parent=None):
-        QMainWindow.__init__(self, parent)
-
-        self.setWindowTitle("Gate animation")
-        self.setFixedSize(500, 500)
-
-        self.gif_label = QLabel(self)
-        self.gif_label.setFixedSize(500, 500)
-
-        self.gif_path = gate
-
-        self.display_gif()
-
-    def display_gif(self):
-        movie = QMovie(self.gif_path)
-        self.gif_label.setMovie(movie)
-        movie.start()
 
 
 if __name__ == "__main__":
