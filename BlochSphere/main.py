@@ -85,7 +85,7 @@ class Window(QMainWindow):
 
         self.gatescombo = QComboBox()
         self.text = QTextEdit()
-        self.gatescombo.addItems(["Identity", "Hadamard", "Pauli-X", "Pauli-Y", "Pauli-Z"])
+        self.gatescombo.addItems(["Identity", "Pauli-X", "Pauli-Y", "Pauli-Z", "Hadamard", "Phase", "T"])
         self.gatescombo.setCurrentIndex(-1)
 
         self.text.insertHtml("<h1 style='text-align: center;'>Quantum logic gates</h1>"
@@ -130,14 +130,18 @@ class Window(QMainWindow):
 
     def open_another_window(self):
         if self.whichGate == "x":
-            self.another_window = AnimWindow.AnimationWindow("images/x.gif", self)
+            another_window = AnimWindow.AnimationWindow("images/x.gif", self)
         elif self.whichGate == "y":
-            self.another_window = AnimWindow.AnimationWindow("images/y.gif", self)
+            another_window = AnimWindow.AnimationWindow("images/y.gif", self)
         elif self.whichGate == "z":
-            self.another_window = AnimWindow.AnimationWindow("images/z.gif", self)
+            another_window = AnimWindow.AnimationWindow("images/z.gif", self)
         elif self.whichGate == "h":
-            self.another_window = AnimWindow.AnimationWindow("images/h.gif", self)
-        self.another_window.show()
+            another_window = AnimWindow.AnimationWindow("images/h.gif", self)
+        elif self.whichGate == "s":
+            another_window = AnimWindow.AnimationWindow("images/s.gif", self)
+        elif self.whichGate == "t":
+            another_window = AnimWindow.AnimationWindow("images/t.gif", self)
+        another_window.show()
 
     def RandomState(self):
         self.bloch_vector.theta = random.uniform(0.0, math.pi)
@@ -189,6 +193,12 @@ class Window(QMainWindow):
             elif self.whichGate == "h":
                 self.bloch_vector.hadamard()
 
+            elif self.whichGate == "s":
+                self.bloch_vector.phase()
+
+            elif self.whichGate == "t":
+                self.bloch_vector.t()
+
             show_message("Done rotating!")
         except OSError:
             show_message("Connect your phone first")
@@ -237,16 +247,6 @@ class Window(QMainWindow):
             self.whichGate = "i"
             self.showAnim.setVisible(False)
             self.startmessurebutton.setText("Try Identity gate!")
-        elif text == "Hadamard":
-            self.text.setHtml("<h1 style='text-align: center;'>Hadamard Gate</h1>"
-                              "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
-                              "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
-                              "states.</p>")
-
-            self.pixmap.load('images/hadamard.png')
-            self.whichGate = "h"
-            self.showAnim.setText("See Hadamard gate animation!")
-            self.startmessurebutton.setText("Try Hadamard gate!")
         elif text == "Pauli-X":
             self.text.setHtml("<h1 style='text-align: center;'>Pauli-X gate (or X gate)</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>This gate is analogous to the NOT "
@@ -272,6 +272,35 @@ class Window(QMainWindow):
             self.whichGate = "z"
             self.showAnim.setText("See Pauli-Z gate animation!")
             self.startmessurebutton.setText("Try Pauli-Z gate!")
+        elif text == "Hadamard":
+            self.text.setHtml("<h1 style='text-align: center;'>Hadamard Gate</h1>"
+                              "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
+                              "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
+                              "states.</p>")
+
+            self.pixmap.load('images/hadamard.png')
+            self.whichGate = "h"
+            self.showAnim.setText("See Hadamard gate animation!")
+            self.startmessurebutton.setText("Try Hadamard gate!")
+        elif text == "Phase":
+            self.text.setHtml("<h1 style='text-align: center;'>Phase Gate (or S gate)</h1>"
+                              "<p style='font-size: 15px; text-align: justify;'>The S gate is also known as the phase "
+                              "gate or the Z90 gate, because it represents a 90-degree rotation around the z-axis.</p>")
+
+            self.pixmap.load('images/phase.png')
+            self.whichGate = "s"
+            self.showAnim.setText("See Phase gate animation!")
+            self.startmessurebutton.setText("Try Phase gate!")
+        elif text == "T":
+            self.text.setHtml("<h1 style='text-align: center;'>T Gate</h1>"
+                              "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
+                              "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
+                              "states.</p>")
+
+            self.pixmap.load('images/tGate.png')
+            self.whichGate = "t"
+            self.showAnim.setText("See T gate animation!")
+            self.startmessurebutton.setText("Try T gate!")
         self.label.setPixmap(self.pixmap)
 
 

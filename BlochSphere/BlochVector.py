@@ -16,38 +16,40 @@ class BlochVector:
         identity_matrix = np.array([[1, 0], [0, 1]])
         state_vector_after_gate = np.dot(self.start_state_vector(), identity_matrix)
         self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
-        print(self.theta)
+        print(state_vector_after_gate)
 
     def pauli_x(self):
         pauli_x_matrix = np.array([[0, 1], [1, 0]])
         state_vector_after_gate = np.dot(self.start_state_vector(), pauli_x_matrix)
         self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
-        print(self.theta)
+        print(state_vector_after_gate)
 
     def pauli_y(self):
         pauli_y_matrix = np.array([[0, -1j], [1j, 0]])
         state_vector_after_gate = np.dot(self.start_state_vector(), pauli_y_matrix)
         self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
-        print(self.theta)
+        print(state_vector_after_gate)
 
     def pauli_z(self):
         pauli_z_matrix = np.array([[1, 0], [0, -1]])
         state_vector_after_gate = np.dot(self.start_state_vector(), pauli_z_matrix)
         self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
-        print(self.theta)
+        print(state_vector_after_gate)
 
     def hadamard(self):
         hadamard_matrix = (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]])
         state_vector_after_gate = np.dot(self.start_state_vector(), hadamard_matrix)
         self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
-        print(self.theta)
+        print(state_vector_after_gate)
 
-
-"""
     def phase(self):
         phase_matrix = np.array([[1, 0], [0, 1j]])
         state_vector_after_gate = np.dot(self.start_state_vector(), phase_matrix)
+        self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
+        print(state_vector_after_gate)
 
     def t(self):
         t_matrix = np.array([[1, 0], [0, np.exp(1j * np.pi / 4)]])
-        state_vector_after_gate = np.dot(self.start_state_vector(), t_matrix)"""
+        state_vector_after_gate = np.dot(self.start_state_vector(), t_matrix)
+        self.theta = (np.arccos(state_vector_after_gate[0] * 2)).real
+        print(state_vector_after_gate)
