@@ -293,9 +293,8 @@ class Window(QMainWindow):
             self.startmessurebutton.setText("Try Phase gate!")
         elif text == "T":
             self.text.setHtml("<h1 style='text-align: center;'>T Gate</h1>"
-                              "<p style='font-size: 15px; text-align: justify;'>This gate creates a superposition "
-                              "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
-                              "states.</p>")
+                              "<p style='font-size: 15px; text-align: justify;'>It induces a π/4 phase, "
+                              "and is sometimes called the pi/8 gate</p>")
 
             self.pixmap.load('images/tGate.png')
             self.whichGate = "t"
