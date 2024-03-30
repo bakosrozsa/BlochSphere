@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         EditText ipport= (EditText) findViewById(R.id.editTextText);
         Spinner spinner = findViewById(R.id.spinner);
         TextView textView = findViewById(R.id.textView2);
-
+        ImageView imageView = findViewById(R.id.imageView);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gates);
         spinner.setAdapter(adapter);
@@ -100,27 +101,42 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     "them more easily, by interacting with the bloch sphere, by rotating the vector and " +
                                     "using gates on it. Keep in mind, that there are several other quantum logic gates," +
                                     "you only see one qubit versions in the program."));
+                            imageView.setVisibility(view.INVISIBLE);
                             break;
                         case "Identity":
                             textView.setText(String.format("The Identity gate is a single-qubit operation that leaves the basis states |0> and |1> unchanged."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.identity);
                             break;
                         case "Pauli-x":
                             textView.setText(String.format("This gate is analogous to the NOT gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from |1⟩ to |0⟩."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.paulix);
                             break;
                         case "Pauli-y":
                             textView.setText(String.format("This gate is equivalent to applying both X and Z gates and a global phase."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.pauliy);
                             break;
                         case "Pauli-z":
                             textView.setText(String.format("This gate flips the phase of the |1⟩ state, leaving the |0⟩ state unchanged."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.pauliz);
                             break;
                         case "Hadamard":
                             textView.setText(String.format("This gate creates a superposition state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ states."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.hadamard);
                             break;
                         case "Phase":
                             textView.setText(String.format("The S gate is also known as the phase gate or the Z90 gate, because it represents a 90-degree rotation around the z-axis."));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.phase);
                             break;
                         case "T":
-                            textView.setText(String.format("This gate is analogous to the NOT gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from |1⟩ to |0⟩."));
+                            textView.setText(String.format("It induces a π/4 phase, and is sometimes called the pi/8 gate"));
+                            imageView.setVisibility(view.VISIBLE);
+                            imageView.setImageResource(R.drawable.tgate);
                             break;
                     }
                 }
