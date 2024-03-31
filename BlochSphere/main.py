@@ -216,7 +216,6 @@ class Window(QMainWindow):
                 break
             else:
                 try:
-                    print(angles)
                     plt.close()
                     self.fig.canvas.flush_events()
                     self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
@@ -225,10 +224,10 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if (((self.theta * 0.9 <= float(angles[0]) <= self.theta * 1.1) or
-                     (self.theta * 1.1 <= float(angles[0]) <= self.theta * 0.9)) and
-                        ((self.phi * 0.9 <= float(angles[1]) <= self.phi * 1.1) or
-                         (self.phi * 1.1 <= float(angles[1]) <= self.phi * 0.9))):
+                if (((self.bloch_vector.theta * 0.9 <= float(angles[0]) <= self.bloch_vector.theta * 1.1) or
+                     (self.bloch_vector.theta * 1.1 <= float(angles[0]) <= self.bloch_vector.theta * 0.9)) and
+                        ((self.bloch_vector.phi * 0.9 <= float(angles[1]) <= self.bloch_vector.phi * 1.1) or
+                         (self.bloch_vector.phi * 1.1 <= float(angles[1]) <= self.bloch_vector.phi * 0.9))):
                     break
 
     @Slot()
