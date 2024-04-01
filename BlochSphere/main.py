@@ -179,25 +179,74 @@ class Window(QMainWindow):
     def StartGateCheck(self):
         try:
             if self.whichGate == "i":
-                self.bloch_vector.identity()
+                angles = self.bloch_vector.identity()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "x":
-                self.bloch_vector.pauli_x()
+                angles = self.bloch_vector.pauli_x()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "y":
-                self.bloch_vector.pauli_y()
+                angles = self.bloch_vector.pauli_y()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "z":
-                self.bloch_vector.pauli_z()
+                angles = self.bloch_vector.pauli_z()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "h":
-                self.bloch_vector.hadamard()
+                angles = self.bloch_vector.hadamard()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "s":
-                self.bloch_vector.phase()
+                angles = self.bloch_vector.phase()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             elif self.whichGate == "t":
-                self.bloch_vector.t()
+                angles = self.bloch_vector.t()
+                plt.close()
+                self.fig.canvas.flush_events()
+                self.fig = plot_bloch_vector([1, angles[0], angles[1]],
+                                             coord_type='spherical')
+                self.canvas.figure = self.fig
+                self.fig.set_canvas(self.canvas)
+                self.canvas.draw()
 
             show_message("Done rotating!")
         except OSError:

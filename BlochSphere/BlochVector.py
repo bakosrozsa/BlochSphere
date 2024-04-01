@@ -1,6 +1,42 @@
 import numpy as np
 
 
+def get_spherical_coordinates_from_state_vector(state_vector_after_gate):
+    alpha_real = state_vector_after_gate[0][0].real
+    alpha_imag = state_vector_after_gate[0][0].imag
+
+    if alpha_real != 0.0:
+        if alpha_real < 0 and alpha_imag > 0:
+            alpha_theta = np.arctan(alpha_imag / alpha_real) + np.pi
+
+        elif alpha_real < 0 and alpha_imag < 0:
+            alpha_theta = np.arctan(alpha_imag / alpha_real) + np.pi
+        else:
+            alpha_theta = np.arctan(alpha_imag / alpha_real)
+    else:
+        alpha_theta = 0.0
+
+    r_alpha = np.sqrt((alpha_real ** 2) + (alpha_imag ** 2))
+
+    beta_real = state_vector_after_gate[0][1].real
+    beta_imag = state_vector_after_gate[0][1].imag
+
+    if beta_real != 0.0:
+        if beta_real < 0 and beta_imag > 0:
+            beta_theta = np.arctan(beta_imag / beta_real) + np.pi
+
+        elif beta_real < 0 and beta_imag < 0:
+            beta_theta = np.arctan(beta_imag / beta_real) + np.pi
+        else:
+            beta_theta = np.arctan(beta_imag / beta_real)
+    else:
+        beta_theta = 0.0
+
+    theta = 2 * np.arccos(r_alpha)
+    coordinates = [theta, beta_theta - alpha_theta]
+    return coordinates
+
+
 class BlochVector:
     def __init__(self, theta, phi):
         self.theta = theta
@@ -15,41 +51,36 @@ class BlochVector:
     def identity(self):
         identity_matrix = np.array([[1, 0], [0, 1]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, identity_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        print(self.theta, self.phi)
+        print(get_spherical_coordinates_from_state_vector(state_vector_after_gate))
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def pauli_x(self):
         pauli_x_matrix = np.array([[0, 1], [1, 0]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, pauli_x_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def pauli_y(self):
         pauli_y_matrix = np.array([[0, -1j], [1j, 0]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, pauli_y_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def pauli_z(self):
         pauli_z_matrix = np.array([[1, 0], [0, -1]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, pauli_z_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def hadamard(self):
         hadamard_matrix = (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, hadamard_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def phase(self):
         phase_matrix = np.array([[1, 0], [0, 1j]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, phase_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
 
     def t(self):
         t_matrix = np.array([[1, 0], [0, np.exp(1j * np.pi / 4)]])
         state_vector_after_gate = np.dot(self.start_state_vector().T, t_matrix)
-        self.theta = 2 * np.arccos(state_vector_after_gate[0][0].real)
-        print(self.theta)
+        return get_spherical_coordinates_from_state_vector(state_vector_after_gate)
