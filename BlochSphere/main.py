@@ -17,7 +17,7 @@ import server
 import BlochVector
 
 hostname = socket.gethostname()
-server_start = server.Server(socket.gethostbyname(hostname), 8888)
+server_start = server.Server(socket.gethostbyname(hostname), 0)
 
 
 def ConnectPhone():
@@ -106,17 +106,27 @@ class Window(QMainWindow):
         self.label.setPixmap(self.pixmap)
         self.showAnim = QPushButton()
         self.startmessurebutton = QPushButton()
+        self.addr_label = QLabel()
+        self.addr_label.setText("Server address for phone: " + str(server_start.host) + ":" + str(server_start.port))
+        self.proportion_label = QLabel()
+        self.proportion = self.bloch_vector.start_state_vector()
+        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
+                                      str(self.proportion[1][0].real) + " |1>")
         self.label.setVisible(False)
         self.showAnim.setVisible(False)
         self.startmessurebutton.setVisible(False)
 
         self.rside = QVBoxLayout()
+        self.rside.addWidget(self.addr_label)
         self.rside.addWidget(self.gatescombo)
         self.rside.addWidget(self.text)
         self.rside.addWidget(self.label)
         self.rside.addWidget(self.showAnim)
         self.rside.addWidget(self.startmessurebutton)
+        self.rside.addWidget(self.proportion_label)
         self.rside.setAlignment(self.label, Qt.AlignCenter)
+        self.rside.setAlignment(self.addr_label, Qt.AlignCenter)
+        self.rside.setAlignment(self.proportion_label, Qt.AlignCenter)
 
         sphereLayout = QHBoxLayout(self._main)
         sphereLayout.addWidget(self.canvas)
@@ -153,6 +163,9 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
+        self.proportion = self.bloch_vector.start_state_vector()
+        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
+                                      str(self.proportion[1][0].real) + " |1>")
 
     def ZeroState(self):
         self.bloch_vector.theta = 0.0
@@ -164,6 +177,9 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
+        self.proportion = self.bloch_vector.start_state_vector()
+        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
+                                      str(self.proportion[1][0].real) + " |1>")
 
     def OneState(self):
         self.bloch_vector.theta = math.pi
@@ -175,6 +191,9 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
+        self.proportion = self.bloch_vector.start_state_vector()
+        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
+                                      str(self.proportion[1][0].real) + " |1>")
 
     def StartGateCheck(self):
         try:
@@ -198,16 +217,10 @@ class Window(QMainWindow):
 
             elif self.whichGate == "t":
                 self.bloch_vector.t()
-
-            """
-            plt.close()
-            self.fig.canvas.flush_events()
-            self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi], coord_type='spherical')
-            self.canvas.figure = self.fig
-            self.fig.set_canvas(self.canvas)
-            self.canvas.draw()
-            """
             self.rotate()
+            self.proportion = self.bloch_vector.start_state_vector()
+            self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
+                                          str(self.proportion[1][0].real) + " |1>")
             show_message("Done rotating!")
         except OSError:
             show_message("Connect your phone first")
@@ -216,6 +229,7 @@ class Window(QMainWindow):
 
     def ConnectPhoneThread(self):
         ConnectPhone()
+        show_message("You can connect your phone now")
 
     def rotate(self):
         while True:

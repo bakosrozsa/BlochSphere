@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -67,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         }
                         catch (IOException e) {
                             throw new RuntimeException(e);
+                        }
+                        catch (ArrayIndexOutOfBoundsException e){
+                            Toast.makeText(MainActivity.this, "Wrong address!",
+                                    Toast.LENGTH_LONG).show();
+                            return;
                         }
                         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
                         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);

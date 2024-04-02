@@ -3,18 +3,17 @@ import socket
 
 class Server:
     def __init__(self, HOST, PORT):
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.host = HOST
         self.port = PORT
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((self.host, self.port))
+        self.port = self.s.getsockname()[1]
         self.conn = ""
         self.addr = ""
 
     def hosting(self):
         self.s.listen(1)
-        print('Listening...')
         self.conn, self.addr = self.s.accept()
-        print('Connect with ' + self.addr[0] + ":" + str(self.addr[1]))
         return True
 
     def get_data(self):
