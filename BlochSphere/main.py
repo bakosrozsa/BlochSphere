@@ -5,6 +5,7 @@ import sys
 import threading
 
 import matplotlib.pyplot as plt
+import numpy as np
 from PySide6.QtCore import Slot, QObject, Signal
 from PySide6.QtGui import QAction, QPixmap, Qt
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QVBoxLayout, QWidget, QMessageBox,
@@ -94,8 +95,8 @@ class Window(QMainWindow):
         self.addr_label.setText("Server address for phone: " + str(server_start.host) + ":" + str(server_start.port))
         self.proportion_label = QLabel()
         self.proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
-                                      str(self.proportion[1][0].real) + " |1>")
+        self.proportion_label.setText("|\u03C8>= " + str(abs(self.proportion[0][0].real)) + " |0> + " +
+                                      str(abs(self.proportion[1][0].real)) + " |1>")
         self.label.setVisible(False)
         self.showAnim.setVisible(False)
         self.startmessurebutton.setVisible(False)
@@ -148,8 +149,8 @@ class Window(QMainWindow):
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
         self.proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
-                                      str(self.proportion[1][0].real) + " |1>")
+        self.proportion_label.setText("|\u03C8>= " + str(abs(self.proportion[0][0].real)) + " |0> + " +
+                                      str(abs(self.proportion[1][0].real)) + " |1>")
 
     def ZeroState(self):
         self.bloch_vector.theta = 0.0
@@ -162,8 +163,8 @@ class Window(QMainWindow):
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
         self.proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
-                                      str(self.proportion[1][0].real) + " |1>")
+        self.proportion_label.setText("|\u03C8>= " + str(abs(self.proportion[0][0].real)) + " |0> + " +
+                                      str(abs(self.proportion[1][0].real)) + " |1>")
 
     def OneState(self):
         self.bloch_vector.theta = math.pi
@@ -176,8 +177,8 @@ class Window(QMainWindow):
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
         self.proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
-                                      str(self.proportion[1][0].real) + " |1>")
+        self.proportion_label.setText("|\u03C8>= " + str(abs(self.proportion[0][0].real)) + " |0> + " +
+                                      str(abs(self.proportion[1][0].real)) + " |1>")
 
     def StartGateCheck(self):
         self.startmessurebutton.setEnabled(False)
@@ -204,8 +205,8 @@ class Window(QMainWindow):
                 self.bloch_vector.t()
             self.rotate()
             self.proportion = self.bloch_vector.start_state_vector()
-            self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
-                                          str(self.proportion[1][0].real) + " |1>")
+            self.proportion_label.setText("|\u03C8>= " + str(abs(self.proportion[0][0].real)) + " |0> + " +
+                                          str(abs(self.proportion[1][0].real)) + " |1>")
         except OSError:
             show_message("Connect your phone first")
         except AttributeError:
@@ -217,21 +218,25 @@ class Window(QMainWindow):
             angles = server_start.get_data()
             if angles is None:
                 show_message("Phone disconnected! Please reconnect to continue!")
+                self.ZeroState()
                 ConnectPhone()
                 break
             else:
                 try:
-                    print(float(angles[0]), float(angles[1]))
+                    angles = np.array(angles, dtype=float)
+                    if angles[1] < 0:
+                        angles[1] = angles[1] + 2 * math.pi
+                    print(angles[0], angles[1])
                     plt.close()
                     self.fig.canvas.flush_events()
-                    self.fig = plot_bloch_vector([1, float(angles[0]), float(angles[1])], coord_type='spherical')
+                    self.fig = plot_bloch_vector([1, angles[0], angles[1]], coord_type='spherical')
                     self.canvas.figure = self.fig
                     self.fig.set_canvas(self.canvas)
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if ((self.bloch_vector.theta - 0.25 <= abs(float(angles[0])) <= self.bloch_vector.theta + 0.25) and
-                        (self.bloch_vector.phi - 0.25 <= abs(float(angles[1])) <= self.bloch_vector.phi + 0.25)):
+                if ((self.bloch_vector.theta - 0.25 <= abs(angles[0]) <= self.bloch_vector.theta + 0.25) and
+                        (self.bloch_vector.phi - 0.25 <= angles[1] <= self.bloch_vector.phi + 0.25)):
                     show_message("Done rotating!")
                     break
 
