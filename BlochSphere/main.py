@@ -235,7 +235,7 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if ((self.bloch_vector.theta - 0.25 <= abs(angles[0]) <= self.bloch_vector.theta + 0.25) and
+                if ((self.bloch_vector.theta - 0.25 <= angles[0] <= self.bloch_vector.theta + 0.25) and
                         (self.bloch_vector.phi - 0.25 <= angles[1] <= self.bloch_vector.phi + 0.25)):
                     show_message("Done rotating!")
                     break
