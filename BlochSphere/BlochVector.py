@@ -33,6 +33,8 @@ def get_spherical_coordinates_from_state_vector(state_vector_after_gate):
 
     theta = 2 * np.arccos(r_alpha)
     phi = beta_theta - alpha_theta
+    if phi < 0:
+        phi += 2 * np.pi
     coordinates = [theta, phi]
     return coordinates
 

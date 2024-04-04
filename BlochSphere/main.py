@@ -54,6 +54,8 @@ class Window(QMainWindow):
         self._main = QWidget()
         self.setCentralWidget(self._main)
 
+        ConnectPhone()
+
         self.setWindowTitle("Quantum logic gates teaching program")
 
         self.bloch_vector = BlochVector.BlochVector(0.0, 0.0)
@@ -63,7 +65,6 @@ class Window(QMainWindow):
 
         self.menu = self.menuBar()
         self.menu_states = self.menu.addMenu("States")
-        self.menu_connections = self.menu.addMenu("Connection")
 
         self.menu_random = QAction("Random Bloch state", self)
         self.menu_random.triggered.connect(self.RandomState)
@@ -74,31 +75,14 @@ class Window(QMainWindow):
         self.oneState = QAction("|1> bloch state", self)
         self.oneState.triggered.connect(self.OneState)
 
-        self.menu_connect = QAction("Connect phone", self)
-        self.menu_connect.triggered.connect(self.ConnectPhoneThread)
-
         self.menu_states.addAction(self.menu_random)
         self.menu_states.addAction(self.zeroState)
         self.menu_states.addAction(self.oneState)
-        self.menu_connections.addAction(self.menu_connect)
         self.menu.addMenu(self.menu_states)
 
         self.gatescombo = QComboBox()
         self.text = QTextEdit()
-        self.gatescombo.addItems(["Identity", "Pauli-X", "Pauli-Y", "Pauli-Z", "Hadamard", "Phase", "T"])
-        self.gatescombo.setCurrentIndex(-1)
-
-        self.text.insertHtml("<h1 style='text-align: center;'>Quantum logic gates</h1>"
-                             "<p style='font-size: 15px; text-align: justify;'>In quantum computing and specifically "
-                             "the quantum circuit model of computation,a quantum logic gate (or simply quantum gate) "
-                             "is a basic quantum circuit operating on a small number of qubits. Quantum logic gates "
-                             "are the building blocks of quantum circuits, like classical logic gates are for "
-                             "conventional digital circuits.</p>"
-                             "<p style='font-size: 15px; text-align: justify;'>This app shows you a few quantum logic "
-                             "gates, provides you small description about them. Most importantly, you can connect "
-                             "your phone, and try some states by yourself (as you can see on the left side). Keep in "
-                             "mind, that there are several other quantum logic gates, but these are the most common "
-                             "ones.</p>")
+        self.gatescombo.addItems(["Home", "Identity", "Pauli-X", "Pauli-Y", "Pauli-Z", "Hadamard", "Phase", "T"])
 
         self.text.setReadOnly(True)
         self.label = QLabel()
@@ -196,6 +180,7 @@ class Window(QMainWindow):
                                       str(self.proportion[1][0].real) + " |1>")
 
     def StartGateCheck(self):
+        self.startmessurebutton.setEnabled(False)
         try:
             if self.whichGate == "i":
                 self.bloch_vector.identity()
@@ -221,21 +206,18 @@ class Window(QMainWindow):
             self.proportion = self.bloch_vector.start_state_vector()
             self.proportion_label.setText("|\u03C8>= " + str(self.proportion[0][0].real) + " |0> + " +
                                           str(self.proportion[1][0].real) + " |1>")
-            show_message("Done rotating!")
         except OSError:
             show_message("Connect your phone first")
         except AttributeError:
             show_message("Connect your phone first")
-
-    def ConnectPhoneThread(self):
-        ConnectPhone()
-        show_message("You can connect your phone now")
+        self.startmessurebutton.setEnabled(True)
 
     def rotate(self):
         while True:
             angles = server_start.get_data()
             if angles is None:
                 show_message("Phone disconnected! Please reconnect to continue!")
+                ConnectPhone()
                 break
             else:
                 try:
@@ -248,10 +230,9 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if (((self.bloch_vector.theta * 0.9 <= float(angles[0]) <= self.bloch_vector.theta * 1.1) or
-                     (self.bloch_vector.theta * 1.1 <= float(angles[0]) <= self.bloch_vector.theta * 0.9)) and
-                        ((self.bloch_vector.phi * 0.9 <= float(angles[1]) <= self.bloch_vector.phi * 1.1) or
-                         (self.bloch_vector.phi * 1.1 <= float(angles[1]) <= self.bloch_vector.phi * 0.9))):
+                if ((self.bloch_vector.theta - 0.25 <= abs(float(angles[0])) <= self.bloch_vector.theta + 0.25) and
+                        (self.bloch_vector.phi - 0.25 <= abs(float(angles[1])) <= self.bloch_vector.phi + 0.25)):
+                    show_message("Done rotating!")
                     break
 
     @Slot()
@@ -261,6 +242,22 @@ class Window(QMainWindow):
         self.showAnim.setVisible(True)
         self.startmessurebutton.setVisible(True)
         self.label.setVisible(True)
+        if text == "Home":
+            self.text.insertHtml("<h1 style='text-align: center;'>Quantum logic gates</h1>"
+                                 "<p style='font-size: 15px; text-align: justify;'>In quantum computing and specifically "
+                                 "the quantum circuit model of computation,a quantum logic gate (or simply quantum gate) "
+                                 "is a basic quantum circuit operating on a small number of qubits. Quantum logic gates "
+                                 "are the building blocks of quantum circuits, like classical logic gates are for "
+                                 "conventional digital circuits.</p>"
+                                 "<p style='font-size: 15px; text-align: justify;'>This app shows you a few quantum logic "
+                                 "gates, provides you small description about them. Most importantly, you can connect "
+                                 "your phone, and try some states by yourself (as you can see on the left side). Keep in "
+                                 "mind, that there are several other quantum logic gates, but these are the most common "
+                                 "ones.</p>")
+            self.showAnim.setVisible(False)
+            self.startmessurebutton.setVisible(False)
+            self.label.setVisible(False)
+
         if text == "Identity":
             self.text.setHtml("<h1 style='text-align: center;'>Identity Gate</h1>"
                               "<p style='font-size: 15px; text-align: justify;'>The Identity gate is a single-qubit "
@@ -330,5 +327,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = Window()
     w.setFixedSize(1000, 500)
+    w.gatescombo_options("Home")
     w.show()
     app.exec()

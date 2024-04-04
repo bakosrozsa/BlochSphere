@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
@@ -63,15 +64,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         clicked = true;
                         String[] connectiondata = ipport.getText().toString().split(":");
                         try {
-                            socket = new Socket(connectiondata[0],Integer.parseInt(connectiondata[1]) );
+                            socket = new Socket();
+                            socket.connect(new InetSocketAddress(connectiondata[0],Integer.parseInt(connectiondata[1])),100);
                             outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                         }
                         catch (IOException e) {
-                            throw new RuntimeException(e);
+                            Toast.makeText(MainActivity.this, "Check your connections!",
+                                    Toast.LENGTH_LONG).show();
+                            clicked = false;
+                            return;
                         }
                         catch (ArrayIndexOutOfBoundsException e){
                             Toast.makeText(MainActivity.this, "Wrong address!",
                                     Toast.LENGTH_LONG).show();
+                            clicked = false;
+                            return;
+                        }
+                        catch (IllegalArgumentException e){
+                            Toast.makeText(MainActivity.this, "Wrong address!",
+                                    Toast.LENGTH_LONG).show();
+                            clicked = false;
                             return;
                         }
                         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -79,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
                         ipport.getText().clear();
                         ipport.setEnabled(false);
+                        Toast.makeText(MainActivity.this, "Phone connected!",
+                                Toast.LENGTH_LONG).show();
                     }
                     else
                     {
@@ -88,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         try {
                             socket.close();
                         } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            Toast.makeText(MainActivity.this, "Can't disconnect! Check your connections and try again!",
+                                    Toast.LENGTH_LONG).show();
                         }
                         ipport.setEnabled(true);
                     }
@@ -157,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        angles = event.values[0] + "," +
-                event.values[2];
+        angles =  event.values[0] + "," +
+                event.values[2] * 2;
         outToServer.print(angles);
         outToServer.flush();
     }
