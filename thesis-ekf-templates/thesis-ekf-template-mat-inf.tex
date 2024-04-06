@@ -14,6 +14,8 @@
 \usepackage{mathtools,amssymb,amsthm,pdfpages}
 \footnotestyle{rule=fourth}
 \usepackage{float}
+\usepackage{graphicx}
+\usepackage{braket}
 
 \newtheorem{tetel}{Tétel}[chapter]
 \theoremstyle{definition}
@@ -74,14 +76,23 @@ Elektromos impulzusokhoz értékeket társítunk, az alapján hogy küldtünk-e 
 
 Ezekhez az impulzusokhoz többnyire logikai kapukat társítunk, melyek bináris operátorokat foglalnak magukban. A logikai kapuk alapvető építőkövei az elektronikának és számos célra használják őket. Összekapcsolásukkal áramköröket alakíthatunk ki, amik lineárisak és balról jobbra értelmezzük őket. A bal oldali vezetékek jelentik a bemenetet, míg a jobb oldaliak a kimenetet. Az ismertebb kapukhoz speciális ábrák és igazságtáblák tartoznak.
 
-Az igazságtáblák a klasszikus logika alapvető eszközei, amelyek segítségével értelmezhetjük az adott műveleteket, valamint ellenőrizhetjük áramköreinket. Megmutatják az összes lehetséges bemeneti kombinációt, illetve a műveletek alkalmazása után a várható kimenetet is.
+Az igazságtáblák a klasszikus logika alapvető eszközei, amelyek segítségével értelmezhetjük az adott műveleteket, valamint ellenőrizhetjük áramköreinket. Megmutatják az összes lehetséges bemeneti kombinációt, illetve a műveletek alkalmazása után a várható kimenetet is. Ezek a logikai műveleteket, kifejezéseket Boole-algebrának nevezzük, amely egy 19. századi matematikus, George Boole nevét viseli
 \subsection{Logikai kapuk}
 \subsubsection{Buffer}
 A buffer kapuk kimenete megegyezik a kimenetükkel, egy biten értelmezzük. Jele: $A$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{buffer}
+	\caption{Buffer kapu rajza}
+	\label{fig:buffer}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c}
-		A & Q\\
+		$A$ & $A$\\
 		\hline
 		0 & 0\\
 		1 & 1
@@ -89,12 +100,21 @@ A buffer kapuk kimenete megegyezik a kimenetükkel, egy biten értelmezzük. Jel
 	\caption{Buffer kapu igazságtáblája}
 \end{table}
 
-\subsubsection{Negáció}
+\subsubsection{Negáció, vagy NOT}
 A negáció kapu (vagy NOT) hasonlóan egy bites, a bemeneti jel logikai értékét megfordítja a kimeneten. Jele:$\neg A$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{not}
+	\caption{NOT kapu rajza}
+	\label{fig:not}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c}
-		A & Q\\
+		$A$ & $\neg A$\\
 		\hline
 		0 & 1\\
 		1 & 0 
@@ -105,10 +125,18 @@ A negáció kapu (vagy NOT) hasonlóan egy bites, a bemeneti jel logikai érték
 \subsubsection{Konjukció, vagy AND}
 Más néven logikai és. Kétbites művelet, kimenete akkor igaz, ha mind a két operandusa igaz. Jele: $A \land B$
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{and}
+	\caption{AND kapu rajza}
+	\label{fig:and}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $A \land B$\\               
 		\hline
 		0 & 0 & 0\\
 		0 & 1 & 0\\
@@ -121,10 +149,18 @@ Más néven logikai és. Kétbites művelet, kimenete akkor igaz, ha mind a két
 \subsubsection{Diszjunkció, vagy OR}
 Más néven logikai vagy. Szintén kétbites művelet, értéke csak akkor hamis, ha mind a két operandusa hamis. Jele: $A \lor B$
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{or}
+	\caption{OR kapu rajza}
+	\label{fig:or}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $A \lor B$\\               
 		\hline
 		0 & 0 & 0\\
 		0 & 1 & 1\\
@@ -136,10 +172,19 @@ Más néven logikai vagy. Szintén kétbites művelet, értéke csak akkor hamis
 
 \subsubsection{Negált konjukció, vagy NAND}
 A konjukció negált változata, értéke akkor hamis, ha mindkét operandusa igaz. Jele: $\neg(A \land B)$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{nand}
+	\caption{NAND kapu rajza}
+	\label{fig:nand}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $\neg(A \land B)$\\               
 		\hline
 		0 & 0 & 1\\
 		0 & 1 & 1\\
@@ -152,10 +197,18 @@ A konjukció negált változata, értéke akkor hamis, ha mindkét operandusa ig
 \subsubsection{Negált diszjunkció, vagy NOR}
 A diszjunkció negált változata, értéke akkor igaz, ha mindkét operandusa hamis. Jele: $\neg(A \lor B)$
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{nor}
+	\caption{NOR kapu rajza}
+	\label{fig:nor}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $\neg(A \lor B)$\\               
 		\hline
 		0 & 0 & 1\\
 		0 & 1 & 0\\
@@ -168,10 +221,19 @@ A diszjunkció negált változata, értéke akkor igaz, ha mindkét operandusa h
 
 \subsubsection{Exclusive OR, vagy XOR}
 Más néven kizáró vagy. Értéke akkor hamis, ha a bemenetek megegyeznek. Jele: $A \oplus B$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{xor}
+	\caption{XOR kapu rajza}
+	\label{fig:xor}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $A \oplus B$\\               
 		\hline
 		0 & 0 & 0\\
 		0 & 1 & 1\\
@@ -184,10 +246,19 @@ Más néven kizáró vagy. Értéke akkor hamis, ha a bemenetek megegyeznek. Jel
 
 \subsubsection{Exclusive NOR, vagy XNOR}
 A kizáró vagy negáltja, értéke akkor hamis, ha a bemenetek különböznek Jele: $\neg (A \oplus B)$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{xnor}
+	\caption{XNOR kapu rajza}
+	\label{fig:xnor}
+\end{figure}
+
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		A & B & Q\\               
+		$A$ & $B$ & $\neg (A \oplus B)$\\               
 		\hline
 		0 & 0 & 1\\
 		0 & 1 & 0\\
@@ -197,18 +268,60 @@ A kizáró vagy negáltja, értéke akkor hamis, ha a bemenetek különböznek J
 	\caption{A negált konjukció igazságtáblája}
 \end{table}
 
-
-
-
-
 \subsection{Univerzális kapuk}
+Léteznek olyan logikai kapuk, amelyek képesek reprodukálni bármely másik működését. Ezek az univerzális kapuk lehetővé teszik akármelyik logikai függvény leképezését, ami azt jelenti, hogy akár tetszőleges áramkör is megvalósítható velük.
 
-\subsection{Reverzibilis kapuk}
+Bizonyítható, hogy bármilyen logikai függvény összeállítható csak NOT és AND, vagy NOT és OR függvények kombinációival. Mint láttuk, ezek a kapuk ötvözhetőek, erre szolgálnak a NAND és NOR kapuk.
 
+Ebből következtethető, hogy bármilyen Boole-függvény megvalósítható olyan áramkörrel, amely csak NAND vagy NOR kapukat alkalmaz. Gyakran emiatt előnyt élveznek, mivel más kapuknak nincs ilyen tulajdonsága.
 
 \section{Kvantum logikai kapuk és áramkörök}
 \subsection{Qubit}
+A kvantumbit, röviden qubit, a kvantuminformatika alapvető építőeleme, és a klasszikus számítógépek működésétől eltérő, kvantummechanikai alapokon nyugvó adatábrázolási egység. Míg a hagyományos bit csak két állapotban (0 vagy 1) lehet jelen, a qubit képes egyszerre számos állapotban lenni, ami egyike annak a tulajdonságának, amely a kvantuminformatikát annyira különlegessé teszi.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{bitQubit}
+	\caption{A bit és qubit reprezentációja}
+	\label{fig:bitqubit}
+\end{figure}
+
+Ahogy az \az{\ref{fig:bitqubit}}.~ábrán látható, a qubit számos állapotát egy úgynevezett Bloch gömbön ábrázoljuk, északi pólusán $\ket{0}$, déli pólusán pedig $\ket{1}$ helyezkedik el. A $\ket{}$ és $\bra{}$ jelöléseket braket-nek nevezzük, de Dirac jelölésként is ismert, és a kvantumállapotok jelölésében segít. A ket ($\ket{\Psi}$) egy oszlopvektort, a bra ($\bra{\Psi}$) pedig egy sorvektort jelöl.
+
+A kvantummechanika alapelvei és a qubitok sajátos tulajdonságai lehetővé teszik
+olyan számítási feladatok elvégzését, amelyek a hagyományos számítógépek számára gyakorlatilag lehetetlenek lennének.
+
+\subsection{Szuperpozíció és összefonódás}
+
+Egy qubit állapotát a következőképpen adhatjuk meg:
+\[ \ket{\Psi}=\alpha\ket{0}+\beta\ket{1}, \]
+ahol $\alpha$ és $\beta$ komplex számok, valamint teljesül, hogy $|\alpha|^2+|\beta|^2=1$. Ez azt jelenti, hogy a $\ket{\Psi}$ kvantumbit $|\alpha|^2$ eséllyel 0, $|\beta|^2$-el pedig 1 lesz. Ezt szuperpozíciónak nevezzük. A két szélső érték, azaz $\ket{0}$ vagy $\ket{1}$ akkor áll elő, ha $\alpha$ 0 vagy 1, $\beta$ pedig ennek ellentettje. A szuperpozíció legjobban a Schrödinger macskája gondolatkísérlettel prezentálható, melyet Erwin Schrödinger fogalmazott meg 1935-ben.
+
+A qubit másik fontos jelensége a kvantum-összefonódás. Ez egy olyan jelenség a kvantummechanikában, amelyben két vagy több részecske állapota olyan összekapcsolt módon van, hogy az egyiken végzett mérések azonnal hatnak a másikra, függetlenül attól, hogy a részecskék milyen fizikai távolságra vannak egymástól.
+
+\subsection{Qubit mérése}
+Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése során az eredmény kvantumállapota "összeomlik" az adott értékre, amelyet a mérés során megfigyeltünk. Azaz elveszti a szuperpozícióját és az összefonódottságát, ami azt jelenti, hogy a mérés után a rendszer elveszíti a kvantumos jellegét, és klasszikus állapotba kerül. Ez az összeomlás a kvantummechanika alapvető jelensége, amely lehetővé teszi a kvantumrendszer állapotának rögzítését a mérés pillanatában. Emiatt a mérések kritikus szerepet játszanak.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{measure}
+	\caption{Mérés rajza}
+	\label{fig:measure}
+\end{figure}
+
+\subsection{Kvantum logikai kapuk}
+
+\subsection{Univerzális kvantumkapuk}
+Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, hogy csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk véges halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk ilyen megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.
+
+\subsection{Reverzibilis kapuk}
+Megfordítható kapuknak is nevezik őket. Két alapvető tulajdonsága van:
+\begin{enumerate}
+	\item Az eredményükből egyértelműen kikövetkeztethetőek a bemenetek, azaz egy bemeneti kombinációhoz pontosan egy kimeneti kombináció tartozik, és fordítva
+	\item Lehetővé teszik a bemenetek helyreállítását a kimenetekből anélkül, hogy információt veszítenének.
+\end{enumerate}
+
+Vegyük például az OR kaput. Mint láttuk, értéke csak akkor hamis, ha bemenetei hamisak. Viszont minden más esetben nem tudjuk megállapítani, hogy melyik volt az aktuális bemenet a háromból, hacsak nincs további információnk. Tehát az OR kapuról elmondható, hogy irreverzibilis (nem reverzibilis) kapu. A legtöbb klasszikus logikai kapu szintén ebbe a csoportba tartozik.
 
 
 \chapter*{Összegzés}

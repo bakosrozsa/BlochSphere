@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.4)  6 APR 2024 00:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.5)  6 APR 2024 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -466,6 +466,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks34
 \@floatcapt=\box57
 )
+(c:/texlive/2024/texmf-dist/tex/latex/braket/braket.sty)
 \c@tetel=\count303
 
 (c:/texlive/2024/texmf-dist/tex/latex/upquote/upquote.sty
@@ -483,25 +484,25 @@ File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
 (./thesis-ekf-template-mat-inf.aux)
 \openout1 = `thesis-ekf-template-mat-inf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-Package hyperref Info: Link coloring OFF on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+Package hyperref Info: Link coloring OFF on input line 26.
  (./thesis-ekf-template-mat-inf.out)
 (./thesis-ekf-template-mat-inf.out)
 \@outlinefile=\write3
@@ -543,51 +544,51 @@ Package hyperref Info: Link coloring OFF on input line 24.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-4.
+6.
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<ot1.cmap>>
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-4.
+6.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oml.cmap>>
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-24.
+26.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oms.cmap>>
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-24.
+26.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 24.
+(Font)              <12> on input line 26.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 24.
+(Font)              <8> on input line 26.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 24.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
+(Font)              <6> on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
 
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 24.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 26.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 24.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 26.
 
 (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -627,10 +628,10 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=61, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=77, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
-Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 31.
+Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 33.
 (pdftex.def)             Requested size: 256.07907pt x 88.0427pt.
  [1
 
@@ -651,124 +652,238 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./thesis-ekf-template-mat-inf.toc)
 
 ]
 2. fejezet.
+<buffer.png, id=130, 1027.84pt x 428.60126pt>
+File: buffer.png Graphic file (type png)
+<use buffer.png>
+Package pdftex.def Info: buffer.png  used on input line 86.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
 [5
 
-{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}
+{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+<not.png, id=138, 1027.84pt x 428.60126pt>
+File: not.png Graphic file (type png)
+<use not.png>
+Package pdftex.def Info: not.png  used on input line 108.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+<and.png, id=139, 1027.84pt x 428.60126pt>
+File: and.png Graphic file (type png)
+<use and.png>
+Package pdftex.def Info: and.png  used on input line 130.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+ [6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.148 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.103 \end{table}
-                 ] [6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.e
-nc}
+l.148 
+      {c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.148 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.151 
+l.148 
       
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.148 
+       <./buffer.png> <./not.png> <./and.png>]
+<or.png, id=155, 1027.84pt x 428.60126pt>
+File: or.png Graphic file (type png)
+<use or.png>
+Package pdftex.def Info: or.png  used on input line 154.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+<nand.png, id=156, 1027.84pt x 428.60126pt>
+File: nand.png Graphic file (type png)
+<use nand.png>
+Package pdftex.def Info: nand.png  used on input line 178.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+ [7
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.151 
+l.196 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.196 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.4}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.151 
-      {c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}] [7
+l.196 
+      {c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.196 
+       <./or.png> <./nand.png>]
+<nor.png, id=172, 1027.84pt x 428.60126pt>
+File: nor.png Graphic file (type png)
+<use nor.png>
+Package pdftex.def Info: nor.png  used on input line 202.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+<xor.png, id=173, 1027.84pt x 428.60126pt>
+File: xor.png Graphic file (type png)
+<use xor.png>
+Package pdftex.def Info: xor.png  used on input line 227.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+ [8
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.5}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214 \chapter
-              *{Összegzés}
+l.245 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.245 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.6}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214 \chapter
-              *{Összegzés}
+l.245 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.245 
+       <./nor.png> <./xor.png>]
+<xnor.png, id=186, 1027.84pt x 428.60126pt>
+File: xnor.png Graphic file (type png)
+<use xnor.png>
+Package pdftex.def Info: xnor.png  used on input line 252.
+(pdftex.def)             Requested size: 132.30666pt x 55.17076pt.
+ [9
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.7}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214 \chapter
-              *{Összegzés}
+l.281 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.281 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.8}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.214 \chapter
-              *{Összegzés}] [8] [9
-
-]
-<nyilatkozat.pdf, id=151, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 227.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 227.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=154, page=1, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 227.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 227.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+l.281 
+       <./xnor.png>]
+<bitQubit.png, id=196, 521.95pt x 322.20375pt>
+File: bitQubit.png Graphic file (type png)
+<use bitQubit.png>
+Package pdftex.def Info: bitQubit.png  used on input line 284.
+(pdftex.def)             Requested size: 132.30666pt x 81.67168pt.
  [10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.304 
+       <./bitQubit.png>]
+<measure.png, id=205, 2569.6pt x 925.4575pt>
+File: measure.png Graphic file (type png)
+<use measure.png>
+Package pdftex.def Info: measure.png  used on input line 307.
+(pdftex.def)             Requested size: 132.30666pt x 47.64534pt.
+ [11
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.10})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.327 \chapter
+              *{Összegzés} <./measure.png>] [12
+
+]
+<nyilatkozat.pdf, id=218, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 340.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 340.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<nyilatkozat.pdf, id=221, page=1, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 340.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 340.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [13
 
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 227.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 340.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 227.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 340.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 227.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 340.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [11
+ [14
 
- <./nyilatkozat.pdf>]
-(./thesis-ekf-template-mat-inf.aux)
+ <./nyilatkozat.pdf>] (./thesis-ekf-template-mat-inf.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
 Package rerunfilecheck Info: File `thesis-ekf-template-mat-inf.out' has not cha
 nged.
-(rerunfilecheck)             Checksum: B1B58C3A8DF95EE2EDB23BFC4C6B02F8;2261.
+(rerunfilecheck)             Checksum: FA16C5AB958C16A5DFDC4EDE07A6FDAA;3136.
  ) 
 Here is how much of TeX's memory you used:
- 14987 strings out of 474104
- 240242 string characters out of 5747503
- 1939496 words of memory out of 5000000
- 37034 multiletter control sequences out of 15000+600000
+ 15173 strings out of 474103
+ 243017 string characters out of 5747482
+ 1936496 words of memory out of 5000000
+ 37198 multiletter control sequences out of 15000+600000
  617673 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,836b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/l
-mr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texli
-ve/2024/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2024/texmf-dist
-/fonts/type1/public/lm/lmsso12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publ
-ic/lm/lmsy10.pfb>
-Output written on thesis-ekf-template-mat-inf.pdf (11 pages, 192343 bytes).
+mr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive
+/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/f
+onts/type1/public/lm/lmss12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/
+lm/lmsso12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on thesis-ekf-template-mat-inf.pdf (14 pages, 345354 bytes).
 PDF statistics:
- 228 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 150 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 232 words of extra memory for PDF output out of 10000 (max. 10000000)
 

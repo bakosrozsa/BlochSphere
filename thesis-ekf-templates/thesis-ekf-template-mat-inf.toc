@@ -6,16 +6,20 @@
 \select@language {magyar} \contentsline {section}{\numberline {2.1}Klasszikus logikai kapuk és áramkörök}{5}{section.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Logikai kapuk}{5}{subsection.2.1.1}%
 \select@language {magyar} \contentsline {subsubsection}{Buffer}{5}{section*.3}%
-\select@language {magyar} \contentsline {subsubsection}{Negáció}{6}{section*.4}%
+\select@language {magyar} \contentsline {subsubsection}{Negáció, vagy NOT}{6}{section*.4}%
 \select@language {magyar} \contentsline {subsubsection}{Konjukció, vagy AND}{6}{section*.5}%
-\select@language {magyar} \contentsline {subsubsection}{Diszjunkció, vagy OR}{6}{section*.6}%
-\select@language {magyar} \contentsline {subsubsection}{Negált konjukció, vagy NAND}{6}{section*.7}%
-\select@language {magyar} \contentsline {subsubsection}{Negált diszjunkció, vagy NOR}{7}{section*.8}%
-\select@language {magyar} \contentsline {subsubsection}{Exclusive OR, vagy XOR}{7}{section*.9}%
-\select@language {magyar} \contentsline {subsubsection}{Exclusive NOR, vagy XNOR}{7}{section*.10}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Univerzális kapuk}{8}{subsection.2.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1.3}Reverzibilis kapuk}{8}{subsection.2.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Kvantum logikai kapuk és áramkörök}{8}{section.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Qubit}{8}{subsection.2.2.1}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{9}{chapter*.11}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{10}{chapter*.12}%
+\select@language {magyar} \contentsline {subsubsection}{Diszjunkció, vagy OR}{7}{section*.6}%
+\select@language {magyar} \contentsline {subsubsection}{Negált konjukció, vagy NAND}{7}{section*.7}%
+\select@language {magyar} \contentsline {subsubsection}{Negált diszjunkció, vagy NOR}{8}{section*.8}%
+\select@language {magyar} \contentsline {subsubsection}{Exclusive OR, vagy XOR}{8}{section*.9}%
+\select@language {magyar} \contentsline {subsubsection}{Exclusive NOR, vagy XNOR}{9}{section*.10}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Univerzális kapuk}{9}{subsection.2.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Kvantum logikai kapuk és áramkörök}{10}{section.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Qubit}{10}{subsection.2.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Szuperpozíció és összefonódás}{10}{subsection.2.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.3}Qubit mérése}{11}{subsection.2.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.4}Kvantum logikai kapuk}{11}{subsection.2.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.5}Univerzális kvantumkapuk}{11}{subsection.2.2.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.6}Reverzibilis kapuk}{11}{subsection.2.2.6}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{12}{chapter*.11}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{13}{chapter*.12}%
