@@ -100,7 +100,7 @@ A buffer kapuk kimenete megegyezik a kimenetükkel, egy biten értelmezzük. Jel
 	\caption{Buffer kapu igazságtáblája}
 \end{table}
 
-\subsubsection{Negáció, vagy NOT}
+\subsubsection{NOT, vagy Negáció}
 A negáció kapu (vagy NOT) hasonlóan egy bites, a bemeneti jel logikai értékét megfordítja a kimeneten. Jele:$\neg A$
 
 \begin{figure}[H]
@@ -122,7 +122,7 @@ A negáció kapu (vagy NOT) hasonlóan egy bites, a bemeneti jel logikai érték
 	\caption{Negáció kapu igazságtáblája}
 \end{table}
 
-\subsubsection{Konjukció, vagy AND}
+\subsubsection{AND, vagy Konjukció}
 Más néven logikai és. Kétbites művelet, kimenete akkor igaz, ha mind a két operandusa igaz. Jele: $A \land B$
 
 \begin{figure}[H]
@@ -146,7 +146,7 @@ Más néven logikai és. Kétbites művelet, kimenete akkor igaz, ha mind a két
 	\caption{A konjukció igazságtáblája}
 \end{table}
 
-\subsubsection{Diszjunkció, vagy OR}
+\subsubsection{OR, vagy Diszjunkció}
 Más néven logikai vagy. Szintén kétbites művelet, értéke csak akkor hamis, ha mind a két operandusa hamis. Jele: $A \lor B$
 
 \begin{figure}[H]
@@ -170,7 +170,7 @@ Más néven logikai vagy. Szintén kétbites művelet, értéke csak akkor hamis
 	\caption{A diszjunkció igazságtáblája}
 \end{table}
 
-\subsubsection{Negált konjukció, vagy NAND}
+\subsubsection{NAND, vagy Negált konjukció}
 A konjukció negált változata, értéke akkor hamis, ha mindkét operandusa igaz. Jele: $\neg(A \land B)$
 
 \begin{figure}[H]
@@ -194,7 +194,7 @@ A konjukció negált változata, értéke akkor hamis, ha mindkét operandusa ig
 	\caption{A negált konjukció igazságtáblája}
 \end{table}
 
-\subsubsection{Negált diszjunkció, vagy NOR}
+\subsubsection{NOR, vagy Negált diszjunkció}
 A diszjunkció negált változata, értéke akkor igaz, ha mindkét operandusa hamis. Jele: $\neg(A \lor B)$
 
 \begin{figure}[H]
@@ -219,7 +219,7 @@ A diszjunkció negált változata, értéke akkor igaz, ha mindkét operandusa h
 \end{table}
 
 
-\subsubsection{Exclusive OR, vagy XOR}
+\subsubsection{XOR, vagy Exclusive OR}
 Más néven kizáró vagy. Értéke akkor hamis, ha a bemenetek megegyeznek. Jele: $A \oplus B$
 
 \begin{figure}[H]
@@ -244,7 +244,7 @@ Más néven kizáró vagy. Értéke akkor hamis, ha a bemenetek megegyeznek. Jel
 \end{table}
 
 
-\subsubsection{Exclusive NOR, vagy XNOR}
+\subsubsection{XNOR, vagy Exclusive NOR}
 A kizáró vagy negáltja, értéke akkor hamis, ha a bemenetek különböznek Jele: $\neg (A \oplus B)$
 
 \begin{figure}[H]
@@ -310,6 +310,114 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 \end{figure}
 
 \subsection{Kvantum logikai kapuk}
+
+\subsubsection{I, vagy Identity}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Identity}
+	\caption{I kapu rajza}
+	\label{fig:identity}
+\end{figure}
+
+
+\subsubsection{X, vagy Pauli-X}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Pauli_X}
+	\caption{X kapu rajza}
+	\label{fig:paulix}
+\end{figure}
+
+
+\subsubsection{Y, vagy Pauli-Y}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Pauli_Y}
+	\caption{Y kapu rajza}
+	\label{fig:pauliy}
+\end{figure}
+
+
+\subsubsection{Z, vagy Pauli-Z}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Pauli_Z}
+	\caption{Z kapu rajza}
+	\label{fig:pauliz}
+\end{figure}
+
+\subsubsection{H, vagy Hadamard}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Hadamard}
+	\caption{H kapu rajza}
+	\label{fig:hadamard}
+\end{figure}
+
+
+\subsubsection{S, vagy Phase}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth]{Qcircuit_S.svg}
+	\caption{S kapu rajza}
+	\label{fig:qcircuits}
+\end{figure}
+
+
+\subsubsection{T, vagy $\pi/8$}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.3\linewidth]{Qcircuit_T.svg}
+	\caption{T kapu rajza}
+	\label{fig:qcircuitt}
+\end{figure}
+
+
+\subsubsection{CNOT, vagy Controlled Not}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{CNOT}
+	\caption{CNOT kapu rajza}
+	\label{fig:cnot}
+\end{figure}
+
+
+\subsubsection{SWAP}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{SWAP}
+	\caption{SWAP kapu rajza}
+	\label{fig:swap}
+\end{figure}
+
+
+\subsubsection{Toffoli}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Toffoli_gate.svg}
+	\caption{Toffoli kapu rajza}
+	\label{fig:toffoligate}
+\end{figure}
+
+\subsubsection{Fredkin}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Fredkin}
+	\caption{Fredkin kapu rajza}
+	\label{fig:fredkin}
+\end{figure}
+
 
 \subsection{Univerzális kvantumkapuk}
 Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, hogy csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk véges halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk ilyen megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.
