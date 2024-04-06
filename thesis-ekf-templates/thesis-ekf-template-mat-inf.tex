@@ -312,6 +312,28 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 \subsection{Kvantum logikai kapuk}
 
 \subsubsection{I, vagy Identity}
+A buffer kapuhoz hasonlóan nem végez műveletet, helyben hagyja a kvantumbiteket. Azonosság transzformációként működik, alakja:
+
+\[ I= 
+	\begin{bmatrix}
+		1 & 0\\
+		0 & 1
+	\end{bmatrix}
+\]
+
+Ez egy tetszőleges kvantumbiten:
+
+\[ 
+	\ket{\Psi}=I\ket{\varphi}
+		\begin{bmatrix}
+			1 & 0\\
+			0 & 1
+		\end{bmatrix}
+		\begin{bmatrix}
+			a\\
+			b
+		\end{bmatrix}=a\ket{0}+b\ket{1}
+ \]
 
 \begin{figure}[H]
 	\centering
@@ -322,6 +344,30 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 
 
 \subsubsection{X, vagy Pauli-X}
+A klasszikus NOT kapunak felel meg, bit-flipnek is hívják. A Bloch gömb $X$ tengelyére tükröz. Alakja:
+
+\[ X= 
+\begin{bmatrix}
+	0 & 1\\
+	1 & 0
+\end{bmatrix}
+\]
+
+Ez egy tetszőleges kvantumbiten:
+
+\[ 
+	\ket{\Psi}=X\ket{\varphi}
+		\begin{bmatrix}
+			0 & 1\\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			a\\
+			b
+		\end{bmatrix}=b\ket{0}+a\ket{1}
+\]
+
+Az X kapu hatására a valószínűségi amplitúdók cserélődnek.
 
 \begin{figure}[H]
 	\centering
@@ -332,6 +378,30 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 
 
 \subsubsection{Y, vagy Pauli-Y}
+Az X kapuhoz hasonlóan felcseréli a $\ket{0}$-t és az $\ket{1}$-t, viszont az Y kapu a relatív fázist is megváltoztatja. A Bloch gömb $Y$ tengelyére tükröz Alakja:
+
+\[ Y= 
+\begin{bmatrix}
+	0 & -i\\
+	i & 0
+\end{bmatrix}
+\]
+
+Ez egy tetszőleges kvantumbiten:
+
+\[ 
+	\ket{\Psi}=Y\ket{\varphi}
+		\begin{bmatrix}
+			0 & -i\\
+			i & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			a\\
+			b
+		\end{bmatrix}=-ib\ket{0}+ia\ket{1},
+\]
+
+ahol $i$ komplex szám.
 
 \begin{figure}[H]
 	\centering
@@ -342,6 +412,31 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 
 
 \subsubsection{Z, vagy Pauli-Z}
+Phase-flip kapunak is hívják, ebből adódóan a fázist cseréli meg. A Bloch gömb $Z$ tengelyére tükröz. Alakja:
+
+\[ Z= 
+\begin{bmatrix}
+	1 & 0\\
+	0 & -1
+\end{bmatrix}
+\]
+
+Ez egy tetszőleges kvantumbiten:
+
+\[ 
+	\ket{\Psi}=Z\ket{\varphi}
+		\begin{bmatrix}
+			1 & 0\\
+			0 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			a\\
+			b
+		\end{bmatrix}=a\ket{0}-b\ket{1}
+\]
+
+Látható, hogy a Z kapu csak az $\ket{1}$ valószínűségi amplitúdót változtatja.
+
 
 \begin{figure}[H]
 	\centering
@@ -351,6 +446,54 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 \end{figure}
 
 \subsubsection{H, vagy Hadamard}
+A Hadamard kapu segítségével a már említett szuperpozíciós állapotokat lehet előállítani. Alakja:
+
+\[ H= \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+	1 & 1\\
+	1 & -1
+\end{bmatrix}
+\]
+
+Ez egy tetszőleges kvantumbiten:
+
+\[ 
+	\ket{\Psi}=H\ket{\varphi}=\frac{1}{\sqrt{2}}
+		\begin{bmatrix}
+			1 & 1\\
+			1 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			a\\
+			b
+		\end{bmatrix}=\frac{a+b}{\sqrt{2}}\ket{0}+\frac{a-b}{\sqrt{2}}\ket{1}
+\]
+
+Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön számon tartják őket:
+
+\[ 
+	\ket{\Psi}=H\ket{0}=\frac{1}{\sqrt{2}}
+		\begin{bmatrix}
+			1 & 1\\
+			1 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			1\\
+			0
+		\end{bmatrix}=\frac{\ket{0}+\ket{1}}{\sqrt{2}}
+\]
+
+\[ 
+	\ket{\Psi}=H\ket{1}=\frac{1}{\sqrt{2}}
+		\begin{bmatrix}
+			1 & 1\\
+			1 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			0\\
+			1
+		\end{bmatrix}=\frac{\ket{0}-\ket{1}}{\sqrt{2}}
+\]
 
 \begin{figure}[H]
 	\centering
@@ -372,7 +515,7 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 
 \subsubsection{T, vagy $\pi/8$}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.3\linewidth]{Qcircuit_T.svg}
 	\caption{T kapu rajza}

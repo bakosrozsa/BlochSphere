@@ -21,16 +21,16 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {2.2.4}Kvantum logikai kapuk}{11}{subsection.2.2.4}%
 \select@language {magyar} \contentsline {subsubsection}{I, vagy Identity}{11}{section*.11}%
 \select@language {magyar} \contentsline {subsubsection}{X, vagy Pauli-X}{11}{section*.12}%
-\select@language {magyar} \contentsline {subsubsection}{Y, vagy Pauli-Y}{11}{section*.13}%
+\select@language {magyar} \contentsline {subsubsection}{Y, vagy Pauli-Y}{12}{section*.13}%
 \select@language {magyar} \contentsline {subsubsection}{Z, vagy Pauli-Z}{12}{section*.14}%
-\select@language {magyar} \contentsline {subsubsection}{H, vagy Hadamard}{12}{section*.15}%
-\select@language {magyar} \contentsline {subsubsection}{S, vagy Phase}{12}{section*.16}%
-\select@language {magyar} \contentsline {subsubsection}{T, vagy $\pi /8$}{12}{section*.17}%
-\select@language {magyar} \contentsline {subsubsection}{CNOT, vagy Controlled Not}{12}{section*.18}%
-\select@language {magyar} \contentsline {subsubsection}{SWAP}{13}{section*.19}%
-\select@language {magyar} \contentsline {subsubsection}{Toffoli}{13}{section*.20}%
-\select@language {magyar} \contentsline {subsubsection}{Fredkin}{13}{section*.21}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.5}Univerzális kvantumkapuk}{13}{subsection.2.2.5}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.6}Reverzibilis kapuk}{14}{subsection.2.2.6}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{15}{chapter*.22}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{16}{chapter*.23}%
+\select@language {magyar} \contentsline {subsubsection}{H, vagy Hadamard}{13}{section*.15}%
+\select@language {magyar} \contentsline {subsubsection}{S, vagy Phase}{13}{section*.16}%
+\select@language {magyar} \contentsline {subsubsection}{T, vagy $\pi /8$}{14}{section*.17}%
+\select@language {magyar} \contentsline {subsubsection}{CNOT, vagy Controlled Not}{14}{section*.18}%
+\select@language {magyar} \contentsline {subsubsection}{SWAP}{14}{section*.19}%
+\select@language {magyar} \contentsline {subsubsection}{Toffoli}{14}{section*.20}%
+\select@language {magyar} \contentsline {subsubsection}{Fredkin}{15}{section*.21}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.5}Univerzális kvantumkapuk}{15}{subsection.2.2.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.6}Reverzibilis kapuk}{15}{subsection.2.2.6}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{16}{chapter*.22}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{17}{chapter*.23}%
