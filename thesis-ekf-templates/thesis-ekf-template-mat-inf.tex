@@ -25,7 +25,7 @@
 
 \begin{document}
 \institute{Matematikai és Informatikai Intézet}
-\title{Tanulás segítő program egy qubites kvantumkapukhoz}
+\title{Tanulás segítő program és applikáció egy kvantumbites logikai kapukhoz}
 \author{Bakos Rózsa Ajándék\\Programtervező informatikus BSc}
 \supervisor{Dr. Biró Csaba\\Egyetemi docens}
 \city{Eger}
@@ -276,6 +276,12 @@ Bizonyítható, hogy bármilyen logikai függvény összeállítható csak NOT �
 Ebből következtethető, hogy bármilyen Boole-függvény megvalósítható olyan áramkörrel, amely csak NAND vagy NOR kapukat alkalmaz. Gyakran emiatt előnyt élveznek, mivel más kapuknak nincs ilyen tulajdonsága.
 
 \section{Kvantum logikai kapuk és áramkörök}
+A kvantumkapuk jelentőségét a kvantummechanika alapelveire támaszkodva értelmezhetjük, amelyek olyan jelenségeket és viselkedéseket írnak le, melyek a klasszikus fizika keretein belül nem megfigyelhetők vagy magyarázhatók. A kvantummechanika alapján működő kapuk és áramkörök lehetővé teszik olyan számítások végrehajtását, amelyek rendkívül nagy számítási kapacitással és párhuzamosítással rendelkeznek, ami jelentős előnyöket kínál a hagyományos, klasszikus számítógépekkel szemben.
+
+Bár vannak hasonlóságok a klasszikus változatokhoz képest, a kvantum logikai kapuk egy sokkal komplexebb matematikai hátteret és fizikai jelenségeket hordoznak magukban.
+
+Jelen alfejezet csak pár, ismertebb logikai kaput tartalmaz, de fontos megemlíteni, hogy a kvantumkapuk száma végtelen. Mivel szakdolgozatom az egyqubites kapukra irányul, ezért a több kvantumbites változatok csak megemlítő jelleggel szerepelnek.
+
 \subsection{Qubit}
 A kvantumbit, röviden qubit, a kvantuminformatika alapvető építőeleme, és a klasszikus számítógépek működésétől eltérő, kvantummechanikai alapokon nyugvó adatábrázolási egység. Míg a hagyományos bit csak két állapotban (0 vagy 1) lehet jelen, a qubit képes egyszerre számos állapotban lenni, ami egyike annak a tulajdonságának, amely a kvantuminformatikát annyira különlegessé teszi.
 
@@ -294,7 +300,9 @@ olyan számítási feladatok elvégzését, amelyek a hagyományos számítógé
 \subsection{Szuperpozíció és összefonódás}
 
 Egy qubit állapotát a következőképpen adhatjuk meg:
-\[ \ket{\Psi}=\alpha\ket{0}+\beta\ket{1}, \]
+\begin{equation}
+	\ket{\Psi}=\alpha\ket{0}+\beta\ket{1},
+\end{equation}
 ahol $\alpha$ és $\beta$ komplex számok, valamint teljesül, hogy $|\alpha|^2+|\beta|^2=1$. Ez azt jelenti, hogy a $\ket{\Psi}$ kvantumbit $|\alpha|^2$ eséllyel 0, $|\beta|^2$-el pedig 1 lesz. Ezt szuperpozíciónak nevezzük. A két szélső érték, azaz $\ket{0}$ vagy $\ket{1}$ akkor áll elő, ha $\alpha$ 0 vagy 1, $\beta$ pedig ennek ellentettje. A szuperpozíció legjobban a Schrödinger macskája gondolatkísérlettel prezentálható, melyet Erwin Schrödinger fogalmazott meg 1935-ben.
 
 A qubit másik fontos jelensége a kvantum-összefonódás. Ez egy olyan jelenség a kvantummechanikában, amelyben két vagy több részecske állapota olyan összekapcsolt módon van, hogy az egyiken végzett mérések azonnal hatnak a másikra, függetlenül attól, hogy a részecskék milyen fizikai távolságra vannak egymástól.
@@ -312,18 +320,19 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 \subsection{Kvantum logikai kapuk}
 
 \subsubsection{I, vagy Identity}
-A buffer kapuhoz hasonlóan nem végez műveletet, helyben hagyja a kvantumbiteket. Azonosság transzformációként működik, alakja:
+A buffer kapuhoz hasonlóan nem végez műveletet, helyben hagyja a kvantumbiteket. Egy qubiten használjuk. Azonosság transzformációként működik, alakja:
 
-\[ I= 
+\begin{equation}
+	I= 
 	\begin{bmatrix}
 		1 & 0\\
 		0 & 1
 	\end{bmatrix}
-\]
+\end{equation}
 
 Ez egy tetszőleges kvantumbiten:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=I\ket{\varphi}
 		\begin{bmatrix}
 			1 & 0\\
@@ -333,7 +342,8 @@ Ez egy tetszőleges kvantumbiten:
 			a\\
 			b
 		\end{bmatrix}=a\ket{0}+b\ket{1}
- \]
+\end{equation}
+
 
 \begin{figure}[H]
 	\centering
@@ -344,18 +354,19 @@ Ez egy tetszőleges kvantumbiten:
 
 
 \subsubsection{X, vagy Pauli-X}
-A klasszikus NOT kapunak felel meg, bit-flipnek is hívják. A Bloch gömb $X$ tengelyére tükröz. Alakja:
+A klasszikus NOT kapunak felel meg, bit-flipnek is hívják. A Bloch gömb $X$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
-\[ X= 
-\begin{bmatrix}
-	0 & 1\\
-	1 & 0
-\end{bmatrix}
-\]
+\begin{equation}
+	X= 
+	\begin{bmatrix}
+		0 & 1\\
+		1 & 0
+	\end{bmatrix}
+\end{equation}
 
 Ez egy tetszőleges kvantumbiten:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=X\ket{\varphi}
 		\begin{bmatrix}
 			0 & 1\\
@@ -365,9 +376,14 @@ Ez egy tetszőleges kvantumbiten:
 			a\\
 			b
 		\end{bmatrix}=b\ket{0}+a\ket{1}
-\]
+\end{equation}
 
-Az X kapu hatására a valószínűségi amplitúdók cserélődnek.
+
+Az X kapu hatására a valószínűségi amplitúdók cserélődnek. Inverze saját maga, tehát például:
+
+\begin{equation}
+	\ket{\Psi}=XX\ket{0}=\ket{0}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -378,18 +394,19 @@ Az X kapu hatására a valószínűségi amplitúdók cserélődnek.
 
 
 \subsubsection{Y, vagy Pauli-Y}
-Az X kapuhoz hasonlóan felcseréli a $\ket{0}$-t és az $\ket{1}$-t, viszont az Y kapu a relatív fázist is megváltoztatja. A Bloch gömb $Y$ tengelyére tükröz Alakja:
+Az X kapuhoz hasonlóan felcseréli a $\ket{0}$-t és az $\ket{1}$-t, viszont az Y kapu a relatív fázist is megváltoztatja. A Bloch gömb $Y$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
-\[ Y= 
-\begin{bmatrix}
-	0 & -i\\
-	i & 0
-\end{bmatrix}
-\]
+\begin{equation}
+	Y= 
+	\begin{bmatrix}
+		0 & -i\\
+		i & 0
+	\end{bmatrix}
+\end{equation}
 
 Ez egy tetszőleges kvantumbiten:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=Y\ket{\varphi}
 		\begin{bmatrix}
 			0 & -i\\
@@ -399,9 +416,13 @@ Ez egy tetszőleges kvantumbiten:
 			a\\
 			b
 		\end{bmatrix}=-ib\ket{0}+ia\ket{1},
-\]
+\end{equation}
 
-ahol $i$ komplex szám.
+ahol $i$ komplex szám. Inverze saját maga, tehát például:
+
+\begin{equation}
+	\ket{\Psi}=YY\ket{0}=\ket{0}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -412,18 +433,19 @@ ahol $i$ komplex szám.
 
 
 \subsubsection{Z, vagy Pauli-Z}
-Phase-flip kapunak is hívják, ebből adódóan a fázist cseréli meg. A Bloch gömb $Z$ tengelyére tükröz. Alakja:
+Phase-flip kapunak is hívják, ebből adódóan a fázist cseréli meg. A Bloch gömb $Z$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
-\[ Z= 
-\begin{bmatrix}
-	1 & 0\\
-	0 & -1
-\end{bmatrix}
-\]
+\begin{equation}
+	Z= 
+	\begin{bmatrix}
+		1 & 0\\
+		0 & -1
+	\end{bmatrix}
+\end{equation}
 
 Ez egy tetszőleges kvantumbiten:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=Z\ket{\varphi}
 		\begin{bmatrix}
 			1 & 0\\
@@ -433,10 +455,13 @@ Ez egy tetszőleges kvantumbiten:
 			a\\
 			b
 		\end{bmatrix}=a\ket{0}-b\ket{1}
-\]
+\end{equation}
 
-Látható, hogy a Z kapu csak az $\ket{1}$ valószínűségi amplitúdót változtatja.
+Látható, hogy a Z kapu csak az $\ket{1}$ valószínűségi amplitúdót változtatja. Inverze saját maga, tehát például:
 
+\begin{equation}
+	\ket{\Psi}=ZZ\ket{0}=\ket{0}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -446,54 +471,61 @@ Látható, hogy a Z kapu csak az $\ket{1}$ valószínűségi amplitúdót válto
 \end{figure}
 
 \subsubsection{H, vagy Hadamard}
-A Hadamard kapu segítségével a már említett szuperpozíciós állapotokat lehet előállítani. Alakja:
+A Hadamard kapu segítségével a már említett szuperpozíciós állapotokat lehet előállítani. Egy qubiten működik. Alakja:
 
-\[ H= \frac{1}{\sqrt{2}}
-\begin{bmatrix}
-	1 & 1\\
-	1 & -1
-\end{bmatrix}
-\]
+\begin{equation}
+	H= \frac{1}{\sqrt{2}}
+	\begin{bmatrix}
+		1 & 1\\
+		1 & -1
+	\end{bmatrix}
+\end{equation}
 
 Ez egy tetszőleges kvantumbiten:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=H\ket{\varphi}=\frac{1}{\sqrt{2}}
-		\begin{bmatrix}
-			1 & 1\\
-			1 & -1
-		\end{bmatrix}
-		\begin{bmatrix}
-			a\\
-			b
-		\end{bmatrix}=\frac{a+b}{\sqrt{2}}\ket{0}+\frac{a-b}{\sqrt{2}}\ket{1}
-\]
+	\begin{bmatrix}
+		1 & 1\\
+		1 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		a\\
+		b
+	\end{bmatrix}=\frac{a+b}{\sqrt{2}}\ket{0}+\frac{a-b}{\sqrt{2}}\ket{1}
+\end{equation}
 
 Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön számon tartják őket:
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=H\ket{0}=\frac{1}{\sqrt{2}}
-		\begin{bmatrix}
-			1 & 1\\
-			1 & -1
-		\end{bmatrix}
-		\begin{bmatrix}
-			1\\
-			0
-		\end{bmatrix}=\frac{\ket{0}+\ket{1}}{\sqrt{2}}
-\]
+	\begin{bmatrix}
+		1 & 1\\
+		1 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		1\\
+		0
+	\end{bmatrix}=\frac{\ket{0}+\ket{1}}{\sqrt{2}}
+\end{equation}
 
-\[ 
+\begin{equation}
 	\ket{\Psi}=H\ket{1}=\frac{1}{\sqrt{2}}
-		\begin{bmatrix}
-			1 & 1\\
-			1 & -1
-		\end{bmatrix}
-		\begin{bmatrix}
-			0\\
-			1
-		\end{bmatrix}=\frac{\ket{0}-\ket{1}}{\sqrt{2}}
-\]
+	\begin{bmatrix}
+		1 & 1\\
+		1 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		0\\
+		1
+	\end{bmatrix}=\frac{\ket{0}-\ket{1}}{\sqrt{2}}
+\end{equation}
+
+A Hadamard kapu inverze saját maga, tehát például:
+
+\begin{equation}
+	\ket{\Psi}=HH\ket{0}=\ket{0}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -504,6 +536,29 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 
 \subsubsection{S, vagy Phase}
+Más néven fáziseltolási kapu. $\pi/2$ fáziseltolást alkalmaz a qubit állapotára. A Bloch gömb körül az óramutató járásával megegyező irányban forgat $\pi/2$ radiánnal. Egy qubiten működik. Alakja:
+
+\begin{equation}
+	S= 
+	\begin{bmatrix}
+		1 & 0\\
+		0 & -i
+	\end{bmatrix}
+\end{equation}
+
+Ez egy tetszőleges kvantumbiten:
+
+\begin{equation}
+	\ket{\Psi}=S\ket{\varphi}=
+	\begin{bmatrix}
+		1 & 0\\
+		0 & -i
+	\end{bmatrix}
+	\begin{bmatrix}
+		a\\
+		b
+	\end{bmatrix}=a\ket{0}-ib\ket{1}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -514,6 +569,31 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 
 \subsubsection{T, vagy $\pi/8$}
+A T kapu, hasonlóan az S kapuhoz, fáziseltolást alkalmaz egy qubit állapotára. Az állapotvektort $\pi/4$ radiánnal forgat a Bloch gömb körül, óramutató járással megegyező irányban. Alakja:
+
+\begin{equation}
+	T= 
+	\begin{bmatrix}
+		1 & 0\\
+		0 & e^{i\pi/4}
+	\end{bmatrix}
+\end{equation}
+
+Ez egy tetszőleges kvantumbiten:
+
+\begin{equation}
+	\ket{\Psi}=T\ket{\varphi}=
+	\begin{bmatrix}
+		1 & 0\\
+		0 & e^{i\pi/4}
+	\end{bmatrix}
+	\begin{bmatrix}
+		a\\
+		b
+	\end{bmatrix}=a\ket{0}+e^{i\pi/4}b\ket{1}
+\end{equation}
+
+Az S kapuval való azonosságok miatt elmondható, hogy $S=T^{2}$
 
 \begin{figure}[H]
 	\centering
@@ -524,6 +604,17 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 
 \subsubsection{CNOT, vagy Controlled Not}
+A CNOT kapu két qubites művelet, ahol az első qubit vezérlő-, a második pedig cél kvantumbit néven ismert. Ha a vezérlő $\ket{1}$, akkor a cél qubiten X kaput használ, a többi változatlan. Amennyiben a vezérlő qubit $\ket{0}$, a cél változatlan marad. Klasszikus logikai kapuként is alkalmazható. Inverze saját maga. Alakja:
+
+\begin{equation}
+	CNOT= 
+	\begin{bmatrix}
+		1 & 0 & 0 & 0\\
+		0 & 1 & 0 & 0\\
+		0 & 0 & 0 & 1\\
+		0 & 0 & 1 & 0
+	\end{bmatrix}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -534,6 +625,17 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 
 \subsubsection{SWAP}
+Két qubites kvantumkapu, mely felcseréli a bemenetek állapotát. Mivel három CNOT kapuval valósítható meg, így más jelölést is alkalmaznak rá, az egyszerűbb változat \az{\ref{fig:swap}}.~ábrán látható. Inverze saját maga. Alakja:
+
+\begin{equation}
+	SWAP= 
+	\begin{bmatrix}
+		1 & 0 & 0 & 0\\
+		0 & 0 & 1 & 0\\
+		0 & 1 & 0 & 0\\
+		0 & 0 & 0 & 1
+	\end{bmatrix}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -544,6 +646,21 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 
 \subsubsection{Toffoli}
+Ahogy az \az{\ref{fig:toffoligate}}.~ábrán látható, a Toffoli kapu CNOT műveletet használ, ezért szokás CCNOT kapunak is nevezni. Három qubiten működik, az első kettő vezérlő, az utolsó pedig a cél qubit. Klasszikus logikai kapuként is alkalmazható, ez esetben univerzális klasszikus kapunak tekintik. Inverze saját maga. Alakja:
+
+\begin{equation}
+	Toffoli= 
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+		0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+		0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+		0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+	\end{bmatrix}
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -552,28 +669,80 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 	\label{fig:toffoligate}
 \end{figure}
 
-\subsubsection{Fredkin}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.25\linewidth]{Fredkin}
-	\caption{Fredkin kapu rajza}
-	\label{fig:fredkin}
-\end{figure}
-
 
 \subsection{Univerzális kvantumkapuk}
-Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, hogy csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk véges halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk ilyen megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.
+Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, mivel csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk univerzális megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.
 
-\subsection{Reverzibilis kapuk}
+\section{Reverzibilis kapuk}
 Megfordítható kapuknak is nevezik őket. Két alapvető tulajdonsága van:
 \begin{enumerate}
 	\item Az eredményükből egyértelműen kikövetkeztethetőek a bemenetek, azaz egy bemeneti kombinációhoz pontosan egy kimeneti kombináció tartozik, és fordítva
 	\item Lehetővé teszik a bemenetek helyreállítását a kimenetekből anélkül, hogy információt veszítenének.
 \end{enumerate}
 
-Vegyük például az OR kaput. Mint láttuk, értéke csak akkor hamis, ha bemenetei hamisak. Viszont minden más esetben nem tudjuk megállapítani, hogy melyik volt az aktuális bemenet a háromból, hacsak nincs további információnk. Tehát az OR kapuról elmondható, hogy irreverzibilis (nem reverzibilis) kapu. A legtöbb klasszikus logikai kapu szintén ebbe a csoportba tartozik.
+Vegyük például az OR kaput. Mint láttuk, értéke csak akkor hamis, ha bemenetei hamisak. Viszont minden más esetben nem tudjuk megállapítani, hogy melyik volt az aktuális bemenet a háromból, hacsak nincs további információnk. Tehát az OR kapuról elmondható, hogy irreverzibilis (nem reverzibilis) kapu. A legtöbb klasszikus logikai kapu szintén ebbe a csoportba tartozik, a már említett kapuk közül ez alól a CNOT és a Toffoli kivétel.
 
+Lehetőség van klasszikus logikai művelet végrehajtására csak reverzibilis kapuk használatával, de ilyen esetekben gyakran szükségessé válik a segédbitek használata.
+
+Alapvetően bármilyen reverzibilis klasszikus kapu megvalósítható kvantumszámítógépeken, így emiatt létezik a Toffoli és CNOT kapunak kvantum változata is.
+
+A klasszikus logikai kapukkal ellentétben, a kvantum kapuk közül mindegyik reverzibilis.
+
+\chapter{Tanulás segítő program és applikáció}
+\section{Technológiai körültekintés}
+A különböző technológiák és eszközök közötti választás nem mindig egyértelmű. Ezért szükséges részletesen mérlegelni és összehasonlítani az elérhető lehetőségeket. A nyelv, keretrendszer vagy platform kiválasztása előtt érdemes megfontolni a különböző szempontokat, mint például a teljesítmény, a fejlesztési idő és a támogatottság. Szakdolgozatom írásának kezdetekor, a nyelv és keretrendszer választásnál figyelembe vettem az alábbi elképzeléseket:
+\begin{enumerate}
+	\item A diplomamunka két részből álljon: egy telefonos applikációból és egy asztali alkalmazásból, mindkettő angol nyelven.
+	\item A diplomamunka az egy kvantumbites kapuk egy csoportját mutassa be, ezeket interaktív, tanulást segítő formában.
+	\item A telefonos applikáció képes legyen csatlakozni az asztali alkalmazásra, majd szenzor adatokat küldeni. Fontos volt továbbá, hogy rövid ismertetőket tudjon a felhasználó olvasni az adott kapukról.
+	\item A program egy letisztult felületet nyújtson, ahol a felhasználó válogathat az adott egy kvantumbites kapuk közül. Ezekről kapja meg azt a leírást, ami a telefonon is elérhető, valamint animációkat is tudjon nézni róluk.
+	\item A program középpontja egy Bloch gömb legyen, egy állapotvektorral. Ezt a felhasználó tudja állítani, valamint amennyiben csatlakoztatott telefont, ki is tudja próbálni az adott kapukat. A telefon forgatásával képes legyen a cél állapotba igazítani a vektort, ez egy minimális hibatűréssel történjen.
+\end{enumerate}
+
+A program lehetőségeit szűkítette a tény, hogy minél pontosabb ábrákat, reprezentációkat kellett keresnem. A gömb forgatását vettem a legmeghatározóbb tényezőnek választásnál. Egy egyszerű 3D-s objektumot több nyelv és keretrendszer is támogat. Kipróbáltam, hogy ez Java Fx-ben valamint  PythonQt-ban hogy jelenik meg. Viszont, mint ahogy azt \az{\ref{fig:bitqubit}}.~ábrán is látható, a Bloch gömb tartalmaz egy vektort, aminek pozíciója változhat, ami miatt a klasszikus megjelenítés nem elegendő, hiszen nem az objektumot forgatjuk. Emiatt fontos volt áttekintenem, hogy milyen kvantumáramkörökkel foglalkozó könyvtárakkal szolgálnak a keretrendszerek.
+
+A telefonos applikáció kapcsán fontos volt, hogy a választott operációs rendszer minél több felhasználót lefedjen, valamint közel pontos szenzor adatot legyen képes küldeni.
+
+\section{Választott technológiák}
+\subsection{Asztali alkalmazás}
+\subsubsection{PyCharm}
+
+\subsubsection{Python}
+
+\subsubsection{PySide modul}
+A PySide lehetővé teszi a fejlesztők számára, hogy Qt alapú alkalmazásokat írjanak Python használatával, hozzáférést biztosítva a Qt keretrendszer összes funkciójához és szolgáltatásához. Előnyei:
+\begin{enumerate}
+	\item Cross-platform: Hasonlóan a Qt-hoz, a Pyside is cross-platform, tehát az ezzel fejlesztett alkalmazások számos operációs rendszeren futhatnak, beleértve a Windowst, macOS-t és a Linuxot, anélkül, hogy a kódon jelentős változtatásokat kellene végrehajtani.
+	\item GUI fejlesztés: A PySide leegyszerűsíti a grafikus felhasználói felületek (GUI) fejlesztését widgetek létrehozására, elrendezésekre és események kezelésére, a Qt hatékony eszközkészletének segítségével.
+\end{enumerate}
+
+Az alkalmazás Pyside6-ot használ, ami Qt6-ot támogat
+
+\subsubsection{Qiskit könyvtár}
+A legjobban elterjedt nyílt forráskódú Python könyvtár ami kvantumáramkörökkel foglalkozik, az IBM fejleszti. Segítségével különböző áramköröket alakíthatunk ki, és szimulálhatunk. Lehetőség van az adott qubit állapotokat Bloch gömbön is reprezentálni. Hasonló könyvtárakhoz képest sokkal kvantumáramkör és kvantumszámítás központúbb, ami az asztali alkalmazás magját adja.
+
+\subsubsection{Matplotlib könyvtár}
+
+\subsubsection{Numpy könyvtár}
+
+\subsubsection{Socket könyvtár}
+
+\subsection{Applikáció}
+\subsubsection{Android Studio}
+
+\subsubsection{Java}
+
+
+\section{Specifikáció}
+
+\section{Program bemutatása}
+
+\section{Applikáció bemutatása}
+
+\section{Tesztelések}
+
+\section{Továbbfejlesztési lehetőségek}
+Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek
 
 \chapter*{Összegzés}
 \addcontentsline{toc}{chapter}{Összegzés}

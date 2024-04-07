@@ -1,4 +1,3 @@
-import math
 import random
 import socket
 import sys
@@ -139,8 +138,8 @@ class Window(QMainWindow):
         another_window.show()
 
     def RandomState(self):
-        self.bloch_vector.theta = random.uniform(0.0, math.pi)
-        self.bloch_vector.phi = random.uniform(0.0, 2 * math.pi)
+        self.bloch_vector.theta = random.uniform(0.0, np.pi)
+        self.bloch_vector.phi = random.uniform(0.0, 2 * np.pi)
         plt.close()
         self.fig.canvas.flush_events()
         self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi],
@@ -167,7 +166,7 @@ class Window(QMainWindow):
                                       str(abs(self.proportion[1][0].real)) + " |1>")
 
     def OneState(self):
-        self.bloch_vector.theta = math.pi
+        self.bloch_vector.theta = np.pi
         self.bloch_vector.phi = 0.0
         plt.close()
         self.fig.canvas.flush_events()
@@ -225,7 +224,7 @@ class Window(QMainWindow):
                 try:
                     angles = np.array(angles, dtype=float)
                     if angles[1] < 0:
-                        angles[1] = angles[1] + 2 * math.pi
+                        angles[1] = angles[1] + 2 * np.pi
                     print(angles[0], angles[1])
                     plt.close()
                     self.fig.canvas.flush_events()
