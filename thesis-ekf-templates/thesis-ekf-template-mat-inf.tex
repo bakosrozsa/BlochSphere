@@ -43,32 +43,43 @@ A kvantum-számítástechnika egyik kulcsfontosságú területe a kvantum logika
 
 Szakdolgozatom célja, hogy bemutasson ezen problémák áthidalására egy olyan tanulás segítő programot, mely közelebb hozza az érdeklődőkhöz a kvantumkapuk koncepcióját. Ezt egyqubites kapuk bemutatásával teszem meg. Az alkalmazás tervezése és implementálása során figyelembe veszem a felhasználók igényeit és a pedagógiai célokat, miközben kihasználom a kvantumtechnológia által nyújtott lehetőségeket.
 
-A továbbiakban bemutatom a kvantumszámítógépek alapjait, a kvantumlogikai kapuk működését és jellemzőit, valamint részletesen ismertetem a fejlesztett tanulás segítő programot, beleértve annak tervezési alapelveit, implementációját és tesztelését. Végül összefoglalom az elért eredményeket és felvázolom a jövőbeli kutatási irányokat ezen a területen.
+A továbbiakban bemutatom a kvantuminformatika alapjait, a kvantumlogikai kapuk működését és jellemzőit, valamint részletesen ismertetem a fejlesztett tanulás segítő programot, beleértve annak tervezési alapelveit, implementációját és tesztelését. Végül összefoglalom az elért eredményeket és felvázolom a jövőbeli kutatási irányokat ezen a területen.
 
-\chapter{Fejezet címe}
-\section{Szakasz címe}
-\subsection{Alszakasz címe}
-Lórum ipse olyan borzasztóan cogális patás, ami fogás nélkül nem varkál megfelelően. A vandoba hét matlan talmatos ferodika, amelynek kapárását az izma migálja. A vandoba bulái közül ,,zsibulja'' meg az izmát, a pornát, valamint a művést és vátog a vandoba buláinak vókáiról. Vókája a raktil prozása két emen között. Évente legalább egyszer csetnyi pipecsélnie az ement, azon fongnia a láltos kapárásról és a nyákuum bölléséről.
-\cite[102.~oldal]{Fazekas}
+\chapter{Kvantuminformatika}
+\section{Előzmények}
+A kvantummechanika gyökerei az 1800-as évek elejére vezethetők vissza, ahol a fizika többek között olyan problémákkal is küzdött, mint a hőmérsékleti sugárzás.
 
-A vandoba ninti és az emen elé redőzi a szamlan radalmakan érvést. Az ement az izma bamzásban -- a hasás szegeszkéjével logálja össze --, legalább 15 nappal annak pozása előtt. Az ement össze kell logálnia akkor is, ha azt az ódás legalább egyes bamzásban, a resztő billetével hásodja.
-\cite{Fazekas,Tomacs}
+Az első matematikai modellt, amely erre magyarázatot adott, Max Planck német fizikushoz kötjük. A ma már Planck-féle kvantumhipotézisnek ismert levezetés 1900-ban történt előterjesztésre. Ezt a dátumot tekintjük a "régi" kvantumelméleti korszak kezdetének, valamint a kvantumfizika születésének. A jelenséggel Albert Einstein is foglalkozott, aki 1905-ben megjelent, fényelektromos jelenségről szóló cikkében a már említett hőmérsékleti sugárzástól független is alkalmazta a Planck-féle kvantumhipotézist.
 
-\begin{tetel}
-	Tétel szövege.
-\end{tetel}
+Ezután rohamos növekedésnek kezdett a tudományág. A "régi" kvantumelméleti korszak végét 1924-re datáljuk, amikor De Brogile publikálta anyaghullámokról szóló elméletét. A modern kvantummechanika születése 1925-ben történt, jelenleg is ebben a korszakban vagyunk.
 
-\begin{proof}
-	Bizonyítás szövege.
-\end{proof}
+Természetesen az informatikát sem kerülte el ez a hullám. 1981-ben Richard Feynman előadásában felvetette egy kvantumelveken működő számítógép ötletét, ami képes kvantumrendszereket szimulálni. Az ő nevéhez fűződik a kvantumszámítógép kifejezés. A korszak hasonlóan fontos neve még Paul Benioff, aki 1982-ben publikált, tanulmányában lefektette a kvantumszámítási modellek alapjait. Feynman és Benioff gondolatait felhasználva 1985-ben David Deutsch bemutatta tanulmányában egy kvantumszámítógép elméleti működését, ami képes elvégezni a klasszikus számítógép számításait, de kihasználva a kvantummechanika előnyeit. Fontos személy volt még ebben az időszakban Peter Shor, aki 1994-ben megalkotott egy olyan kvantumalgoritmust, ami a napjainkban használt titkosítási eljárásokat veszélybe sodorhatja. Az 1994-2000-es időszakban számos hasonlóan fontos kvantumalgoritmusok született. Ilyen például az 1996-ban készült Grover algoritmus, ami a rendezetlen adatokban való keresést segítette.
 
-\begin{definicio}
-	Definíció szövege.
-\end{definicio}
+Ahogy ezek a felfedezések egyre tovább bővítették a kvantumszámítás fogalmát, úgy felmerült az igény a kvantumlogikai kapukra is. Az 1980-as évek végétől kezdve számos kaput állítottak elő.
+\section{Jelenlegi helyzet}
+A 21. században kialakult egy verseny a kutatóintézetek és tech óriások közt, cél egy kvantumszámítógép megépítése volt. Ehhez a korszakhoz fűződik a kvantumfölény kifejezés is. Ez arra utal, hogy egy kvantumszámítógép képes megoldani egy olyan problémát, melyre klasszikus társai nem képesek lehetséges időn belül.
 
-\begin{megjegyzes}
-	Megjegyzés szövege.
-\end{megjegyzes}
+2011-ben a D-Wave Systems cég volt az első, akik azt állították, hogy megépítették az első kereskedelmi forgalomban kapható kvantumszámítógépet, a D-Wave One-t, ami 128 qubites lapkakészleten működött.
+
+Fontos esemény volt még a 2019-ben a Google által bejelentett kvantumfölény. 53 qubites Sycamore processzorával rendelkező kvantumszámítógépük 200 másodperc alatt megoldott egy konkrét problémát, amelyhez egy klasszikus szuperszámítógépnek körülbelül 10 000 év alatt végzett volna el. Ugyanebben az évben jelent meg az IBM első kvantumszámítógépe is, az IMB Quantum System One.
+
+Ebben az időszakban elért jelentős előrelépés ellenére számos kihívás még mindig fennáll, ilyen például a kvantumbitek minősége és stabilitása. Az olyan cégek, mint az IBM, Google és a Microsoft továbbra is jelentős összegeket fektet a kvantumszámítógépek fejlesztésébe. Ezen kívül számos ország és nagyhatalom is foglalkozik ezzel a tudományággal.
+
+Hazai viszonylatban is folyamatos kutatások történnek, ezeket különböző egyetemek mellett a Kvantuminformatikai Nemzeti Laboratórium és a HunQuTech konzorcium vezeti. Céljuk elérni a nemzetközi szintet.
+
+Ebben az időszakban több megközelítés is született a kvantumszámítógépekre, ezáltal több típusról is beszélhetünk. Ezek közül a fontosabbak:
+
+\begin{enumerate}
+	\item Trapped Ion:
+	\item Superconducting:
+	\item Topological:
+	\item Photonic:
+	\item Quantum Annealing:
+\end{enumerate}
+
+\section{Veszélyek}
+
+\section{Lehetőségek}
 
 \chapter{Klasszikus- és kvantum logikai kapuk}
 \section{Klasszikus logikai kapuk és áramkörök}
@@ -317,7 +328,7 @@ Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése sor
 	\label{fig:measure}
 \end{figure}
 
-\subsection{Kvantum logikai kapuk}
+\subsection{Kvantum logikai kapuk}\label{kvantumkapuk}
 
 \subsubsection{I, vagy Identity}
 A buffer kapuhoz hasonlóan nem végez műveletet, helyben hagyja a kvantumbiteket. Egy qubiten használjuk. Azonosság transzformációként működik, alakja:
@@ -705,9 +716,20 @@ A telefonos applikáció kapcsán fontos volt, hogy a választott operációs re
 
 \section{Választott technológiák}
 \subsection{Asztali alkalmazás}
-\subsubsection{PyCharm}
-
 \subsubsection{Python}
+A Python egy magas szintű, interpretált programozási nyelv, amely egyszerűségéről és könnyen olvashatóságáról ismert. Manapság a legnépszerűbb nyelv.
+
+Szintaxisát úgy tervezték, hogy intuitív és olvasható legyen, így kezdők és tapasztalt programozók számára egyaránt nagyszerű választás. Hangsúlyozza a kód olvashatóságát, és lehetővé teszi a fejlesztők számára, hogy más nyelvekhez képest kevesebb kódsorban oldjanak meg problémákat.
+
+A Python emellett egy interpreteres  nyelv, ami azt jelenti, hogy a Pythonban írt kód soronként hajtódik végre, nem pedig előzetesen gépi kódba fordítva. Ez megkönnyíti a fejlesztést és a hibakeresést, mivel a kód azonnal végrehajtható külön fordítási lépés nélkül.
+
+Dinamikus típusrendszerének köszönhetően, változótípusokra a rendszer futás közben következtet. Ez nagyobb rugalmasságot és gyorsabb fejlesztést tesz lehetővé.
+
+A Python támogatja az objektum-orientált programozás (OOP) elveit, lehetővé téve a fejlesztők számára, hogy osztályokat és objektumokat hozzanak létre az adatok és a viselkedések egységbe zárásához.
+
+Egy átfogó könyvtárral is rendelkezik, amely modulokat és funkciókat biztosít különféle feladatok végrehajtásához, például hálózatkezelés, matematikai kifejezések stb.
+
+Mindezek miatt a Python nyelv rendkívül sokoldalú. Számos alkalmazáshoz használják, beleértve a webfejlesztést, adatelemzést, gépi tanulást, mesterséges intelligenciát, tudományos számítástechnikát, automatizálást stb.
 
 \subsubsection{PySide modul}
 A PySide lehetővé teszi a fejlesztők számára, hogy Qt alapú alkalmazásokat írjanak Python használatával, hozzáférést biztosítva a Qt keretrendszer összes funkciójához és szolgáltatásához. Előnyei:
@@ -722,16 +744,42 @@ Az alkalmazás Pyside6-ot használ, ami Qt6-ot támogat
 A legjobban elterjedt nyílt forráskódú Python könyvtár ami kvantumáramkörökkel foglalkozik, az IBM fejleszti. Segítségével különböző áramköröket alakíthatunk ki, és szimulálhatunk. Lehetőség van az adott qubit állapotokat Bloch gömbön is reprezentálni. Hasonló könyvtárakhoz képest sokkal kvantumáramkör és kvantumszámítás központúbb, ami az asztali alkalmazás magját adja.
 
 \subsubsection{Matplotlib könyvtár}
+A Qiskit-ben kialakított áramköröket és Bloch gömböket a Matplotlib könyvtárral könnyen meg lehet jeleníteni. A könyvtár széles körben biztosít megjelenítést különböző diagramokhoz, 2D és 3D objektumokhoz, és még sok máshoz. A Matplotlib egy népszerű Python-könyvtár, amelyet statikus, interaktív és animált vizualizációk létrehozására használnak Pythonban. Széles körben használják különféle területeken.
+
+A Matplotlib könyvtárral előállított objektumokat egyszerűen hozzá lehet adni a PySide projektekhez. 
 
 \subsubsection{Numpy könyvtár}
+A NumPy egy alapvető csomag a Python segítségével végzett komplex számításokhoz. Támogatja a többdimenziós tömböket és mátrixokat, valamint matematikai függvények gyűjteményét biztosítja az ezeken a tömbökön való műveletekhez. 
+
+Ahogy azt \az{\ref{kvantumkapuk}}.~fejezetben láttuk, a komplex mátrix számítások elengedhetetlenek a kvantumlogikai kapuk prezentációjában.
 
 \subsubsection{Socket könyvtár}
+Pythonban a socket könyvtár alacsony szintű hálózati interfészt biztosít, amely lehetővé teszi a hálózati socketek létrehozását és az azokkal való interakciót. Megkönnyíti mind a kliens, mind a szerver hálózati alkalmazások létrehozását. Támogatja a TCP és UDP protokollokat. 
+
+Ez könyvtár a telefon csatlakoztatása miatt szükséges.
 
 \subsection{Applikáció}
 \subsubsection{Android Studio}
+Android-alkalmazások fejlesztésének hivatalos integrált fejlesztői környezete (IDE). A Google fejlesztette, és a JetBrains IntelliJ IDEA szoftverén alapul. 
+
+Felhasználóbarát felülettel rendelkezik, amely különböző paneleket tartalmaz a kód szerkesztéséhez, az elrendezések megtervezéséhez, a projektfájlok kezeléséhez, valamint a naplók és hibák megtekintéséhez.
+
+A felületet egy XML Layout Editor is segíti. Ez egy vizuális szerkesztőt tartalmaz az Android-alkalmazások felületeinek megtervezéséhez, XML-fájlok használatával. A fejlesztők behúzhatják a felhasználói felület összetevőit egy vászonra, és testre szabhatják tulajdonságaikat a Properties panelen.
+
+Az Android Studio legfontosabb eleme a beépített emulátor, amely lehetővé teszi a fejlesztők számára, hogy teszteljék alkalmazásaikat virtuális Android-eszközökön, különböző képernyőmérettel, felbontással és Android-verziókkal. Támogatja továbbá a hibakeresést fejlesztői számítógéphez USB-n keresztül csatlakoztatott fizikai Android-eszközökön. A fejlesztők beállíthatnak töréspontokat, ellenőrizhetik a változókat, és valós időben elemezhetik az alkalmazások teljesítményét.
+
+Az Andorid Studio-hoz tartozik továbbá egy Gradle rendszer, ami lehetővé teszi a fejlesztők számára, hogy egyedi build konfigurációkat és függőségeket határozzanak meg projektjeikhez.
+
+Mivel általánosságban elmondható, hogy a világon jelenleg az Android felhasználók vannak többségben, ezért ragaszkodtam ehhez a megoldáshoz, más operációs rendszerek helyett.
 
 \subsubsection{Java}
+A Java egy széles körben használt, magas szintű objektum-orientált programozási nyelv, amelyet a Sun Microsystems fejlesztett ki az 1990-es évek közepén. 
 
+A Java szintaxis hasonló a C nyelvekhez, így az ezeket ismerő fejlesztők viszonylag könnyen megtanulhatják. 
+
+A Java egy átfogó könyvtárral rendelkezik. Java Development Kit (JDK) néven ismert, amely számos segítséget kínál különféle feladatokhoz. A könyvtár segít a fejlesztőknek robusztus és funkciókban gazdag alkalmazások hatékonyabb felépítésében.
+
+Ezek mellett széles közössége és támogatottsága miatt a telefonos applikáció fejlesztésénél számomra egyértelmű volt a Java használata.
 
 \section{Specifikáció}
 
