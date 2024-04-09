@@ -27,7 +27,7 @@
 \institute{Matematikai és Informatikai Intézet}
 \title{Tanulás segítő program és applikáció egy kvantumbites logikai kapukhoz}
 \author{Bakos Rózsa Ajándék\\Programtervező informatikus BSc}
-\supervisor{Dr. Biró Csaba\\Egyetemi docens}
+\supervisor{Biró Csaba\\Egyetemi docens}
 \city{Eger}
 \date{2024}
 \maketitle
@@ -84,9 +84,25 @@ Ebben az időszakban több megközelítés is született a kvantumszámítógép
 \end{figure}
 
 
-\section{Veszélyek}
+\section{Nehézségek}
+Mint láttuk, a kvantumszámítógépek jelenleg is kísérletezés alatt állnak, valamint számos kihívások továbbra is feltáratlanok maradtak. Egy kvantumszámítógép építése és karbantartása, azok speciális igényük és építőelemeik miatt mai napig nagy költségeket ölelnek fel.
 
-\section{Lehetőségek}
+A kvantumbitek minősége és stabilitása szintén egy jelentős probléma. A jelenlegi kvantumszámítógépek kevés qubittel rendelkeznek, skálázhatóságuk limitált, emiatt szűk körben használhatóak, számos komplex feladat megoldására továbbra is képtelenek.
+
+Környezetre való érzékenysége miatt, extrém környezetekben tárolják őket. Az olyan tényezők, mint például a zaj, számítási problémákat okozhat, amik kijavítása rendkívül időigényes.
+
+\section{Előnyök és veszélyek}
+Nehézségei ellenére a kvantumszámítógépek számos lehetőséget is hordoznak magukban. Sokszor viszont ezek az előnyök rossz kezekben képesek veszélyeket is okozni.
+
+Legfontosabb potenciáljuk a gyorsaságuk. Egy kvantumszámítógép sokkal gyorsabban képes elvégezni számításokat, mint a klasszikus számítógépek. Ez annak köszönhető, hogy egy klasszikus számítógép szekvenciálisan végzi feladatait, ezzel szemben a kvantumszámítógépek párhuzamosságra képesek.
+
+Bár számos komplex feladat megoldására jelenleg is képtelenek, léteznek olyan összetettebb problémák, amiben a kvantumszámítógépek megfelelőnek bizonyultak, míg a klasszikus számítógépek számára megoldhatatlanok voltak. Ilyenek például különböző optimalizálási problémák, illetve faktoriális számítás. Ezek mögött számos kvantumalgoritmus jelenik meg, amely hasonlóan egy új ága a kvantuminformatikának.
+
+A gyorsasági és számítási előnyei miatt több más iparág segítésére is szolgálhatnak a kvantumszámítógépek, többek között az anyag- és a gyógyszerkutatás is ide tartozik.
+
+Viszont ezek az előnyök veszélyeket is hordozhatnak magukban. A már említett Shor algoritmus egy szám prímtényezős felbontását végzi el hatékonyan. A problémát az okozza, hogy a jelenlegi titkosítási algoritmusok (például az RSA) nagy része emiatt védtelen lesz, mivel ezek prímszámokat használnak titkosításra. Természetesen ezekre a problémákra is léteznek kutatások, így született a kvantumkriptográfia területe, ami fejlettebb biztonságot ígér.
+
+A sok új lehetőség és a felsorolt előnyök nem léteznének a kvantum logikai kapuk nélkül, amik az alapkövei a kvantumszámítógépeknek.
 
 \chapter{Klasszikus- és kvantum logikai kapuk}
 \section{Klasszikus logikai kapuk és áramkörök}
@@ -710,8 +726,8 @@ A klasszikus logikai kapukkal ellentétben, a kvantum kapuk közül mindegyik re
 \section{Technológiai körültekintés}
 A különböző technológiák és eszközök közötti választás nem mindig egyértelmű. Ezért szükséges részletesen mérlegelni és összehasonlítani az elérhető lehetőségeket. A nyelv, keretrendszer vagy platform kiválasztása előtt érdemes megfontolni a különböző szempontokat, mint például a teljesítmény, a fejlesztési idő és a támogatottság. Szakdolgozatom írásának kezdetekor, a nyelv és keretrendszer választásnál figyelembe vettem az alábbi elképzeléseket:
 \begin{enumerate}
-	\item A diplomamunka két részből álljon: egy telefonos applikációból és egy asztali alkalmazásból, mindkettő angol nyelven.
-	\item A diplomamunka az egy kvantumbites kapuk egy csoportját mutassa be, ezeket interaktív, tanulást segítő formában.
+	\item Két részből álljon: egy telefonos applikációból és egy asztali alkalmazásból, mindkettő angol nyelven.
+	\item Az egy kvantumbites kapuk egy csoportját mutassa be, ezeket interaktív, tanulást segítő formában.
 	\item A telefonos applikáció képes legyen csatlakozni az asztali alkalmazásra, majd szenzor adatokat küldeni. Fontos volt továbbá, hogy rövid ismertetőket tudjon a felhasználó olvasni az adott kapukról.
 	\item A program egy letisztult felületet nyújtson, ahol a felhasználó válogathat az adott egy kvantumbites kapuk közül. Ezekről kapja meg azt a leírást, ami a telefonon is elérhető, valamint animációkat is tudjon nézni róluk.
 	\item A program középpontja egy Bloch gömb legyen, egy állapotvektorral. Ezt a felhasználó tudja állítani, valamint amennyiben csatlakoztatott telefont, ki is tudja próbálni az adott kapukat. A telefon forgatásával képes legyen a cél állapotba igazítani a vektort, ez egy minimális hibatűréssel történjen.
@@ -788,8 +804,6 @@ A Java egy átfogó könyvtárral rendelkezik. Java Development Kit (JDK) néven
 
 Ezek mellett széles közössége és támogatottsága miatt a telefonos applikáció fejlesztésénél számomra egyértelmű volt a Java használata.
 
-\section{Specifikáció}
-
 \section{Program bemutatása}
 
 \section{Applikáció bemutatása}
@@ -797,18 +811,18 @@ Ezek mellett széles közössége és támogatottsága miatt a telefonos applik�
 \section{Tesztelések}
 
 \section{Továbbfejlesztési lehetőségek}
-Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek
+%Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek
 
 \chapter*{Összegzés}
 \addcontentsline{toc}{chapter}{Összegzés}
-Lórum ipse olyan borzasztóan cogális patás, ami fogás nélkül nem varkál megfelelően. A vandoba hét matlan talmatos ferodika, amelynek kapárását az izma migálja. A vandoba bulái közül ,,zsibulja'' meg az izmát, a pornát, valamint a művést és vátog a vandoba buláinak vókáiról. Vókája a raktil prozása két emen között. Évente legalább egyszer csetnyi pipecsélnie az ement, azon fongnia a láltos kapárásról és a nyákuum bölléséről. A vandoba ninti és az emen elé redőzi a szamlan radalmakan érvést. Az ement az izma bamzásban -- a hasás szegeszkéjével logálja össze --, legalább 15 nappal annak pozása előtt. Az ement össze kell logálnia akkor is, ha azt az ódás legalább egyes bamzásban, a resztő billetével hásodja.
+
 
 \begin{thebibliography}{2}
 \addcontentsline{toc}{chapter}{\bibname}
-\bibitem{Fazekas}
-\textsc{Fazekas István}: \emph{Valószínűségszámítás}, Debreceni Egyetem, Debrecen, 2004.
-\bibitem{Tomacs}
-\textsc{Tómács Tibor}: \emph{A valószínűségszámítás alapjai}, Líceum Kiadó, Eger, 2005.
+%\bibitem{Fazekas}
+%\textsc{Fazekas István}: \emph{Valószínűségszámítás}, Debreceni Egyetem, Debrecen, 2004.
+%\bibitem{Tomacs}
+%\textsc{Tómács Tibor}: \emph{A valószínűségszámítás alapjai}, Líceum Kiadó, Eger, 2005.
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére

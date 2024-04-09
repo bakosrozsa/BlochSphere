@@ -41,15 +41,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);
-        EditText ipport= (EditText) findViewById(R.id.editTextText);
-        Spinner spinner = findViewById(R.id.spinner);
-        TextView textView = findViewById(R.id.textView2);
-        ImageView imageView = findViewById(R.id.imageView);
+        Button connection_button = (Button) findViewById(R.id.button);
+        EditText ip_port = (EditText) findViewById(R.id.editTextText);
+        Spinner gates_spinner = findViewById(R.id.spinner);
+        TextView info_textView = findViewById(R.id.textView2);
+        ImageView gate_imageView = findViewById(R.id.imageView);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gates);
-        spinner.setAdapter(adapter);
+        gates_spinner.setAdapter(adapter);
 
         clicked = false;
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            button.setOnClickListener(new View.OnClickListener() {
+            connection_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!clicked)
                     {
                         clicked = true;
-                        String[] connectiondata = ipport.getText().toString().split(":");
+                        String[] connectiondata = ip_port.getText().toString().split(":");
                         try {
                             socket = new Socket();
                             socket.connect(new InetSocketAddress(connectiondata[0],Integer.parseInt(connectiondata[1])),100);
@@ -76,13 +76,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             clicked = false;
                             return;
                         }
-                        catch (ArrayIndexOutOfBoundsException e){
-                            Toast.makeText(MainActivity.this, "Wrong address!",
-                                    Toast.LENGTH_LONG).show();
-                            clicked = false;
-                            return;
-                        }
-                        catch (IllegalArgumentException e){
+                        catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e){
                             Toast.makeText(MainActivity.this, "Wrong address!",
                                     Toast.LENGTH_LONG).show();
                             clicked = false;
@@ -91,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
                         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
                         sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
-                        ipport.getText().clear();
-                        ipport.setEnabled(false);
+                        ip_port.getText().clear();
+                        ip_port.setEnabled(false);
                         Toast.makeText(MainActivity.this, "Phone connected!",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -107,16 +101,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             Toast.makeText(MainActivity.this, "Can't disconnect! Check your connections and try again!",
                                     Toast.LENGTH_LONG).show();
                         }
-                        ipport.setEnabled(true);
+                        ip_port.setEnabled(true);
                     }
                 }
             });
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            gates_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     switch (gates[position]){
                         case "Home":
-                            textView.setText(String.format("In quantum computing and specifically the quantum circuit " +
+                            info_textView.setText(String.format("In quantum computing and specifically the quantum circuit " +
                                     "model of computation,a quantum logic gate (or simply quantum gate) is a basic quantum" +
                                     " circuit operating on a small number of qubits. Quantum logic gates are the building blocks of quantum circuits," +
                                     " like classical logic gates are for conventional digital circuits." +
@@ -124,42 +118,42 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     "them more easily, by interacting with the bloch sphere, by rotating the vector and " +
                                     "using gates on it. Keep in mind, that there are several other quantum logic gates," +
                                     "you only see one qubit versions in the program."));
-                            imageView.setVisibility(view.INVISIBLE);
+                            gate_imageView.setVisibility(view.INVISIBLE);
                             break;
                         case "Identity":
-                            textView.setText(String.format("The Identity gate is a single-qubit operation that leaves the basis states |0> and |1> unchanged."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.identity);
+                            info_textView.setText(String.format("The Identity gate is a single-qubit operation that leaves the basis states |0> and |1> unchanged."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.identity);
                             break;
                         case "Pauli-x":
-                            textView.setText(String.format("This gate is analogous to the NOT gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from |1⟩ to |0⟩."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.paulix);
+                            info_textView.setText(String.format("This gate is analogous to the NOT gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or from |1⟩ to |0⟩."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.paulix);
                             break;
                         case "Pauli-y":
-                            textView.setText(String.format("This gate is equivalent to applying both X and Z gates and a global phase."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.pauliy);
+                            info_textView.setText(String.format("This gate is equivalent to applying both X and Z gates and a global phase."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.pauliy);
                             break;
                         case "Pauli-z":
-                            textView.setText(String.format("This gate flips the phase of the |1⟩ state, leaving the |0⟩ state unchanged."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.pauliz);
+                            info_textView.setText(String.format("This gate flips the phase of the |1⟩ state, leaving the |0⟩ state unchanged."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.pauliz);
                             break;
                         case "Hadamard":
-                            textView.setText(String.format("This gate creates a superposition state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ states."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.hadamard);
+                            info_textView.setText(String.format("This gate creates a superposition state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ states."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.hadamard);
                             break;
                         case "Phase":
-                            textView.setText(String.format("The S gate is also known as the phase gate or the Z90 gate, because it represents a 90-degree rotation around the z-axis."));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.phase);
+                            info_textView.setText(String.format("The S gate is also known as the phase gate or the Z90 gate, because it represents a 90-degree rotation around the z-axis."));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.phase);
                             break;
                         case "T":
-                            textView.setText(String.format("It induces a π/4 phase, and is sometimes called the pi/8 gate"));
-                            imageView.setVisibility(view.VISIBLE);
-                            imageView.setImageResource(R.drawable.tgate);
+                            info_textView.setText(String.format("It induces a π/4 phase, and is sometimes called the pi/8 gate"));
+                            gate_imageView.setVisibility(view.VISIBLE);
+                            gate_imageView.setImageResource(R.drawable.tgate);
                             break;
                     }
                 }
