@@ -1,54 +1,59 @@
-\select@language {magyar} \contentsline {chapter}{Bevezetés}{3}{chapter*.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {1}Kvantuminformatika}{4}{chapter.1}%
-\select@language {magyar} \contentsline {section}{\numberline {1.1}Előzmények}{4}{section.1.1}%
-\select@language {magyar} \contentsline {section}{\numberline {1.2}Jelenlegi helyzet}{5}{section.1.2}%
-\select@language {magyar} \contentsline {section}{\numberline {1.3}Nehézségek}{6}{section.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {1.4}Előnyök és veszélyek}{6}{section.1.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}Klasszikus- és kvantum logikai kapuk}{8}{chapter.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.1}Klasszikus logikai kapuk és áramkörök}{8}{section.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Logikai kapuk}{8}{subsection.2.1.1}%
-\select@language {magyar} \contentsline {subsubsection}{Buffer}{8}{section*.3}%
-\select@language {magyar} \contentsline {subsubsection}{NOT, vagy Negáció}{9}{section*.4}%
-\select@language {magyar} \contentsline {subsubsection}{AND, vagy Konjukció}{9}{section*.5}%
-\select@language {magyar} \contentsline {subsubsection}{OR, vagy Diszjunkció}{10}{section*.6}%
-\select@language {magyar} \contentsline {subsubsection}{NAND, vagy Negált konjukció}{10}{section*.7}%
-\select@language {magyar} \contentsline {subsubsection}{NOR, vagy Negált diszjunkció}{11}{section*.8}%
-\select@language {magyar} \contentsline {subsubsection}{XOR, vagy Exclusive OR}{11}{section*.9}%
-\select@language {magyar} \contentsline {subsubsection}{XNOR, vagy Exclusive NOR}{12}{section*.10}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Univerzális kapuk}{12}{subsection.2.1.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Kvantum logikai kapuk és áramkörök}{13}{section.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Qubit}{13}{subsection.2.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Szuperpozíció és összefonódás}{14}{subsection.2.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.3}Qubit mérése}{14}{subsection.2.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.4}Kvantum logikai kapuk}{14}{subsection.2.2.4}%
-\select@language {magyar} \contentsline {subsubsection}{I, vagy Identity}{14}{section*.11}%
-\select@language {magyar} \contentsline {subsubsection}{X, vagy Pauli-X}{15}{section*.12}%
-\select@language {magyar} \contentsline {subsubsection}{Y, vagy Pauli-Y}{15}{section*.13}%
-\select@language {magyar} \contentsline {subsubsection}{Z, vagy Pauli-Z}{16}{section*.14}%
-\select@language {magyar} \contentsline {subsubsection}{H, vagy Hadamard}{16}{section*.15}%
-\select@language {magyar} \contentsline {subsubsection}{S, vagy Phase}{17}{section*.16}%
-\select@language {magyar} \contentsline {subsubsection}{T, vagy $\pi /8$}{18}{section*.17}%
-\select@language {magyar} \contentsline {subsubsection}{CNOT, vagy Controlled Not}{18}{section*.18}%
-\select@language {magyar} \contentsline {subsubsection}{SWAP}{19}{section*.19}%
-\select@language {magyar} \contentsline {subsubsection}{Toffoli}{19}{section*.20}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.5}Univerzális kvantumkapuk}{20}{subsection.2.2.5}%
-\select@language {magyar} \contentsline {section}{\numberline {2.3}Reverzibilis kapuk}{20}{section.2.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}Tanulás segítő program és applikáció}{21}{chapter.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.1}Technológiai körültekintés}{21}{section.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}Választott technológiák}{22}{section.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Asztali alkalmazás}{22}{subsection.3.2.1}%
-\select@language {magyar} \contentsline {subsubsection}{Python}{22}{section*.21}%
-\select@language {magyar} \contentsline {subsubsection}{PySide modul}{23}{section*.22}%
-\select@language {magyar} \contentsline {subsubsection}{Qiskit könyvtár}{23}{section*.23}%
-\select@language {magyar} \contentsline {subsubsection}{Matplotlib könyvtár}{23}{section*.24}%
-\select@language {magyar} \contentsline {subsubsection}{Numpy könyvtár}{23}{section*.25}%
-\select@language {magyar} \contentsline {subsubsection}{Socket könyvtár}{24}{section*.26}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Applikáció}{24}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {subsubsection}{Android Studio}{24}{section*.27}%
-\select@language {magyar} \contentsline {subsubsection}{Java}{24}{section*.28}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Program bemutatása}{25}{section.3.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.4}Applikáció bemutatása}{25}{section.3.4}%
-\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{25}{section.3.5}%
-\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{25}{section.3.6}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{26}{chapter*.29}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{27}{chapter*.30}%
+\select@language {magyar} \contentsline {chapter}{Bevezetés}{4}{chapter*.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Kvantuminformatika}{5}{chapter.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Előzmények}{5}{section.1.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.2}Jelenlegi helyzet}{6}{section.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.3}Nehézségek}{7}{section.1.3}%
+\select@language {magyar} \contentsline {section}{\numberline {1.4}Előnyök és veszélyek}{7}{section.1.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Klasszikus- és kvantum logikai kapuk}{9}{chapter.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.1}Klasszikus logikai kapuk és áramkörök}{9}{section.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Logikai kapuk}{9}{subsection.2.1.1}%
+\select@language {magyar} \contentsline {subsubsection}{Buffer}{9}{section*.3}%
+\select@language {magyar} \contentsline {subsubsection}{NOT, vagy Negáció}{10}{section*.4}%
+\select@language {magyar} \contentsline {subsubsection}{AND, vagy Konjukció}{10}{section*.5}%
+\select@language {magyar} \contentsline {subsubsection}{OR, vagy Diszjunkció}{11}{section*.6}%
+\select@language {magyar} \contentsline {subsubsection}{NAND, vagy Negált konjukció}{11}{section*.7}%
+\select@language {magyar} \contentsline {subsubsection}{NOR, vagy Negált diszjunkció}{12}{section*.8}%
+\select@language {magyar} \contentsline {subsubsection}{XOR, vagy Exclusive OR}{12}{section*.9}%
+\select@language {magyar} \contentsline {subsubsection}{XNOR, vagy Exclusive NOR}{13}{section*.10}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Univerzális kapuk}{13}{subsection.2.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Kvantum logikai kapuk és áramkörök}{14}{section.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Qubit}{14}{subsection.2.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Szuperpozíció és összefonódás}{15}{subsection.2.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.3}Qubit mérése}{15}{subsection.2.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.4}Kvantum logikai kapuk}{15}{subsection.2.2.4}%
+\select@language {magyar} \contentsline {subsubsection}{I, vagy Identity}{15}{section*.11}%
+\select@language {magyar} \contentsline {subsubsection}{X, vagy Pauli-X}{16}{section*.12}%
+\select@language {magyar} \contentsline {subsubsection}{Y, vagy Pauli-Y}{16}{section*.13}%
+\select@language {magyar} \contentsline {subsubsection}{Z, vagy Pauli-Z}{17}{section*.14}%
+\select@language {magyar} \contentsline {subsubsection}{H, vagy Hadamard}{17}{section*.15}%
+\select@language {magyar} \contentsline {subsubsection}{S, vagy Phase}{18}{section*.16}%
+\select@language {magyar} \contentsline {subsubsection}{T, vagy $\pi /8$}{19}{section*.17}%
+\select@language {magyar} \contentsline {subsubsection}{CNOT, vagy Controlled Not}{19}{section*.18}%
+\select@language {magyar} \contentsline {subsubsection}{SWAP}{20}{section*.19}%
+\select@language {magyar} \contentsline {subsubsection}{Toffoli}{20}{section*.20}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.5}Univerzális kvantumkapuk}{21}{subsection.2.2.5}%
+\select@language {magyar} \contentsline {section}{\numberline {2.3}Reverzibilis kapuk}{21}{section.2.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Tanulás segítő program és applikáció}{22}{chapter.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Technológiai körültekintés}{22}{section.3.1}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}Választott technológiák}{23}{section.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Asztali alkalmazás}{23}{subsection.3.2.1}%
+\select@language {magyar} \contentsline {subsubsection}{Python}{23}{section*.21}%
+\select@language {magyar} \contentsline {subsubsection}{PySide modul}{24}{section*.22}%
+\select@language {magyar} \contentsline {subsubsection}{Qiskit könyvtár}{24}{section*.23}%
+\select@language {magyar} \contentsline {subsubsection}{Matplotlib könyvtár}{24}{section*.24}%
+\select@language {magyar} \contentsline {subsubsection}{Numpy könyvtár}{24}{section*.25}%
+\select@language {magyar} \contentsline {subsubsection}{Socket könyvtár}{25}{section*.26}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Applikáció}{25}{subsection.3.2.2}%
+\select@language {magyar} \contentsline {subsubsection}{Android Studio}{25}{section*.27}%
+\select@language {magyar} \contentsline {subsubsection}{Java}{25}{section*.28}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Program bemutatása}{26}{section.3.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.4}Applikáció bemutatása}{26}{section.3.4}%
+\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{26}{section.3.5}%
+\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{26}{section.3.6}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.1}Részletes matematikai egyenletek mutatása}{26}{subsection.3.6.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.2}Saját áramkör kialakítása}{26}{subsection.3.6.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.3}Több kvantumbites kapuk}{27}{subsection.3.6.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.4}Diagramok}{27}{subsection.3.6.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.5}Könyvtárak frissen tartása}{28}{subsection.3.6.5}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{29}{chapter*.29}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{30}{chapter*.30}%

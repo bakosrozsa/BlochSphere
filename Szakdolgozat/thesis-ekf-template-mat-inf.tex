@@ -811,7 +811,36 @@ Ezek mellett széles közössége és támogatottsága miatt a telefonos applik�
 \section{Tesztelések}
 
 \section{Továbbfejlesztési lehetőségek}
-%Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek
+Egyik program vagy applikáció sem lehet teljesen kész és hibátlan. Mindig keletkeznek új elképzelések, amik részben, de az is lehet, hogy jelentősen megváltoztatják koncepciót.
+\subsection{Részletes matematikai egyenletek mutatása}
+A program jelenleg mindent a háttérben számít, a felhasználó semmit nem érzékel ebből. Egy külön textbox-ban meg lehetne jeleníteni az adott qubit egyenletét, valamint annak változását különböző állapotokra, kapukra.
+
+\subsection{Saját áramkör kialakítása}
+A legtöbb kvantumkapuval foglalkozó szimulátort sajátosan kialakítható áramkörök szimulálására tervezték. Ezek általában behúzható kapukat tartalmaznak, mindegyik mellé rövid leírás társul. A felhasználó így tetszőleges kvantumáramköröket alakíthat ki, ezzel még jobban érzékelve a kvantumbitek reakcióját bizonyos kapuk alkalmazására.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Simulation}
+	\caption{Quirk, az egyik legismertebb webes szimulátor}
+	\label{fig:simulation}
+\end{figure}
+
+\Az{\ref{fig:simulation}}.~ábrán látható szimulátorhoz hasonlóan a programba is beemelhető lehet egy hasonló megvalósítás, mivel a Qiskit a saját áramkör kialakításban és szimulálásban a legerősebb. Ez ötvözhető lehet a forgatás ellenőrzéssel, amennyiben az áramkörök kialakítását egy kvantumbitre és kapukra korlátozzuk.
+
+\subsection{Több kvantumbites kapuk}
+Jelen szakdolgozat ugyan csak egy qubites kapukkal foglalkozik, felmerült hogy későbbiekben ez kibővüljön több kvantumbitre is. Ezek a kapuk ugyanúgy megkapnák azokat az animációkat és pontos ismertetőket.
+
+Ennek a lehetőségnek kihívása az, hogy a jelenleg elérhető Bloch gömb vizualizációkkal körülményes egy olyan forgatás ellenőrzést létrehozni, mint ahogy azt az egy kvantumbites változatoknál láttuk.
+
+Viszont ettől függetlenül a Qiskit lehetőséget nyújt a több kvantumbites kapuk áramkörben történő megjelenítésére és szimulálására. Ezt egy részletes leírással ötvözve szintén egyszerűbb megértést nyújthat a kvantumkapukhoz.
+
+\subsection{Diagramok}
+A Qiskit erősségei közé tartoznak még a szimuláció során kinyerhető adatok, amiket diagramok formájában is megjeleníthetünk. Amennyiben ezt ötvözzük a tetszőleges áramkörök lehetőségével, akkor képes lehet a felhasználó látni, hogy bizonyos helyzetekben hogyan reagálnak a kvantumbitek.
+
+Forgatás szempontjából ez az opció kifejezetten memóriaigényes, mivel csakúgy mint a programban lévő Bloch gömb, a diagramok is folyamatos újrarajzolást igényelnének minden új beérkező szenzor adat után.
+
+\subsection{Könyvtárak frissen tartása}
+Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek. A Qiskit jelenleg az 1.0 verziójánál tart és folyamatosan újabb lehetőségekkel, megoldásokkal bővítik könyvtárukat. Ebből adódóan bármikor érkezhet olyan megoldás, ami hozzátenne a programhoz, esetleg hatékonyabbá tenné azt.
 
 \chapter*{Összegzés}
 \addcontentsline{toc}{chapter}{Összegzés}
