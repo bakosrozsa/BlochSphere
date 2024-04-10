@@ -1,3 +1,4 @@
+import math
 import random
 import socket
 import sys
@@ -74,7 +75,8 @@ class Window(QMainWindow):
         self.pixmap = QPixmap()
         self.show_anim = QPushButton()
         self.start_measure_button = QPushButton()
-        self.proportion_label = QLabel()
+        self.coordinate_label = QLabel()
+        self.current_coordinate_label = QLabel()
         self.right_side = QVBoxLayout()
         self.which_gate = ""
 
@@ -107,9 +109,9 @@ class Window(QMainWindow):
 
         self.label.setPixmap(self.pixmap)
 
-        proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(abs(proportion[0][0].real)) + " |0> + " +
-                                      str(abs(proportion[1][0].real)) + " |1>")
+        self.coordinate_label.setText("You will see the required sphere coordinates here")
+        self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
+                                              + "\t\u03A6: " + str(self.bloch_vector.phi))
 
         self.info_text.setReadOnly(True)
         self.label.setVisible(False)
@@ -122,10 +124,12 @@ class Window(QMainWindow):
         self.right_side.addWidget(self.label)
         self.right_side.addWidget(self.show_anim)
         self.right_side.addWidget(self.start_measure_button)
-        self.right_side.addWidget(self.proportion_label)
+        self.right_side.addWidget(self.coordinate_label)
+        self.right_side.addWidget(self.current_coordinate_label)
         self.right_side.setAlignment(self.addr_label, Qt.AlignCenter)
         self.right_side.setAlignment(self.label, Qt.AlignCenter)
-        self.right_side.setAlignment(self.proportion_label, Qt.AlignCenter)
+        self.right_side.setAlignment(self.coordinate_label, Qt.AlignCenter)
+        self.right_side.setAlignment(self.current_coordinate_label, Qt.AlignCenter)
 
         self.gates_combo.currentTextChanged.connect(self.gates_combo_options)
         self.show_anim.clicked.connect(self.open_anim_window)
@@ -142,9 +146,8 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
-        proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(abs(proportion[0][0].real)) + " |0> + " +
-                                      str(abs(proportion[1][0].real)) + " |1>")
+        self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
+                                              + "\t\u03A6: " + str(self.bloch_vector.phi))
 
     def zero_state(self):
         # Set Bloch sphere to the zero state
@@ -157,9 +160,8 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
-        proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(abs(proportion[0][0].real)) + " |0> + " +
-                                      str(abs(proportion[1][0].real)) + " |1>")
+        self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
+                                              + "\t\u03A6: " + str(self.bloch_vector.phi))
 
     def one_state(self):
         # Set Bloch sphere to the one state
@@ -172,9 +174,8 @@ class Window(QMainWindow):
         self.canvas.figure = self.fig
         self.fig.set_canvas(self.canvas)
         self.canvas.draw()
-        proportion = self.bloch_vector.start_state_vector()
-        self.proportion_label.setText("|\u03C8>= " + str(abs(proportion[0][0].real)) + " |0> + " +
-                                      str(abs(proportion[1][0].real)) + " |1>")
+        self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
+                                              + "\t\u03A6: " + str(self.bloch_vector.phi))
 
     @Slot()
     def gates_combo_options(self, text):
@@ -317,17 +318,20 @@ class Window(QMainWindow):
             elif self.which_gate == "t":
                 self.bloch_vector.t()
             self.rotate()
-            proportion = self.bloch_vector.start_state_vector()
-            self.proportion_label.setText("|\u03C8>= " + str(abs(proportion[0][0].real)) + " |0> + " +
-                                          str(abs(proportion[1][0].real)) + " |1>")
         except OSError:
+            self.coordinate_label.setText("You will see the required sphere coordinates here")
+            self.zero_state()
             show_message("Connect your phone first")
         except AttributeError:
+            self.coordinate_label.setText("You will see the required sphere coordinates here")
+            self.zero_state()
             show_message("Connect your phone first")
         self.start_measure_button.setEnabled(True)
 
     def rotate(self):
         # Start rotating and checking
+        self.coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta) +
+                                      "\t\u03A6: " + str(self.bloch_vector.phi))
         while True:
             angles = server_start.get_data()
             if angles is None:
@@ -340,7 +344,8 @@ class Window(QMainWindow):
                     angles = np.array(angles, dtype=float)
                     if angles[1] < 0:
                         angles[1] = angles[1] + 2 * np.pi
-                    print(angles[0], angles[1])
+                    self.current_coordinate_label.setText("\u03F4: " + str(angles[0])
+                                                          + "\t\u03A6: " + str(angles[1]))
                     plt.close()
                     self.fig.canvas.flush_events()
                     self.fig = plot_bloch_vector([1, angles[0], angles[1]], coord_type='spherical')
@@ -349,8 +354,8 @@ class Window(QMainWindow):
                     self.canvas.draw()
                 except ValueError:
                     continue
-                if ((self.bloch_vector.theta - 0.25 <= angles[0] <= self.bloch_vector.theta + 0.25) and
-                        (self.bloch_vector.phi - 0.25 <= angles[1] <= self.bloch_vector.phi + 0.25)):
+                if (math.isclose(self.bloch_vector.theta, angles[0], rel_tol=0.1, abs_tol=0.15) and
+                        math.isclose(self.bloch_vector.phi, angles[1], rel_tol=0.1, abs_tol=0.15)):
                     show_message("Done rotating!")
                     break
 
