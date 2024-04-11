@@ -334,7 +334,7 @@ olyan számítási feladatok elvégzését, amelyek a hagyományos számítógé
 \subsection{Szuperpozíció és összefonódás}
 
 Egy qubit állapotát a következőképpen adhatjuk meg:
-\begin{equation}
+\begin{equation}\label{qubitallapot}
 	\ket{\Psi}=\alpha\ket{0}+\beta\ket{1},
 \end{equation}
 ahol $\alpha$ és $\beta$ komplex számok, valamint teljesül, hogy $|\alpha|^2+|\beta|^2=1$. Ez azt jelenti, hogy a $\ket{\Psi}$ kvantumbit $|\alpha|^2$ eséllyel 0, $|\beta|^2$-el pedig 1 lesz. Ezt szuperpozíciónak nevezzük. A két szélső érték, azaz $\ket{0}$ vagy $\ket{1}$ akkor áll elő, ha $\alpha$ 0 vagy 1, $\beta$ pedig ennek ellentettje. A szuperpozíció legjobban a Schrödinger macskája gondolatkísérlettel prezentálható, melyet Erwin Schrödinger fogalmazott meg 1935-ben.
@@ -804,39 +804,217 @@ A Java egy átfogó könyvtárral rendelkezik. Java Development Kit (JDK) néven
 
 Ezek mellett széles közössége és támogatottsága miatt a telefonos applikáció fejlesztésénél számomra egyértelmű volt a Java használata.
 
-\section{Program bemutatása}
+\section{Asztali alkalmazás bemutatása}
 A már említett elképzelések alapján alakítottam ki a program kinézetét és funkcióit, amelyek tovább bővíthetők az életciklusa során.
 
 \subsection{Grafikus felhasználói felület}
 Fontos szempont volt, hogy mivel az asztali alkalmazás elsősorban inkább bevezető jelleggel rendelkezik a kvantumkapukhoz, így maga a felület és az információk  is letisztult megjelenést képviseljenek.
 
+Az ablak megjelenítéséért a Window osztály konstruktora, valamint a hozzá tartozó, többnyire privát metódusok felelnek. A Window osztály örökli a QMainWindow osztályt, amivel hozzáférhetünk a Pyside grafikai elemeihez és azok funkcióihoz.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Program}
+	\caption{Az asztali alkalmazás kinézete indításkor}
+	\label{fig:program}
+\end{figure}
+
 \subsubsection{Menü}
+A program tartalmaz egy felső menü sávot, ebben egy States menüponttal. Ezen belül találhatóak az egyes bázisvektor állítási lehetőségek a Bloch gömbhöz. Az összes menüpont kattintással használható. A menü a menuBar, a bázisvektorok menüpontjai pedig a QAction osztályok példányai. A QAction osztály felel a gombok kattintásra történő működéséért, meghívja az adott menüponthoz tartozó eljárást, amennyiben az kiválasztásra került.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{MenuBarInit}
+	\caption{Menü sáv a konstruktorban}
+	\label{fig:menubarinit}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{MenuBarStart}
+	\caption{Menü sáv gombjaihoz funkciók társítása és menüsávhoz adás}
+	\label{fig:menubarstart}
+\end{figure}
+
 
 \subsubsection{Bloch gömb}
+A Bloch gömb megvalósítása a Qiskit visualization csomagjának segítségével történt. Ez tartalmaz egy plot függvényt, ami egy matplotlib ábrával tér vissza.A programban paraméterei közé tartozik egy három elemű tömb, ami alapján a gömb készül, valamint a koordináta típusa. 
+
+Az elkészült matplotlib ábrát a Pyside FigureCanvasQTAgg osztály egy példányához adom, ezzel egy "vásznat" biztosítva a Bloch gömbnek. Ez a futás során folyamatosan frissül a különböző vektorállapotok miatt.
+
+A vásznat egy QHBoxLayout példányhoz adom, ami horizontálisan jeleníti meg az elemeket.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{BlochSphereStartpng}
+	\caption{A Bloch gömb kezdő állapota a konstruktorban}
+	\label{fig:blochspherestartpng}
+\end{figure}
+
 
 \subsubsection{Jobb oldali információ panel}
+A Bloch gömb mellett a másik legfontosabb rész a felületen.
+
+A panel legfelső részén a szerver ip címe látható, ami a QLabel osztály példánya. A címet az általam létrehozott Server osztály egy példányából nyerem ki.
+
+Ez alatt egy legördülő menü helyezkedik el. A QComboBox példányához hozzáadtam a lehetséges kapu változatokat, illetve egy kezdőoldalt. A menüpont változását folyamatosan ellenőrzi a program, ehhez tartozik egy publikus eljárás, valamint egy változó is. A metódus adott opció alapján alakítja ki a felületet, ez felelős azért, hogy adott kapuhoz a megfelelő információk jelenjenek meg. A változó az ezt követő gombok működése miatt fontos. Az eljárás publikussága a kezdeti állapot beállítás miatt szükséges.
+
+A következő elem a leírás. Ez egy QTextEdit példány, ami tartalmazza az adott kapuk információit. Menüpont váltás miatt folyamatosan cserélődik.
+
+A leíráshoz tartozik egy áramkörrajz a kapuról. Ez az alkalmazás indulásakor nem látszódik, csak amennyiben ellépünk a kezdő oldalról. A rajzot külön generáltattam és lementettem a Qiskit QuantumCircuit csomagjával.
+
+Az áramkör rajzhoz hasonlóan két gomb sem látszódik a kezdő állapotban, amik a QPushButton példányai. Mindkettő függ attól, hogy melyik kapu van kiválasztva. Az első felel az animációs ablak megjelenítéséért. A második gomb lenyomásával a program alkalmazza a kiválasztott kaput a Bloch gömbön és elindít egy forgatási metódust, amennyiben a felhasználó csatlakoztatott telefont. Ha ez nem történt meg, a program egy felugró ablakban figyelmeztet, hogy csatlakoztasson telefont. Az ablak egy QMessageBox példánnyal valósul meg
+
+A panel legalsó részén két QLabel példány látható, amik tartalmazzák a gömb jelenlegi koordinátáit, valamint a forgatás során megjelennek a célkoordináták is.
+
+A felsorolt elemeket egy QVBoxLayout példányhoz adom, ami vertikálisan jeleníti meg őket. Ezt pedig a már említett QHBoxLayout példányhoz adom, hogy a Bloch gömb mellett jelenjen meg.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{RightSideConstructor}
+	\caption{A jobb oldali panel és elemeinek létrehozása a konstruktorban}
+	\label{fig:rightsideconstructor}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{RightSide1}
+	\caption{A jobb oldali panel elemeinek értékadása}
+	\label{fig:rightside1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{RightSide2}
+	\caption{Elemek hozzáadása a jobb oldali panelhez, gombok beállítása}
+	\label{fig:rightside2}
+\end{figure}
+
 
 \subsubsection{Animációs ablak}
+A különböző kapukhoz a felhasználó megtekintheti azok animációját is, amely a $\ket{0}$ standard bázisvektorból indul. Ezeket külön kigeneráltattam és kimentettem a Qiskit visualization csomag segítségével. 
+
+Az animáció folyamatosan ismétlődik, amíg a felhasználó be nem zárja a megjelent plusz ablakot, amit a hozzá tartozó gomb lenyomásával érhet el. Kattintáskor egy privát metódus indul, ahol a kiválasztott kapu alapján a program példányosít egy általam létrehozott AnimationWindow osztályt. Az osztály konstruktora a megfelelő gif elérési útvonalát tartalmazza, valamint az ablak szükséges beállításait, illetve egy privát eljárást. A metódus példányosít egy QMovie osztályt, ami a gif megjelenítéséért felel.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{openAnimWindow}
+	\caption{AnimationWindow osztály példányosítása a kiválasztott kapu alapján}
+	\label{fig:openanimwindow}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\linewidth]{AnimationWindow}
+	\caption{AnimationWindow osztály}
+	\label{fig:animationwindow}
+\end{figure}
+
 
 \subsection{Kommunikáció a telefonnal}
+Az asztali alkalmazás legérdekesebb része a telefonnal történő vektorforgatás lehetősége. Ehhez szükséges volt a kapcsolat kialakítása egy telefonos applikáció és a program közt.
 
-\subsubsection{Szerver indítása}
+A hálózat tevékenységeit az általam létrehozott Server osztály egy példánya kezeli. Konstruktora tárolja a host ip címet, valamint a port számot. A host a számítógép címe, a port számot pedig az operációs rendszer választja ki a szabadok közül.
 
-\subsubsection{Kapcsolat várása}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{ServerContstructor}
+	\caption{A Server osztály konstruktora}
+	\label{fig:servercontstructor}
+\end{figure}
+
+
+\subsubsection{Szerver indítása és kapcsolat várása}
+A Window osztály példányosítása előtt a program elindít egy metódust, amiben egy PhoneConnector osztály példánya foglal helyet. 
+
+A példány threading segítségével a háttérben elindítja egyetlen metódusát. Ennek köszönhetően a szerver elindul és várja a telefon csatlakozását. Egy felugró ablak jelzi ennek sikerességét, amit pedig egy Signal példány hív meg. Egyszerre csak egy telefont tud csatlakoztatni a felhasználó, ezt a Server osztály példányának metódusa ellenőrzi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{ConnectPhoneMethod}
+	\caption{A Window osztály példányosítása előtt elindított metódus}
+	\label{fig:connectphonemethod}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{PhoneConnectorClass}
+	\caption{PhoneConnector osztály}
+	\label{fig:phoneconnectorclass}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{ServerHosting}
+	\caption{A csatlakozást váró függvény a Server osztályban}
+	\label{fig:serverhosting}
+\end{figure}
+
 
 \subsubsection{Szenzor adatok fogadása és tárolása}
+A telefon szenzor adatait az asztali alkalmazás a forgatás pillanatában kezdi el fogadni és egy tömbben tárolni. 
 
-\subsubsection{Kapcsolat bontás, újracsatlakozás}
+Mivel a telefon már a csatlakozás pillanatában is próbálja küldeni az adatokat, így az első csomag amit fogad a program, eldobásra kerül, csakúgy, mint azok az adatok, amik nem két elemű float tömböt adnak. A felhasználó ezeket az adatvesztéseket nem érzékeli, esetleg a vektor forgatásának lassabb folyamata látszódhat.
+
+Amennyiben a kapcsolat megszűnik, a program üres csomagot fog kapni. Ebben az esetben a szerver bontja a kapcsolatot a klienssel. Amint ez megtörténik, a szerver újra elkezdi várni a kapcsolatot és kezdődik az elejéről a folyamat.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{GetDataServer}
+	\caption{Szenzor adatok fogadása és tárolása valamint kapcsolat bontása}
+	\label{fig:getdataserver}
+\end{figure}
+
 
 \subsection{Matematikai számítások}
+Ugyan a felhasználó nem érzékeli, de a program jelentős része háttérszámításokon alapul. Ehhez kialakítottam egy BlochVector osztályt, ahol az adott gömbkoordináták alapján tud az alkalmazás számításokat végezni.
 
 \subsubsection{Gömbkoordináták}
+A bejövő szenzor adatok és a számítások egyszerűsítése miatt gömb koordináta-rendszert használtam. Amennyiben ezt nem adom meg a Bloch gömb rajzolásakor, a Qiskit automatikusan a másik opciót, azaz a  Descartes-féle koordináta rendszert használja. Ennek megfelelően a paraméterében a három elemű tömb tartalma rendre (ami \az{\ref{fig:blochspherestartpng}}.~ábrán is látható):
 
-\subsubsection{Standard bázisvektorok}
+\begin{enumerate}
+	\item Az origótól mért távolság, tehát a gömb sugara. Ez jelen esetben mindig egy lesz. Jele: $r$
+	\item Azimut szög, azaz a pont és a $\phi=0$ tengely által meghatározott sík, valamint $\theta=0$ sík közötti hajlásszög az $x-y$ koordinátasíkban. Jele: $\theta$
+	\item A pontot és az origót összekötő egyenes hajlásszöge a $\phi=0$ irányhoz, azaz az $z$ tengellyel bezárt szög. Jele: $\phi$
+\end{enumerate}
 
-\subsubsection{Véletlenszerű bázisvektor}
+Mivel a gömb sugara nem változik, így a továbbiakban csak a $\theta$ és a $\phi$ értékei változnak.
+
+A Qiskit csomagja mellett létrehoztam egy BlochVector osztályt, mely konstruktorában tárolja a szükséges értékeket a későbbi számításokhoz, megjelenítésekhez.
+
+\subsubsection{Standard- és véletlenszerű bázisvektorok generálása}
+Az alkalmazás menüsávjában a felhasználó kiválaszthatja, hogy milyen bázisvektor állást szeretne magának a gömb forgatása előtt használni. A kiválasztott opció elindítja az ahhoz tartozó eljárást, ami beállítja a Bloch gömb állapotát.
+
+A véletlenszerű generálás esetén a metódus $\theta$ értékét 0 és $\pi$ között, $\phi$~-t pedig 0 és $2\pi$ közt határozza meg, a gömbkoordináta szabályainak megfelelően.
+
+Az említett szabályok alapján a $\ket{0}$ állapot $\theta=0$ $\phi=0$, $\ket{1}$ pedig $\theta=\pi$ $\phi=0$ állapotot fog kapni.
+
+A megadott koordinátákon kívül nincs különbség a három eljárásban, viszont a gombok és egyéb hívások miatt átláthatóbb opció volt ezeket nem egy metódusban tartani.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{RandomState}
+	\caption{Véletlenszerű bázisvektor generálása és Bloch gömb rajzolása}
+	\label{fig:randomstate}
+\end{figure}
+
 
 \subsubsection{Bázisvektor mátrix kialakítása gömbkoordináták alapján}
+A kigenerált bázisvektorral a program forgatás kezdésekor kezd el foglalkozni. Ekkor a BlochVector osztálynak egy olyan privát függvénye is lefut, ahol a már ismert $\theta$ és $\phi$ értékeiből kiszámítjuk $\alpha$ és $\beta$ értékeit, amit egy mátrixban tárolunk. Mivel a bázisvektor egy qubit állapotát jelenti, így \az{\ref{qubitallapot}}., valamint \az{\ref{qubitallapothelyettesit}}.~képletekből indulhatunk ki.
+
+\begin{equation}\label{qubitallapothelyettesit}
+	\ket{\Psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\phi}\sin\frac{\theta}{2}\ket{1},
+\end{equation}
+
+ahol $i$ komplex szám, $\theta$ és $\phi$ pedig a már említett gömbkoordináták.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{StartState}
+	\caption{Bázisvektor mátrix kialakítása a képletek alapján}
+	\label{fig:startstate}
+\end{figure}
+
 
 \subsubsection{Kapuk alkalmazása a bázisvektor mátrixán}
 

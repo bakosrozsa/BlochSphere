@@ -14,9 +14,9 @@ class AnimationWindow(QMainWindow):
 
         self.gif_path = gate
 
-        self.display_gif()
+        self.__display_gif()
 
-    def display_gif(self):
+    def __display_gif(self):
         movie = QMovie(self.gif_path)
         self.gif_label.setMovie(movie)
         movie.start()

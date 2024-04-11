@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.4)  11 APR 2024 00:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.5)  11 APR 2024 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -950,62 +950,250 @@ png>]
 3. fejezet.
 [22
 
-] [23] [24] [25] [26]
-Overfull \vbox (62.95079pt too high) has occurred while \output is active []
-
-
-[27]
-<Simulation.png, id=502, 825.83531pt x 511.15968pt>
-File: Simulation.png Graphic file (type png)
-<use Simulation.png>
-Package pdftex.def Info: Simulation.png  used on input line 872.
-(pdftex.def)             Requested size: 220.50887pt x 136.48622pt.
- [28
+] [23] [24] [25]
+<Program.png, id=477, 748.29562pt x 388.45125pt>
+File: Program.png Graphic file (type png)
+<use Program.png>
+Package pdftex.def Info: Program.png  used on input line 817.
+(pdftex.def)             Requested size: 264.61333pt x 137.36473pt.
+<MenuBarInit.png, id=478, 353.06906pt x 103.88812pt>
+File: MenuBarInit.png Graphic file (type png)
+<use MenuBarInit.png>
+Package pdftex.def Info: MenuBarInit.png  used on input line 827.
+(pdftex.def)             Requested size: 220.50887pt x 64.88394pt.
+ [26
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.888 
-       <./Simulation.png>] [29] [30
+l.831 
+       <./Program.png>]
+<MenuBarStart.png, id=486, 362.10281pt x 138.5175pt>
+File: MenuBarStart.png Graphic file (type png)
+<use MenuBarStart.png>
+Package pdftex.def Info: MenuBarStart.png  used on input line 834.
+(pdftex.def)             Requested size: 220.50887pt x 84.35393pt.
+<BlochSphereStartpng.png, id=487, 674.52pt x 73.02281pt>
+File: BlochSphereStartpng.png Graphic file (type png)
+<use BlochSphereStartpng.png>
+Package pdftex.def Info: BlochSphereStartpng.png  used on input line 849.
+(pdftex.def)             Requested size: 308.71106pt x 33.42152pt.
+ [27
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.861 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.861 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.861 
+       <./MenuBarInit.png> <./MenuBarStart.png> <./BlochSphereStartpng.png>]
+<RightSideConstructor.png, id=500, 256.70906pt x 198.7425pt>
+File: RightSideConstructor.png Graphic file (type png)
+<use RightSideConstructor.png>
+Package pdftex.def Info: RightSideConstructor.png  used on input line 874.
+(pdftex.def)             Requested size: 176.40439pt x 136.57144pt.
+<RightSide1.png, id=501, 670.00313pt x 251.43938pt>
+File: RightSide1.png Graphic file (type png)
+<use RightSide1.png>
+Package pdftex.def Info: RightSide1.png  used on input line 881.
+(pdftex.def)             Requested size: 308.71106pt x 115.8515pt.
+<RightSide2.png, id=502, 456.95718pt x 268.75406pt>
+File: RightSide2.png Graphic file (type png)
+<use RightSide2.png>
+Package pdftex.def Info: RightSide2.png  used on input line 888.
+(pdftex.def)             Requested size: 308.71106pt x 181.56929pt.
 
-]
+[28
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.892 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.892 
+       <./RightSideConstructor.png> <./RightSide1.png>]
+<openAnimWindow.png, id=511, 464.4853pt x 242.40562pt>
+File: openAnimWindow.png Graphic file (type png)
+<use openAnimWindow.png>
+Package pdftex.def Info: openAnimWindow.png  used on input line 901.
+(pdftex.def)             Requested size: 220.50887pt x 115.08098pt.
+<AnimationWindow.png, id=512, 274.77657pt x 333.49594pt>
+File: AnimationWindow.png Graphic file (type png)
+<use AnimationWindow.png>
+Package pdftex.def Info: AnimationWindow.png  used on input line 908.
+(pdftex.def)             Requested size: 176.40439pt x 214.10838pt.
+ [29
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.7}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.918 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.8}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.918 
+       <./RightSide2.png> <./openAnimWindow.png>]
+<ServerContstructor.png, id=522, 380.17032pt x 140.02313pt>
+File: ServerContstructor.png Graphic file (type png)
+<use ServerContstructor.png>
+Package pdftex.def Info: ServerContstructor.png  used on input line 921.
+(pdftex.def)             Requested size: 220.50887pt x 81.21988pt.
+<ConnectPhoneMethod.png, id=523, 409.53pt x 89.58469pt>
+File: ConnectPhoneMethod.png Graphic file (type png)
+<use ConnectPhoneMethod.png>
+Package pdftex.def Info: ConnectPhoneMethod.png  used on input line 934.
+(pdftex.def)             Requested size: 264.61333pt x 57.8876pt.
+<PhoneConnectorClass.png, id=524, 210.03468pt x 119.69719pt>
+File: PhoneConnectorClass.png Graphic file (type png)
+<use PhoneConnectorClass.png>
+Package pdftex.def Info: PhoneConnectorClass.png  used on input line 941.
+(pdftex.def)             Requested size: 176.40439pt x 100.53215pt.
+ [30
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.945 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.10})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.945 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.11})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.945 
+       <./AnimationWindow.png> <./ServerContstructor.png> <./ConnectPhoneMethod
+.png>]
+<ServerHosting.png, id=536, 261.22594pt x 71.51718pt>
+File: ServerHosting.png Graphic file (type png)
+<use ServerHosting.png>
+Package pdftex.def Info: ServerHosting.png  used on input line 948.
+(pdftex.def)             Requested size: 220.50887pt x 60.37083pt.
+<GetDataServer.png, id=537, 243.91125pt x 134.75343pt>
+File: GetDataServer.png Graphic file (type png)
+<use GetDataServer.png>
+Package pdftex.def Info: GetDataServer.png  used on input line 963.
+(pdftex.def)             Requested size: 176.40439pt x 97.4583pt.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 907.
+Overfull \hbox (3.71207pt too wide) in paragraph at lines 973--974
+\T1/lmr/m/n/12 A be-jö-v® szen-zor ada-tok és a szá-mí-tá-sok egy-sze-r¶-sí-té-
+se mi-att gömb koordináta-rendszert
+ []
 
-<nyilatkozat.pdf, id=518, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 910.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 910.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=521, page=1, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 910.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 910.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [31
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.12})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.974 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.13})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.974 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.14})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.974 
+       <./PhoneConnectorClass.png> <./ServerHosting.png> <./GetDataServer.png>]
+<RandomState.png, id=551, 552.56438pt x 218.31563pt>
+File: RandomState.png Graphic file (type png)
+<use RandomState.png>
+Package pdftex.def Info: RandomState.png  used on input line 996.
+(pdftex.def)             Requested size: 264.61333pt x 104.54712pt.
+[32
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.15})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1004 
+        <./RandomState.png>]
+<StartState.png, id=565, 348.55219pt x 82.05656pt>
+File: StartState.png Graphic file (type png)
+<use StartState.png>
+Package pdftex.def Info: StartState.png  used on input line 1013.
+(pdftex.def)             Requested size: 220.50887pt x 51.9125pt.
+ [33
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.16})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1044 
+        <./StartState.png>]
+<Simulation.png, id=579, 825.83531pt x 511.15968pt>
+File: Simulation.png Graphic file (type png)
+<use Simulation.png>
+Package pdftex.def Info: Simulation.png  used on input line 1050.
+(pdftex.def)             Requested size: 220.50887pt x 136.48622pt.
+ [34
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.17})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1066 
+        <./Simulation.png>] [35] [36
+
+]
+
+LaTeX Warning: Empty `thebibliography' environment on input line 1085.
+
+<nyilatkozat.pdf, id=596, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 1088.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 1088.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<nyilatkozat.pdf, id=599, page=1, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 1088.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 1088.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+[37
 
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 910.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 1088.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 910.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 1088.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 910.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 1088.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [32
+ [38
 
  <./nyilatkozat.pdf>] (./thesis-ekf-template-mat-inf.aux)
  ***********
@@ -1014,13 +1202,13 @@ L3 programming layer <2024-03-14>
  ***********
 Package rerunfilecheck Info: File `thesis-ekf-template-mat-inf.out' has not cha
 nged.
-(rerunfilecheck)             Checksum: 3C41E3D5A9A3D4DF7F72496F971B6C0B;8371.
+(rerunfilecheck)             Checksum: 210DB28F449A9ACE4EBC296716D42E98;8432.
  ) 
 Here is how much of TeX's memory you used:
- 15441 strings out of 474104
- 246831 string characters out of 5747503
+ 15658 strings out of 474103
+ 251546 string characters out of 5747482
  1941496 words of memory out of 5000000
- 37349 multiletter control sequences out of 15000+600000
+ 37544 multiletter control sequences out of 15000+600000
  610616 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,1120b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1033,10 +1221,10 @@ xmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1
 /public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmss12.
 pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso12.pfb><c:/texlive/2
 024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on thesis-ekf-template-mat-inf.pdf (32 pages, 1071979 bytes).
+Output written on thesis-ekf-template-mat-inf.pdf (38 pages, 1485978 bytes).
 PDF statistics:
- 633 PDF objects out of 1000 (max. 8388607)
- 527 compressed objects within 6 object streams
- 185 named destinations out of 1000 (max. 500000)
- 484 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 716 PDF objects out of 1000 (max. 8388607)
+ 572 compressed objects within 6 object streams
+ 208 named destinations out of 1000 (max. 500000)
+ 564 words of extra memory for PDF output out of 10000 (max. 10000000)
 

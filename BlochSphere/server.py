@@ -12,7 +12,7 @@ class Server:
         self.addr = ""
 
     def hosting(self):
-        self.s.listen(1)
+        self.s.listen(0)
         self.conn, self.addr = self.s.accept()
         return True
 

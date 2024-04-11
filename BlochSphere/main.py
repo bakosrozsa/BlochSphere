@@ -52,7 +52,6 @@ class Window(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
 
-        connect_phone()
         self._main = QWidget()
 
         # Menu Bar
@@ -81,17 +80,17 @@ class Window(QMainWindow):
         self.which_gate = ""
 
         # Set UI elements
-        self.start_program()
+        self.__start_program()
 
-    def start_program(self):
+    def __start_program(self):
         self.setWindowTitle("Quantum logic gates teaching program")
 
         self.setCentralWidget(self._main)
 
         # Menu Bar
-        self.menu_random.triggered.connect(self.random_state)
-        self.zero_state_option.triggered.connect(self.zero_state)
-        self.one_state_option.triggered.connect(self.one_state)
+        self.menu_random.triggered.connect(self.__random_state)
+        self.zero_state_option.triggered.connect(self.__zero_state)
+        self.one_state_option.triggered.connect(self.__one_state)
         self.menu_states.addAction(self.menu_random)
         self.menu_states.addAction(self.zero_state_option)
         self.menu_states.addAction(self.one_state_option)
@@ -132,10 +131,10 @@ class Window(QMainWindow):
         self.right_side.setAlignment(self.current_coordinate_label, Qt.AlignCenter)
 
         self.gates_combo.currentTextChanged.connect(self.gates_combo_options)
-        self.show_anim.clicked.connect(self.open_anim_window)
-        self.start_measure_button.clicked.connect(self.start_gate_check)
+        self.show_anim.clicked.connect(self.__open_anim_window)
+        self.start_measure_button.clicked.connect(self.__start_gate_check)
 
-    def random_state(self):
+    def __random_state(self):
         # Set Bloch sphere to a random state
         self.bloch_vector.theta = random.uniform(0.0, np.pi)
         self.bloch_vector.phi = random.uniform(0.0, 2 * np.pi)
@@ -149,7 +148,7 @@ class Window(QMainWindow):
         self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
                                               + "\t\u03A6: " + str(self.bloch_vector.phi))
 
-    def zero_state(self):
+    def __zero_state(self):
         # Set Bloch sphere to the zero state
         self.bloch_vector.theta = 0.0
         self.bloch_vector.phi = 0.0
@@ -163,7 +162,7 @@ class Window(QMainWindow):
         self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
                                               + "\t\u03A6: " + str(self.bloch_vector.phi))
 
-    def one_state(self):
+    def __one_state(self):
         # Set Bloch sphere to the one state
         self.bloch_vector.theta = np.pi
         self.bloch_vector.phi = 0.0
@@ -278,7 +277,7 @@ class Window(QMainWindow):
             self.start_measure_button.setText("Try T gate!")
         self.label.setPixmap(self.pixmap)
 
-    def open_anim_window(self):
+    def __open_anim_window(self):
         if self.which_gate == "x":
             anim_window = AnimWindow.AnimationWindow("images/x.gif", self)
         elif self.which_gate == "y":
@@ -293,7 +292,7 @@ class Window(QMainWindow):
             anim_window = AnimWindow.AnimationWindow("images/t.gif", self)
         anim_window.show()
 
-    def start_gate_check(self):
+    def __start_gate_check(self):
         # Apply gate on Bloch sphere and then start the checking
         self.start_measure_button.setEnabled(False)
         try:
@@ -317,18 +316,18 @@ class Window(QMainWindow):
 
             elif self.which_gate == "t":
                 self.bloch_vector.t()
-            self.rotate()
+            self.__rotate()
         except OSError:
             self.coordinate_label.setText("You will see the required sphere coordinates here")
-            self.zero_state()
+            self.__zero_state()
             show_message("Connect your phone first")
         except AttributeError:
             self.coordinate_label.setText("You will see the required sphere coordinates here")
-            self.zero_state()
+            self.__zero_state()
             show_message("Connect your phone first")
         self.start_measure_button.setEnabled(True)
 
-    def rotate(self):
+    def __rotate(self):
         # Start rotating and checking
         self.coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta) +
                                       "\t\u03A6: " + str(self.bloch_vector.phi))
@@ -336,7 +335,7 @@ class Window(QMainWindow):
             angles = server_start.get_data()
             if angles is None:
                 show_message("Phone disconnected! Please reconnect to continue!")
-                self.zero_state()
+                self.__zero_state()
                 connect_phone()
                 break
             else:
@@ -361,6 +360,7 @@ class Window(QMainWindow):
 
 
 if __name__ == "__main__":
+    connect_phone()
     app = QApplication(sys.argv)
     w = Window()
     w.setFixedSize(1000, 500)
