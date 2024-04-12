@@ -116,8 +116,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     " like classical logic gates are for conventional digital circuits." +
                                     "\n\n\nThis app is for a quantum logic gates teaching program, to help the students learn " +
                                     "them more easily, by interacting with the bloch sphere, by rotating the vector and " +
-                                    "using gates on it. Keep in mind, that there are several other quantum logic gates," +
-                                    "you only see one qubit versions in the program."));
+                                    "using gates on it. Keep in mind, that there are several other quantum logic gates,  but these are the most common ones that are using one qubit."));
                             gate_imageView.setVisibility(view.INVISIBLE);
                             break;
                         case "Identity":
@@ -151,7 +150,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             gate_imageView.setImageResource(R.drawable.phase);
                             break;
                         case "T":
-                            info_textView.setText(String.format("It induces a π/4 phase, and is sometimes called the pi/8 gate"));
+                            info_textView.setText(String.format("It induces a π/4 phase, and is " +
+                                    "sometimes called the pi/8 gate"));
                             gate_imageView.setVisibility(view.VISIBLE);
                             gate_imageView.setImageResource(R.drawable.tgate);
                             break;

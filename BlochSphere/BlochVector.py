@@ -53,11 +53,9 @@ class BlochVector:
     def identity(self):
         identity_matrix = np.array([[1, 0], [0, 1]])
         state_vector_after_gate = np.dot(self.__start_state_vector().T, identity_matrix)
-        print(self.theta, self.phi)
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def pauli_x(self):
         pauli_x_matrix = np.array([[0, 1], [1, 0]])
@@ -65,7 +63,6 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def pauli_y(self):
         pauli_y_matrix = np.array([[0, -1j], [1j, 0]])
@@ -73,7 +70,6 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def pauli_z(self):
         pauli_z_matrix = np.array([[1, 0], [0, -1]])
@@ -81,7 +77,6 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def hadamard(self):
         hadamard_matrix = (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]])
@@ -89,7 +84,6 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def phase(self):
         phase_matrix = np.array([[1, 0], [0, 1j]])
@@ -97,7 +91,6 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
 
     def t(self):
         t_matrix = np.array([[1, 0], [0, np.exp(1j * np.pi / 4)]])
@@ -105,4 +98,3 @@ class BlochVector:
         coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
         self.theta = coordinates[0]
         self.phi = coordinates[1]
-        print(self.theta, self.phi)
