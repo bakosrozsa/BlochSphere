@@ -52,30 +52,30 @@
 \select@language {magyar} \contentsline {subsubsection}{Bloch gömb}{27}{section*.30}%
 \select@language {magyar} \contentsline {subsubsection}{Jobb oldali információ panel}{27}{section*.31}%
 \select@language {magyar} \contentsline {subsubsection}{Animációs ablak}{29}{section*.32}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Kommunikáció a telefonnal}{29}{subsection.3.3.2}%
-\select@language {magyar} \contentsline {subsubsection}{Szerver indítása és kapcsolat várása}{30}{section*.33}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Kommunikáció a telefonnal}{30}{subsection.3.3.2}%
+\select@language {magyar} \contentsline {subsubsection}{Szerver indítása és kapcsolat várása}{31}{section*.33}%
 \select@language {magyar} \contentsline {subsubsection}{Szenzor adatok fogadása és tárolása}{31}{section*.34}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Matematikai számítások}{31}{subsection.3.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Matematikai számítások}{32}{subsection.3.3.3}%
 \select@language {magyar} \contentsline {subsubsection}{Gömbkoordináták}{32}{section*.35}%
 \select@language {magyar} \contentsline {subsubsection}{Standard- és véletlenszerű bázisvektorok generálása}{32}{section*.36}%
 \select@language {magyar} \contentsline {subsubsection}{Bázisvektor mátrix kialakítása gömbkoordináták alapján}{33}{section*.37}%
-\select@language {magyar} \contentsline {subsubsection}{Kapuk alkalmazása a bázisvektor mátrixán}{33}{section*.38}%
-\select@language {magyar} \contentsline {subsubsection}{Új bázisvektor számítása}{33}{section*.39}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Vektor forgatása és ellenőrzése}{33}{subsection.3.3.4}%
-\select@language {magyar} \contentsline {subsubsection}{Tárolt szenzor adatok feldolgozása}{33}{section*.40}%
-\select@language {magyar} \contentsline {subsubsection}{Bloch gömb újrarajzolása}{34}{section*.41}%
-\select@language {magyar} \contentsline {subsubsection}{Gömbkoordináta ellenőrzése}{34}{section*.42}%
-\select@language {magyar} \contentsline {section}{\numberline {3.4}Applikáció bemutatása}{35}{section.3.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Grafikus felhasználói felület}{35}{subsection.3.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Kommunikáció az asztali alkalmazással}{36}{subsection.3.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Szenzor adatok gyűjtése}{36}{subsection.3.4.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{37}{section.3.5}%
-\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{37}{section.3.6}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.1}Részletes matematikai egyenletek mutatása}{37}{subsection.3.6.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.2}Saját áramkör kialakítása}{37}{subsection.3.6.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.3}Több kvantumbites kapuk}{38}{subsection.3.6.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.4}Diagramok}{38}{subsection.3.6.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.5}Könyvtárak frissen tartása}{38}{subsection.3.6.5}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.6}IOS applikáció}{38}{subsection.3.6.6}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{39}{chapter*.43}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{40}{chapter*.44}%
+\select@language {magyar} \contentsline {subsubsection}{Kapuk alkalmazása a bázisvektor mátrixán}{34}{section*.38}%
+\select@language {magyar} \contentsline {subsubsection}{Új bázisvektor számítása}{34}{section*.39}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Vektor forgatása és ellenőrzése}{35}{subsection.3.3.4}%
+\select@language {magyar} \contentsline {subsubsection}{Tárolt szenzor adatok feldolgozása}{35}{section*.40}%
+\select@language {magyar} \contentsline {subsubsection}{Bloch gömb újrarajzolása}{36}{section*.41}%
+\select@language {magyar} \contentsline {subsubsection}{Gömbkoordináta ellenőrzése}{36}{section*.42}%
+\select@language {magyar} \contentsline {section}{\numberline {3.4}Applikáció bemutatása}{36}{section.3.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Grafikus felhasználói felület}{37}{subsection.3.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Kommunikáció az asztali alkalmazással}{38}{subsection.3.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Szenzor adatok gyűjtése}{38}{subsection.3.4.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{39}{section.3.5}%
+\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{39}{section.3.6}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.1}Részletes matematikai egyenletek mutatása}{39}{subsection.3.6.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.2}Saját áramkör kialakítása}{39}{subsection.3.6.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.3}Több kvantumbites kapuk}{40}{subsection.3.6.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.4}Diagramok}{40}{subsection.3.6.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.5}Könyvtárak frissen tartása}{40}{subsection.3.6.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.6}IOS applikáció}{40}{subsection.3.6.6}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{41}{chapter*.43}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{42}{chapter*.44}%

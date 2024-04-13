@@ -23,6 +23,21 @@
 \theoremstyle{remark}
 \newtheorem{megjegyzes}[tetel]{Megjegyzés}
 
+\usepackage{listings}
+\def\lstlistingname{kód}
+\lstset{
+    language=Python,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!40!black},
+	stringstyle=\color{red},
+	numbers=left,
+	frame=trbl,
+	showstringspaces=false,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
 \begin{document}
 \institute{Matematikai és Informatikai Intézet}
 \title{Tanulás segítő program és applikáció egy kvantumbites logikai kapukhoz}
@@ -820,22 +835,29 @@ Az ablak megjelenítéséért a Window osztály konstruktora, valamint a hozzá 
 \end{figure}
 
 \subsubsection{Menü}
-A program tartalmaz egy felső menü sávot, ebben egy States menüponttal. Ezen belül találhatóak az egyes bázisvektor állítási lehetőségek a Bloch gömbhöz. Az összes menüpont kattintással használható. A menü a menuBar, a bázisvektorok menüpontjai pedig a QAction osztályok példányai. A QAction osztály felel a gombok kattintásra történő működéséért, meghívja az adott menüponthoz tartozó eljárást, amennyiben az kiválasztásra került.
+A program tartalmaz egy felső menü sávot, ebben egy States menüponttal. Ezen belül találhatóak az egyes bázisvektor állítási lehetőségek a Bloch gömbhöz. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{MenuBarInit}
-	\caption{Menü sáv a konstruktorban}
-	\label{fig:menubarinit}
-\end{figure}
+\begin{lstlisting}[caption={Menü inicializálása}]
+# Menu Bar
+self.menu = self.menuBar()
+self.menu_states = self.menu.addMenu("States")
+self.menu_random = QAction("Random Bloch state", self)
+self.zero_state_option = QAction("|0> bloch state", self)
+self.one_state_option = QAction("|1> bloch state", self)
+\end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{MenuBarStart}
-	\caption{Menü sáv gombjaihoz funkciók társítása és menüsávhoz adás}
-	\label{fig:menubarstart}
-\end{figure}
+Az összes menüpont kattintással használható. A menü a menuBar, a bázisvektorok menüpontjai pedig a QAction osztályok példányai. A QAction osztály felel a gombok kattintásra történő működéséért, meghívja az adott menüponthoz tartozó eljárást, amennyiben az kiválasztásra került.
 
+\begin{lstlisting}[caption={Menü elemek bekötése}]
+# Menu Bar
+self.menu_random.triggered.connect(self.__random_state)
+self.zero_state_option.triggered.connect(self.__zero_state)
+self.one_state_option.triggered.connect(self.__one_state)
+self.menu_states.addAction(self.menu_random)
+self.menu_states.addAction(self.zero_state_option)
+self.menu_states.addAction(self.one_state_option)
+self.menu.addMenu(self.menu_states)
+\end{lstlisting}
 
 \subsubsection{Bloch gömb}
 A Bloch gömb megvalósítása a Qiskit visualization csomagjának segítségével történt. Ez tartalmaz egy plot függvényt, ami egy matplotlib ábrával tér vissza.A programban paraméterei közé tartozik egy három elemű tömb, ami alapján a gömb készül, valamint a koordináta típusa. 
@@ -844,13 +866,12 @@ Az elkészült matplotlib ábrát a Pyside FigureCanvasQTAgg osztály egy péld�
 
 A vásznat egy QHBoxLayout példányhoz adom, ami horizontálisan jeleníti meg az elemeket.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{BlochSphereStartpng}
-	\caption{A Bloch gömb kezdő állapota a konstruktorban}
-	\label{fig:blochspherestartpng}
-\end{figure}
-
+\begin{lstlisting}[caption={A Bloch gömb kezdő állapota a konstruktorban},label=blochspherestart]
+# Bloch sphere part
+self.bloch_vector = BlochVector.BlochVector(0.0, 0.0)
+self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi], coord_type='spherical')
+self.canvas = FigureCanvasQTAgg(self.fig)
+\end{lstlisting}
 
 \subsubsection{Jobb oldali információ panel}
 A Bloch gömb mellett a másik legfontosabb rész a felületen.
@@ -869,87 +890,128 @@ A panel legalsó részén két QLabel példány látható, amik tartalmazzák a 
 
 A felsorolt elemeket egy QVBoxLayout példányhoz adom, ami vertikálisan jeleníti meg őket. Ezt pedig a már említett QHBoxLayout példányhoz adom, hogy a Bloch gömb mellett jelenjen meg.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{RightSideConstructor}
-	\caption{A jobb oldali panel és elemeinek létrehozása a konstruktorban}
-	\label{fig:rightsideconstructor}
-\end{figure}
+\begin{lstlisting}[caption={A jobb oldali panel és elemeinek létrehozása a konstruktorban}]
+# Right side of the program
+self.addr_label = QLabel()
+self.gates_combo = QComboBox()
+self.info_text = QTextEdit()
+self.label = QLabel()
+self.pixmap = QPixmap()
+self.show_anim = QPushButton()
+self.start_measure_button = QPushButton()
+self.coordinate_label = QLabel()
+self.current_coordinate_label = QLabel()
+self.right_side = QVBoxLayout()
+self.which_gate = ""
+\end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{RightSide1}
-	\caption{A jobb oldali panel elemeinek értékadása}
-	\label{fig:rightside1}
-\end{figure}
+\begin{lstlisting}[caption={A jobb oldali panel elemeinek értékadása}]
+# Right side of the program
+self.addr_label.setText("Server address for phone: " + str(server_start.host) + ":" + str(server_start.port))
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{RightSide2}
-	\caption{Elemek hozzáadása a jobb oldali panelhez, gombok beállítása}
-	\label{fig:rightside2}
-\end{figure}
+self.gates_combo.addItems(["Home", "Identity", "Pauli-X", "Pauli-Y", "Pauli-Z", "Hadamard", "Phase", "T"])
 
+self.label.setPixmap(self.pixmap)
+
+self.coordinate_label.setText("You will see the required sphere coordinates here")
+self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta) + "\t\u03A6: " + str(self.bloch_vector.phi))
+
+self.info_text.setReadOnly(True)
+self.label.setVisible(False)
+self.show_anim.setVisible(False)
+self.start_measure_button.setVisible(False)
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Elemek hozzáadása a jobb oldali panelhez, gombok beállítása}]
+self.right_side.addWidget(self.addr_label)
+self.right_side.addWidget(self.gates_combo)
+self.right_side.addWidget(self.info_text)
+self.right_side.addWidget(self.label)
+self.right_side.addWidget(self.show_anim)
+self.right_side.addWidget(self.start_measure_button)
+self.right_side.addWidget(self.coordinate_label)
+self.right_side.addWidget(self.current_coordinate_label)
+self.right_side.setAlignment(self.addr_label, Qt.AlignCenter)
+self.right_side.setAlignment(self.label, Qt.AlignCenter)
+self.right_side.setAlignment(self.coordinate_label, Qt.AlignCenter)
+self.right_side.setAlignment(self.current_coordinate_label,
+	Qt.AlignCenter)
+
+self.gates_combo.currentTextChanged.connect(self.gates_combo_options)
+self.show_anim.clicked.connect(self.__open_anim_window)
+self.start_measure_button.clicked.connect(self.__start_gate_check)
+\end{lstlisting}
 
 \subsubsection{Animációs ablak}
 A különböző kapukhoz a felhasználó megtekintheti azok animációját is, amely a $\ket{0}$ standard bázisvektorból indul. Ezeket külön kigeneráltattam és kimentettem a Qiskit visualization csomag segítségével. 
 
 Az animáció folyamatosan ismétlődik, amíg a felhasználó be nem zárja a megjelent plusz ablakot, amit a hozzá tartozó gomb lenyomásával érhet el. Kattintáskor egy privát metódus indul, ahol a kiválasztott kapu alapján a program példányosít egy általam létrehozott AnimationWindow osztályt. Az osztály konstruktora a megfelelő gif elérési útvonalát tartalmazza, valamint az ablak szükséges beállításait, illetve egy privát eljárást. A metódus példányosít egy QMovie osztályt, ami a gif megjelenítéséért felel.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{openAnimWindow}
-	\caption{AnimationWindow osztály példányosítása a kiválasztott kapu alapján}
-	\label{fig:openanimwindow}
-\end{figure}
+\begin{lstlisting}[caption={AnimationWindow osztály}]
+class AnimationWindow(QMainWindow):
+	def __init__(self, gate, parent=None):
+		QMainWindow.__init__(self, parent)
+		
+		self.setWindowTitle("Gate animation")
+		self.setFixedSize(500, 500)
+		
+		self.gif_label = QLabel(self)
+		self.gif_label.setFixedSize(500, 500)
+		
+		self.gif_path = gate
+		
+		self.__display_gif()
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.4\linewidth]{AnimationWindow}
-	\caption{AnimationWindow osztály}
-	\label{fig:animationwindow}
-\end{figure}
-
+	def __display_gif(self):
+		movie = QMovie(self.gif_path)
+		self.gif_label.setMovie(movie)
+		movie.start()
+\end{lstlisting}
 
 \subsection{Kommunikáció a telefonnal}
 Az asztali alkalmazás legérdekesebb része a telefonnal történő vektorforgatás lehetősége. Ehhez szükséges volt a kapcsolat kialakítása egy telefonos applikáció és a program közt.
 
 A hálózat tevékenységeit az általam létrehozott Server osztály egy példánya kezeli. Konstruktora tárolja a host ip címet, valamint a port számot. A host a számítógép címe, a port számot pedig az operációs rendszer választja ki a szabadok közül.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth]{ServerContstructor}
-	\caption{A Server osztály konstruktora}
-	\label{fig:servercontstructor}
-\end{figure}
-
+\begin{lstlisting}[caption={A Server osztály konstruktora}]
+def __init__(self, HOST, PORT):
+	self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	self.host = HOST
+	self.port = PORT
+	self.s.bind((self.host, self.port))
+	self.port = self.s.getsockname()[1]
+	self.conn = ""
+	self.addr = ""
+\end{lstlisting}
 
 \subsubsection{Szerver indítása és kapcsolat várása}
 A Window osztály példányosítása előtt a program elindít egy metódust, amiben egy PhoneConnector osztály példánya foglal helyet. 
 
 A példány threading segítségével a háttérben elindítja egyetlen metódusát. Ennek köszönhetően a szerver elindul és várja a telefon csatlakozását. Egy felugró ablak jelzi ennek sikerességét, amit pedig egy Signal példány hív meg. Egyszerre csak egy telefont tud csatlakoztatni a felhasználó, ezt a Server osztály példányának metódusa ellenőrzi.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{ConnectPhoneMethod}
-	\caption{A Window osztály példányosítása előtt elindított metódus}
-	\label{fig:connectphonemethod}
-\end{figure}
+\begin{lstlisting}[caption={A Window osztály példányosítása előtt elindított metódus}]
+def connect_phone():
+	phone_connector = PhoneConnector()
+	phone_connector.connected.connect(show_phone_connected_message)
+	phone_thread = threading.Thread(target=phone_connector.run)
+	phone_thread.start()
+\end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{PhoneConnectorClass}
-	\caption{PhoneConnector osztály}
-	\label{fig:phoneconnectorclass}
-\end{figure}
+\begin{lstlisting}[caption={PhoneConnector osztály}]
+class PhoneConnector(QObject):
+	connected = Signal()
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{ServerHosting}
-	\caption{A csatlakozást váró függvény a Server osztályban}
-	\label{fig:serverhosting}
-\end{figure}
+	def run(self):
+		if server_start.hosting():
+			self.connected.emit()
+\end{lstlisting}
 
+\begin{lstlisting}[caption={A csatlakozást váró függvény a Server osztályban}]
+def hosting(self):
+	self.s.listen(0)
+	self.conn, self.addr = self.s.accept()
+	return True
+\end{lstlisting}
 
 \subsubsection{Szenzor adatok fogadása és tárolása}
 A telefon szenzor adatait az asztali alkalmazás a forgatás pillanatában kezdi el fogadni és egy tömbben tárolni. 
@@ -958,19 +1020,22 @@ Mivel a telefon már a csatlakozás pillanatában is próbálja küldeni az adat
 
 Amennyiben a kapcsolat megszűnik, a program üres csomagot fog kapni. Ebben az esetben a szerver bontja a kapcsolatot a klienssel. Amint ez megtörténik, a szerver újra elkezdi várni a kapcsolatot és kezdődik az elejéről a folyamat.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{GetDataServer}
-	\caption{Szenzor adatok fogadása és tárolása valamint kapcsolat bontása}
-	\label{fig:getdataserver}
-\end{figure}
-
+\begin{lstlisting}[caption={Szenzor adatok fogadása és tárolása valamint kapcsolat bontása}]
+def get_data(self):
+	data = self.conn.recv(1024).decode()
+	if not data:
+		self.conn.close()
+		return None
+	else:
+		angles = data.split(',')
+		return angles
+\end{lstlisting}
 
 \subsection{Matematikai számítások}
 Ugyan a felhasználó nem érzékeli, de a program jelentős része háttérszámításokon alapul. Ehhez kialakítottam egy BlochVector osztályt, ahol az adott gömbkoordináták alapján tud az alkalmazás számításokat végezni.
 
 \subsubsection{Gömbkoordináták}
-A bejövő szenzor adatok és a számítások egyszerűsítése miatt gömb koordináta-rendszert használtam. Amennyiben ezt nem adom meg a Bloch gömb rajzolásakor, a Qiskit automatikusan a másik opciót, azaz a  Descartes-féle koordináta rendszert használja. Ennek megfelelően a paraméterében a három elemű tömb tartalma rendre (ami \az{\ref{fig:blochspherestartpng}}.~ábrán is látható):
+A bejövő szenzor adatok és a számítások egyszerűsítése miatt gömb koordináta-rendszert használtam. Amennyiben ezt nem adom meg a Bloch gömb rajzolásakor, a Qiskit automatikusan a másik opciót, azaz a  Descartes-féle koordináta rendszert használja. Ennek megfelelően a paraméterében a három elemű tömb tartalma rendre (ami \az{\ref{blochspherestart}}.~kódban is látható):
 
 \begin{enumerate}
 	\item Az origótól mért távolság, tehát a gömb sugara. Ez jelen esetben mindig egy lesz. Jele: $r$
@@ -991,12 +1056,21 @@ Az említett szabályok alapján a $\ket{0}$ állapot $\theta=0$ $\phi=0$, $\ket
 
 A megadott koordinátákon kívül nincs különbség a három eljárásban, viszont a gombok és egyéb hívások miatt átláthatóbb opció volt ezeket nem egy metódusban tartani.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{RandomState}
-	\caption{Véletlenszerű bázisvektor generálása és Bloch gömb rajzolása}
-	\label{fig:randomstate}
-\end{figure}
+\begin{lstlisting}[caption={Véletlenszerű bázisvektor generálása és Bloch gömb rajzolása}]
+def __random_state(self):
+	# Set Bloch sphere to a random state
+	self.bloch_vector.theta = random.uniform(0.0, np.pi)
+	self.bloch_vector.phi = random.uniform(0.0, 2 * np.pi)
+	plt.close()
+	self.fig.canvas.flush_events()
+	self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi],
+	coord_type='spherical')
+	self.canvas.figure = self.fig
+	self.fig.set_canvas(self.canvas)
+	self.canvas.draw()
+	self.current_coordinate_label.setText("\u03F4: " + str(self.bloch_vector.theta)
+	+ "\t\u03A6: " + str(self.bloch_vector.phi))
+\end{lstlisting}
 
 
 \subsubsection{Bázisvektor mátrix kialakítása gömbkoordináták alapján}
@@ -1008,27 +1082,73 @@ A kigenerált bázisvektorral a program forgatás kezdésekor kezd el foglalkozn
 
 ahol $i$ komplex szám, $\theta$ és $\phi$ pedig a már említett gömbkoordináták.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{StartState}
-	\caption{Bázisvektor mátrix kialakítása a képletek alapján}
-	\label{fig:startstate}
-\end{figure}
-
+\begin{lstlisting}[caption={Bázisvektor mátrix kialakítása a képletek alapján}]
+def __start_state_vector(self):
+	alpha = np.cos(self.theta / 2)
+	beta = np.exp(1j * self.phi) * np.sin(self.theta / 2)
+	state_vector = np.array([[alpha], [beta]])
+	return state_vector
+\end{lstlisting}
 
 \subsubsection{Kapuk alkalmazása a bázisvektor mátrixán}
-A kapott bázisvektor mátrixon szorzást hajt végre a program, az alapján, hogy melyik kapu lesz kiválasztva. Ahogy azt a \ref{kvantumkapuk}.~fejezetben láttuk, mindegyik kvantumkapu egyedi mátrix-val rendelkezik. Az szorzás által kapott mátrix lesz az új bázisvektor mátrixa.
+A kapott bázisvektor mátrixon szorzást hajt végre a program, az alapján, hogy melyik kapu lesz kiválasztva. Ahogy azt a \ref{kvantumkapuk}.~fejezetben láttuk, mindegyik kvantumkapu egyedi mátrix-val rendelkezik. A szorzás által kapott mátrix lesz az új bázisvektor mátrixa.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{PaulixGate}
-	\caption{Pauli-X kapu alkalmazása a bázisvektorra}
-	\label{fig:paulixgate}
-\end{figure}
-
+\begin{lstlisting}[caption={Pauli-X kapu alkalmazása a bázisvektorra}]
+def pauli_x(self):
+	pauli_x_matrix = np.array([[0, 1], [1, 0]])
+	state_vector_after_gate = np.dot(self.__start_state_vector().T, pauli_x_matrix)
+	coordinates = get_spherical_coordinates_from_state_vector(state_vector_after_gate)
+	self.theta = coordinates[0]
+	self.phi = coordinates[1]
+\end{lstlisting}
 
 \subsubsection{Új bázisvektor számítása}
+\Az{\ref{qubitallapot}}.~képlet felírható polár alakban:
 
+\begin{equation}
+	\ket{\Psi}=(r_\alpha)e^i(\phi a)\ket{0}+(r_\beta)e^i(\phi b)\ket{1}
+\end{equation}
+
+Ebben a formában négy változó van, két valós szám és két képzetes. Ezekből kiindulva az alábbi kód alapján történik théta és fí visszafejtése az új bázisvektorból. Ezeket az adatokat küldi tovább a program a forgatás ellenőrzéséhez.
+
+\begin{lstlisting}[caption={Fí és théta kinyerése az új bázisvektorból}]
+def get_spherical_coordinates_from_state_vector(state_vector_after_gate):
+	alpha_real = state_vector_after_gate[0][0].real
+	alpha_imag = state_vector_after_gate[0][0].imag
+	beta_real = state_vector_after_gate[0][1].real
+	beta_imag = state_vector_after_gate[0][1].imag
+	
+	if alpha_real != 0.0:
+		if alpha_real < 0 < alpha_imag:
+			alpha_theta = np.arctan(alpha_imag / alpha_real) + np.pi
+	
+		elif alpha_real < 0 and alpha_imag < 0:
+			alpha_theta = np.arctan(alpha_imag / alpha_real) + np.pi
+		else:
+			alpha_theta = np.arctan(alpha_imag / alpha_real)
+	else:
+		alpha_theta = 0.0
+	
+	r_alpha = np.sqrt((alpha_real ** 2) + (alpha_imag ** 2))
+	
+	if beta_real != 0.0:
+		if beta_real < 0 < beta_imag:
+			beta_theta = np.arctan(beta_imag / beta_real) + np.pi
+	
+		elif beta_real < 0 and beta_imag < 0:
+			beta_theta = np.arctan(beta_imag / beta_real) + np.pi
+		else:
+			beta_theta = np.arctan(beta_imag / beta_real)
+	else:
+		beta_theta = 0.0
+	
+	theta = 2 * np.arccos(r_alpha)
+	phi = beta_theta - alpha_theta
+	if phi < 0:
+	phi += 2 * np.pi
+	coordinates = [theta, phi]
+	return coordinates
+\end{lstlisting}
 
 \subsection{Vektor forgatása és ellenőrzése}
 Az előző alfejezetekben tárgyalt elemei az asztali alkalmazásnak, mind hozzásegítenek ehhez a funkcióhoz. A csatlakoztatott telefonnal a felhasználó alkalmazhat egy kaput a kvantumbiten. Amint a háttérszámítások alapján előáll az új bázisvektor, elkezdődik a forgatás, amiért egy privát metódus felel, ahol egy ciklus fut az új állapot eléréséig, vagy hibáig.
@@ -1040,35 +1160,36 @@ Ellenkező esetben a kapott adatokat ellenőrzi. Ha a tömb nem két elemű, val
 
 Ezután a beérkezett szenzor adatok közül $\phi$ értékét módosítjuk, hogy 0 és $2\pi$ érték között legyen.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{rotatedata}
-	\caption{Tárolt szenzor adatok feldolgozása}
-	\label{fig:rotatedata}
-\end{figure}
-
+\begin{lstlisting}[caption={Tárolt szenzor adatok feldolgozása}]
+while True:
+	angles = server_start.get_data()
+	if angles is None:
+		show_message("Phone disconnected! Please reconnect to continue!")
+		self.__zero_state()
+		connect_phone()
+		break
+	else:
+		try:
+			angles = np.array(angles, dtype=float)
+			if angles[1] < 0:
+				angles[1] = angles[1] + 2 * np.pi
+\end{lstlisting}
 
 \subsubsection{Bloch gömb újrarajzolása}
 Minden új adatnál, a gömb újrarajzolásra kerül. Az előtte megjelenített rajz, valamint a vászon törlésre kerül, memória- és helyfelszabadítás miatt. Helyére egy új gömb jut, ahol $\theta$ és $\phi$ értéke az új szenzoradatokra cserélődik.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{blochsphereredraw}
-	\caption{Bloch gömb újrarajzolása}
-	\label{fig:blochsphereredraw}
-\end{figure}
+\begin{lstlisting}[caption={Bloch gömb újrarajzolása}]
+plt.close()
+self.fig.canvas.flush_events()
+self.fig = plot_bloch_vector([1, angles[0], angles[1]], coord_type='spherical')
+self.canvas.figure = self.fig
+self.fig.set_canvas(self.canvas)
+self.canvas.draw()
+\end{lstlisting}
 
 
 \subsubsection{Gömbkoordináta ellenőrzése}
 A Bloch gömb kirajzoltatása után a ciklus végén ellenőrzi a program, hogy a jelenlegi vektor állása megfelel-e a kvantumkapu alkalmazásával kapott bázisvektornak. Az egyszerűbb működés érdekében ez 0.1 relatív- és 0.15 abszolút toleranciával működik. Ha a felhasználó ezeken belül van, a program egy felugró ablakban jelzi hogy megtalálta a keresett bázisvektort és a ciklus leáll. Ezután újra elvégezheti a műveletet, de akár más kaput is választhat, mindaddig, amíg a telefon csatlakoztatva marad.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{coordinatecheck}
-	\caption{Gömbkoordináta ellenőrzése}
-	\label{fig:coordinatecheck}
-\end{figure}
-
 
 \section{Applikáció bemutatása}
 Mivel a hangsúly elsősorban az asztali alkalmazáson van, így az android applikáció egy egyszerű megvalósítást képvisel, viszont hasonlóan az elképzelések alapján készült, valamint bővíthető.
@@ -1087,22 +1208,23 @@ Az applikáció tartalmaz egy EditText elemet, ahova a felhasználó a csatlakoz
 
 Ehhez tartozik egy gomb, ami a csatlakozást/lecsatlakozást kezeli. Ez befolyásolja többek között az EditText elem elérhetőségét is, de elsősorban nem ez a célja.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.3\linewidth]{buttonxml}
-	\caption{Button létrehozása xml-ben}
-	\label{fig:buttonxml}
-\end{figure}
-
+\begin{lstlisting}[caption={Button létrehozása xml-ben}]
+<Button
+	android:id="@+id/button"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:backgroundTint="#535252"
+	android:text="Connect/Disconnect"
+	app:layout_constraintBottom_toBottomOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintHorizontal_bias="0.497"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintTop_toTopOf="parent"
+	app:layout_constraintVertical_bias="0.358" />
+\end{lstlisting}
 
 Mivel fontos volt, hogy az asztali alkalmazáson elért rövid információk elérhetőek legyenek a telefonon is, ezért ezt egy Spinner, TextView és egy ImageView elemmel valósítottam meg. Előbbihez az activity-hez tartozó java fájlban hozzáadtam egy tömböt, ami tartalmazza az egyes menüpontokat. Tartozik még ehhez továbbá egy Listener eljárás, ahol az applikáció folyamatosan figyeli, hogy a felhasználó mikor vált menüpontot és ennek megfelelően változtatja a felületet. Az ImageView a főmenüben nem látszik, kapu kiválasztáskor jelenik meg. A leírást tartalmazó elemhez hasonlóan a felület legfelső részén elhelyezkedő cím is TextView elem.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{tgateapp}
-	\caption{T kapu kiválasztása esetén történő megjelenítés}
-	\label{fig:tgateapp}
-\end{figure}
 
 Az xml-ben felsorolt elemek a cím TextView-n kívül a java fájlban példányosítva vannak, az azokkal történő műveletek miatt. Ugyanitt fontos megjegyezni, hogy az applikáció nem lép alvó módba. Ezt egy flag-vel értem el, ami az activity ablakához adódik, egy konstans értékkel.
 
@@ -1113,23 +1235,23 @@ Miután a telefon sikeresen csatlakozott az asztali alkalmazáshoz, az applikác
 
 Miután a példányosítás megtörtént, a program létrehoz egy szenzort és regisztrálja azt. Az Android Studio számos szenzortípussal szolgál, ezek mind különböző feladatot látnak el. A forgatás szempontjából számunkra az Orientation szenzor típus a megfelelő. Regisztráláskor fontos megadni a szenzoradat késleltetés idejét. Ez lehet beépített konstans érték, de lehet általunk megadott egyedi érték is. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{sensorreg}
-	\caption{Szenzor létrehozása és regisztrálása}
-	\label{fig:sensorreg}
-\end{figure}
-
+\begin{lstlisting}[caption={Szenzor létrehozása és regisztrálása}]
+sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+sensorManager.registerListener(MainActivity.this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+\end{lstlisting}
 
 A MainActivity osztály implementál egy SensorEventListener osztályt, ami tartalmaz egy publikus eljárást, ahol a szenzor változást figyelhetjük. Ebben a metódusban tároljuk a szükséges $\theta$ és $\phi$ értékét, majd a már említett PrintWriter példánnyal küldjük az adatokat az asztali alkalmazás számára.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{onsensorchange}
-	\caption{Szenzor adatok gyűjtése és küldése az asztali alkalmazás számára}
-	\label{fig:onsensorchange}
-\end{figure}
-
+\begin{lstlisting}[caption={Szenzor adatok gyűjtése és küldése az asztali alkalmazás számára}]
+@Override
+public void onSensorChanged(SensorEvent event) {
+	angles =  event.values[0] + "," +
+	event.values[2] * 2;
+	outToServer.print(angles);
+	outToServer.flush();
+}
+\end{lstlisting}
 
 Kapcsolat bontása esetén a SensorManager példány leregisztrálja a szenzort, és a folyamat kezdődik elölről.
 
