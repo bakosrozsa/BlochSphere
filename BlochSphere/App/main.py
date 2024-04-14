@@ -13,9 +13,9 @@ from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QVBoxLayo
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from qiskit.visualization import plot_bloch_vector
 
-import AnimWindow
-import server
-import BlochVector
+from App import AnimWindow
+from App import server
+from App import BlochVector
 
 hostname = socket.gethostname()
 server_start = server.Server(socket.gethostbyname(hostname), 0)
@@ -211,7 +211,7 @@ class Window(QMainWindow):
                                    "single-qubit "
                                    "operation that leaves the basis states |0> and |1> unchanged.</p>")
 
-            self.pixmap.load('images/Identity.png')
+            self.pixmap.load('../images/Identity.png')
             self.which_gate = "i"
             self.show_anim.setVisible(False)
             self.start_measure_button.setText("Try Identity gate!")
@@ -222,7 +222,7 @@ class Window(QMainWindow):
                                    "gate in classical computing. It flips the state of the qubit from |0⟩ to |1⟩ or "
                                    "from"
                                    "|1⟩ to |0⟩.</p>")
-            self.pixmap.load('images/paulix.png')
+            self.pixmap.load('../images/paulix.png')
             self.which_gate = "x"
             self.show_anim.setText("See Pauli-X gate animation!")
             self.start_measure_button.setText("Try Pauli-X gate!")
@@ -231,7 +231,7 @@ class Window(QMainWindow):
                 "<h1 style='text-align: center;'>Pauli-Y gate (or Y gate)</h1> <p style='font-size: "
                 "15px; text-align: justify;'>This gate is equivalent to applying both X and Z gates and "
                 "a global phase.</p>")
-            self.pixmap.load('images/pauliy.png')
+            self.pixmap.load('../images/pauliy.png')
             self.which_gate = "y"
             self.show_anim.setText("See Pauli-Y gate animation!")
             self.start_measure_button.setText("Try Pauli-Y gate!")
@@ -240,7 +240,7 @@ class Window(QMainWindow):
                                    "<p style='font-size: 15px; text-align: justify;'>This gate flips the phase "
                                    "of the |1⟩"
                                    "state, leaving the |0⟩ state unchanged.</p>")
-            self.pixmap.load('images/pauliz.png')
+            self.pixmap.load('../images/pauliz.png')
             self.which_gate = "z"
             self.show_anim.setText("See Pauli-Z gate animation!")
             self.start_measure_button.setText("Try Pauli-Z gate!")
@@ -251,7 +251,7 @@ class Window(QMainWindow):
                                    "state by transforming the |0⟩ state into an equal superposition of the |0⟩ and |1⟩ "
                                    "states.</p>")
 
-            self.pixmap.load('images/hadamard.png')
+            self.pixmap.load('../images/hadamard.png')
             self.which_gate = "h"
             self.show_anim.setText("See Hadamard gate animation!")
             self.start_measure_button.setText("Try Hadamard gate!")
@@ -262,7 +262,7 @@ class Window(QMainWindow):
                                    "gate or the Z90 gate, because it represents a 90-degree rotation around the "
                                    "z-axis.</p>")
 
-            self.pixmap.load('images/phase.png')
+            self.pixmap.load('../images/phase.png')
             self.which_gate = "s"
             self.show_anim.setText("See Phase gate animation!")
             self.start_measure_button.setText("Try Phase gate!")
@@ -271,7 +271,7 @@ class Window(QMainWindow):
                                    "<p style='font-size: 15px; text-align: justify;'>It induces a π/4 phase, "
                                    "and is sometimes called the pi/8 gate</p>")
 
-            self.pixmap.load('images/tGate.png')
+            self.pixmap.load('../images/tGate.png')
             self.which_gate = "t"
             self.show_anim.setText("See T gate animation!")
             self.start_measure_button.setText("Try T gate!")
@@ -279,17 +279,17 @@ class Window(QMainWindow):
 
     def __open_anim_window(self):
         if self.which_gate == "x":
-            anim_window = AnimWindow.AnimationWindow("images/x.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/x.gif", self)
         elif self.which_gate == "y":
-            anim_window = AnimWindow.AnimationWindow("images/y.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/y.gif", self)
         elif self.which_gate == "z":
-            anim_window = AnimWindow.AnimationWindow("images/z.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/z.gif", self)
         elif self.which_gate == "h":
-            anim_window = AnimWindow.AnimationWindow("images/h.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/h.gif", self)
         elif self.which_gate == "s":
-            anim_window = AnimWindow.AnimationWindow("images/s.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/s.gif", self)
         elif self.which_gate == "t":
-            anim_window = AnimWindow.AnimationWindow("images/t.gif", self)
+            anim_window = AnimWindow.AnimationWindow("../images/t.gif", self)
         anim_window.show()
 
     def __start_gate_check(self):

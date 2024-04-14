@@ -572,7 +572,7 @@ Mivel a kaput gyakran használják a standard bázisvektorokon, emiatt külön s
 
 A Hadamard kapu inverze saját maga, tehát például:
 
-\begin{equation}
+\begin{equation}\label{hinverz}
 	\ket{\Psi}=HH\ket{0}=\ket{0}
 \end{equation}
 
@@ -1229,6 +1229,49 @@ Mivel fontos volt, hogy az asztali alkalmazáson elért rövid információk el�
 Az xml-ben felsorolt elemek a cím TextView-n kívül a java fájlban példányosítva vannak, az azokkal történő műveletek miatt. Ugyanitt fontos megjegyezni, hogy az applikáció nem lép alvó módba. Ezt egy flag-vel értem el, ami az activity ablakához adódik, egy konstans értékkel.
 
 \subsection{Kommunikáció az asztali alkalmazással}
+A felhasználó, az EditText elemben megadhatja a csatlakozási címet, majd gomb lenyomásával próbálhat csatlakozni az asztali alkalmazáshoz. Amennyiben hibás adatot ad meg, ezt az applikáció felugró üzenetben jelzi és javíthatja. Ellenkező esetben tárolom a megadott cím adatait, és egy Socket példány segítségével csatlakoztatom a telefont. Ahhoz, hogy továbbítani tudjam a szenzor adatokat az asztali alkalmazás számára, létrehoztam egy PrintWriter példányt.
+
+\begin{lstlisting}[caption={Csatlakozás az asztali alkalmazáshoz}]
+if (!clicked)
+{
+	clicked = true;
+	String[] connectiondata = ip_port.getText().toString().split(":");
+	try {
+		socket = new Socket();
+		socket.connect(new InetSocketAddress(connectiondata[0],Integer.parseInt(connectiondata[1])),100);
+		outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+	}
+	catch (IOException e) {
+		Toast.makeText(MainActivity.this, "Check your connections!",
+		Toast.LENGTH_LONG).show();
+		clicked = false;
+		return;
+	}
+	catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e){
+		Toast.makeText(MainActivity.this, "Wrong address!",
+		Toast.LENGTH_LONG).show();
+		clicked = false;
+		return;
+	}
+\end{lstlisting}
+
+Ha a felhasználó bontani szeretné a kapcsolatot az asztali alkalmazással, akkor azt gomb nyomással teheti meg, vagy bezárja az applikációt. Ilyenkor a fennmaradt, továbbításra váró adatok valamint a szenzor törlésre kerülnek, a kapcsolatot pedig zárja a program. Az applikáció alaphelyzetbe áll, újra lehet csatlakozni. 
+
+\begin{lstlisting}[caption={Kapcsolat bontása az asztali alkalmazással}]
+else
+{
+	clicked = false;
+	outToServer.flush();
+	sensorManager.unregisterListener(MainActivity.this);
+	try {
+		socket.close();
+	} catch (IOException e) {
+		Toast.makeText(MainActivity.this, "Can't disconnect! Check your connections and try again!",
+		Toast.LENGTH_LONG).show();
+	}
+	ip_port.setEnabled(true);
+}
+\end{lstlisting}
 
 \subsection{Szenzor adatok gyűjtése}
 Miután a telefon sikeresen csatlakozott az asztali alkalmazáshoz, az applikáció példányosít egy SensorManager osztályt, ez felel a szenzorok létrehozásáért, valamint fel- és leregisztrálásáért.
@@ -1256,6 +1299,82 @@ public void onSensorChanged(SensorEvent event) {
 Kapcsolat bontása esetén a SensorManager példány leregisztrálja a szenzort, és a folyamat kezdődik elölről.
 
 \section{Tesztelések}
+
+\subsection{Unit tesztek}
+"A unit-teszt, vagy más néven egységteszt, a metódusokat teszteli. Adott paraméterekre ismerjük a
+metódus visszatérési értékét (vagy mellékhatását). A unit-teszt megvizsgálja, hogy a tényleges
+visszatérési érték megegyezik-e az elvárttal. Ha igen, sikeres a teszt, egyébként sikertelen. Elvárás,
+hogy magának a unit-tesztnek ne legyen mellékhatása.
+
+A unit-tesztelést majd minden fejlett programozási környezet (integrated development environment,
+IDE) támogatja, azaz egyszerű ilyen teszteket írni. A jelentőségüket az adja, hogy a futtatásukat is
+támogatják, így egy változtatás után csak lefuttatjuk az összes unit-tesztet, ezzel biztosítjuk
+magunkat, hogy a változás nem okozott hibát. Ezt nevezzük regressziós tesztnek."
+
+Az asztali alkalmazás során fontos volt tesztelni, hogy a bizonyos bázisvektor számítások megfelelőek-e. Mivel a legtöbb kvantumkapu inverze saját maga (pl. \ref{hinverz}.~képlet), így elegendő volt a kapu kétszeri alkalmazásával ellenőrizni, hogy visszakapjuk-e az eredeti állapotot.
+
+\begin{lstlisting}[caption={Pauli-X kapu unit teszt}]
+    def test_x_gate(self):
+		original_theta = self.bloch_vector.theta
+		original_phi = self.bloch_vector.phi
+		self.bloch_vector.pauli_x()
+		self.bloch_vector.pauli_x()
+		self.assertAlmostEqual(original_theta, self.bloch_vector.theta)
+		self.assertAlmostEqual(original_phi, self.bloch_vector.phi)
+\end{lstlisting}
+
+Fontos volt még továbbá a kliens kapcsolódást is ellenőrizni. Ezt a Python mock könyvtárával tettem, ami lehetővé teszi, hogy a tesztelés alatt álló program részeit fiktív objektumokra cserélje.
+
+Ezek ellenőrzött módon szimulálják a valós objektumok viselkedését. Különösen hasznosak olyan kódok tesztelésekor, amelyek olyan külső rendszerektől vagy erőforrásoktól függenek, amik kiszámíthatatlanabbak, ilyenek például adatbázisok, webszolgáltatások vagy hardvereszközök.
+
+\begin{lstlisting}[caption={Kliens csatlakozás unit teszt}]
+class TestServer(unittest.TestCase):
+	def test_server_binding(self):
+		HOST = '127.0.0.1'
+		PORT = 12345
+		
+		# Mocking the socket object
+		with patch('socket.socket') as mock_socket:
+		server = Server(HOST, PORT)
+		
+		# Assert that the socket was called with the correct arguments
+		mock_socket.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
+		
+		# Mock the bind method of the socket object
+		mock_socket_instance = mock_socket.return_value
+		mock_socket_instance.bind.assert_called_once_with((HOST, PORT))
+		
+		# Mock the listen method of the socket object
+		mock_socket_instance.listen.return_value = None
+		
+		# Mock the accept method to return a dummy connection
+		dummy_conn = MagicMock()
+		dummy_addr = ('127.0.0.1', 12345)
+		mock_socket_instance.accept.return_value = (dummy_conn, dummy_addr)
+		
+		# Test the hosting method
+		self.assertTrue(server.hosting())
+
+\end{lstlisting}
+
+\subsection{Teljesítmény teszt-Android Studio Profiler}
+Az Android Studio egyik erőssége a már felsoroltak közül, a beépített profiler funkció. Segít a fejlesztőknek Android alkalmazásaik teljesítményének elemzésében és optimalizálásában, valamint a felhasználói élmény javításában. Különféle lehetőségeket kínál, többek közt CPU, memóra, energia és hálózat valós idejű figyelését, miközben az alkalmazás emulátoron vagy fizikai eszközön fut.
+
+Metóduskövetése lehetővé teszi, hogy részletes információkat gyűjtsön a metódusok végrehajtásáról az alkalmazásban. Ez hasznos lehet a teljesítményproblémák azonosításához és a kódvégrehajtás optimalizálásához.
+
+A Profiler különféle vizualizációs eszközöket, például diagramokat és grafikonokat biztosít, amelyek segítenek a teljesítményadatok hatékonyabb értelmezésében és elemzésében.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Profiler}
+	\caption{Profiler az Android Studioban}
+	\label{fig:profiler}
+\end{figure}
+
+\subsection{Felhasználói tesztek}
+Általánosságban elmondható, hogy a tesztelés során elfogultak lehetnek a fejlesztők, vagy esetleg nem gondolnak bizonyos esetekre. Nem lehet számítani minden eshetőségre és viselkedésre. Emiatt a diplomamunkám megosztottam szaktársaimmal és olyan emberekkel is, akik úgymond laikusan állnak a témakörhöz. Ennek oka, hogy az asztali alkalmazás célcsoportja elég széleskörű, lényegében bárki, aki érdeklődik a témakör iránt és szeretne betekintést nyerni.
+
+A visszajelzések alapján képes voltam olyan eseteket javítani, amik nem merültek volna fel, ha csak magam tesztelem az applikációt és az asztali alkalmazást.
 
 \section{Továbbfejlesztési lehetőségek}
 Egyik program vagy applikáció sem lehet teljesen kész és hibátlan. Mindig keletkeznek új elképzelések, amik részben, de az is lehet, hogy jelentősen megváltoztatják koncepciót.
@@ -1294,6 +1413,13 @@ Az applikáció jelenleg csak androidos telefonokra elérhető, viszont az IOS l
 
 \chapter*{Összegzés}
 \addcontentsline{toc}{chapter}{Összegzés}
+Szakdolgozatomban egy olyan összetett témakörrel foglalkoztam, ami egyszerre tartalmaz fizikát, komplex matematikai számításokat és még számos területet. Elsődleges célom volt, hogy egy olyan tanulássegítő lehetőséget fejlesszek, ami több szempontból képes bevonni a felhasználót. Saját célkitűzésem pedig mindenképp az volt, hogy minél többet tanuljak, nem csak a témáról, hanem a választott technológiákról is.
+
+Természetesen a kutatás és a fejlesztés során számos kihívással kellett szembesülnöm, amik megoldásai nagyban segítették a fejlődésem. Sikerült olyan technológiákat jobban megismernem, amikről eddig egyáltalán nem volt hátterem, vagy kifejezetten kevés. Emellett mélyíthettem tudásom fizikai és matematikai szempontból is, amik eddig ezen a szinten jelentősen távol álltak tőlem.
+
+Mivel a kvantuminformatika folyamatosan fejlődik, így ezt a projektet is folytatni szeretném. Számos kiaknázatlan lehetőség van még benne, amennyiben elmozdulna az asztali alkalmazás és az applikáció is a kevésbé bevezető ismertetők irányába. Fontos itt még egyszer megjegyezni, hogy egyik szoftver sem lehet teljesen hibátlan, tehát biztosan található még javítani való is. Valamint a használt technológiák folyamatos fejlődése miatt is kifejezetten fontos a karbantartás.
+
+Mindezek ellenére úgy gondolom sikerült elérnem a kitűzött céljaim a projekttel kapcsolatban és remélhetőleg sikerül még ennek egy olyan irányt vennie, ami helytáll a kvantumkapukkal foglalkozó szimulátorok és tanulássegítő szoftverek közt.
 
 
 \begin{thebibliography}{2}

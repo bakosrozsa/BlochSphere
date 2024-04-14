@@ -68,14 +68,17 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.4}Applikáció bemutatása}{36}{section.3.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Grafikus felhasználói felület}{37}{subsection.3.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Kommunikáció az asztali alkalmazással}{38}{subsection.3.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Szenzor adatok gyűjtése}{38}{subsection.3.4.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{39}{section.3.5}%
-\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{39}{section.3.6}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.1}Részletes matematikai egyenletek mutatása}{39}{subsection.3.6.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.2}Saját áramkör kialakítása}{39}{subsection.3.6.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.3}Több kvantumbites kapuk}{40}{subsection.3.6.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.4}Diagramok}{40}{subsection.3.6.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.5}Könyvtárak frissen tartása}{40}{subsection.3.6.5}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.6.6}IOS applikáció}{40}{subsection.3.6.6}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{41}{chapter*.43}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{42}{chapter*.44}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Szenzor adatok gyűjtése}{39}{subsection.3.4.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.5}Tesztelések}{40}{section.3.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.5.1}Unit tesztek}{40}{subsection.3.5.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.5.2}Teljesítmény teszt-Android Studio Profiler}{42}{subsection.3.5.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.5.3}Felhasználói tesztek}{42}{subsection.3.5.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.6}Továbbfejlesztési lehetőségek}{42}{section.3.6}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.1}Részletes matematikai egyenletek mutatása}{43}{subsection.3.6.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.2}Saját áramkör kialakítása}{43}{subsection.3.6.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.3}Több kvantumbites kapuk}{43}{subsection.3.6.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.4}Diagramok}{44}{subsection.3.6.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.5}Könyvtárak frissen tartása}{44}{subsection.3.6.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6.6}IOS applikáció}{44}{subsection.3.6.6}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{45}{chapter*.43}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{46}{chapter*.44}%
