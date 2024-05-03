@@ -40,9 +40,9 @@
 
 \begin{document}
 \institute{Matematikai és Informatikai Intézet}
-\title{Tanulás segítő program és applikáció egy kvantumbites logikai kapukhoz}
+\title{A kvantumlogikai kapuk oktatása a Programtervező informatikus BSc képzésben}
 \author{Bakos Rózsa Ajándék\\Programtervező informatikus BSc}
-\supervisor{Biró Csaba\\Egyetemi docens}
+\supervisor{Dr. Biró Csaba\\Egyetemi docens}
 \city{Eger}
 \date{2024}
 \maketitle
@@ -62,36 +62,36 @@ A továbbiakban bemutatom a kvantuminformatika alapjait, a kvantumlogikai kapuk 
 
 \chapter{Kvantuminformatika}
 \section{Előzmények}
-A kvantummechanika gyökerei az 1800-as évek elejére vezethetők vissza, ahol a fizika többek között olyan problémákkal is küzdött, mint a hőmérsékleti sugárzás.
+A kvantummechanika gyökerei az 1800-as évek elejére vezethetők vissza, ahol a fizika többek között olyan problémákkal is küzdött, mint a hőmérsékleti sugárzás\footnote{''\emph{Olyan elektromágneses sugárzás, amely a tárgy belső energiája következtében, az objektum felületéről bocsátódik ki.}''\cite{WikipediaQHistory}}.
 
-Az első matematikai modellt, amely erre magyarázatot adott, Max Planck német fizikushoz kötjük. A ma már Planck-féle kvantumhipotézisnek ismert levezetés 1900-ban történt előterjesztésre. Ezt a dátumot tekintjük a "régi" kvantumelméleti korszak kezdetének, valamint a kvantumfizika születésének. A jelenséggel Albert Einstein is foglalkozott, aki 1905-ben megjelent, fényelektromos jelenségről szóló cikkében a már említett hőmérsékleti sugárzástól független is alkalmazta a Planck-féle kvantumhipotézist.
+Az első matematikai modellt, amely erre magyarázatot adott, Max Planck német fizikushoz kötjük. A ma már Planck-féle kvantumhipotézisnek ismert levezetés 1900-ban történt előterjesztésre. Ezt a dátumot tekintjük a régi kvantumelméleti korszak kezdetének, valamint a kvantumfizika születésének. A jelenséggel Albert Einstein is foglalkozott, aki 1905-ben megjelent, fényelektromos jelenségről szóló cikkében a már említett hőmérsékleti sugárzástól független is alkalmazta a Planck-féle kvantumhipotézist.\cite{WikipediaQHistory}
 
-Ezután rohamos növekedésnek kezdett a tudományág. A "régi" kvantumelméleti korszak végét 1924-re datáljuk, amikor De Brogile publikálta anyaghullámokról szóló elméletét. A modern kvantummechanika születése 1925-ben történt, jelenleg is ebben a korszakban vagyunk.
+Ezután rohamos növekedésnek kezdett a tudományág. A régi kvantumelméleti korszak végét 1924-re datáljuk, amikor De Brogile publikálta anyaghullámokról szóló elméletét. A modern kvantummechanika születése 1925-ben történt, jelenleg is ebben a korszakban vagyunk.
 
-Természetesen az informatikát sem kerülte el ez a hullám. 1981-ben Richard Feynman előadásában felvetette egy kvantumelveken működő számítógép ötletét, ami képes kvantumrendszereket szimulálni. Az ő nevéhez fűződik a kvantumszámítógép kifejezés. A korszak hasonlóan fontos neve még Paul Benioff, aki 1982-ben publikált, tanulmányában lefektette a kvantumszámítási modellek alapjait. Feynman és Benioff gondolatait felhasználva 1985-ben David Deutsch bemutatta tanulmányában egy kvantumszámítógép elméleti működését, ami képes elvégezni a klasszikus számítógép számításait, de kihasználva a kvantummechanika előnyeit. Fontos személy volt még ebben az időszakban Peter Shor, aki 1994-ben megalkotott egy olyan kvantumalgoritmust, ami a napjainkban használt titkosítási eljárásokat veszélybe sodorhatja. Az 1994-2000-es időszakban számos hasonlóan fontos kvantumalgoritmusok született. Ilyen például az 1996-ban készült Grover algoritmus, ami a rendezetlen adatokban való keresést segítette.
+Természetesen az informatikát sem kerülte el ez a hullám. 1981-ben Richard Feynman előadásában felvetette egy kvantumelveken működő számítógép ötletét, ami képes kvantumrendszereket szimulálni. Az ő nevéhez fűződik a kvantumszámítógép kifejezés. A korszak hasonlóan fontos neve még Paul Benioff, aki 1982-ben publikált, tanulmányában lefektette a kvantumszámítási modellek alapjait. Feynman és Benioff gondolatait felhasználva 1985-ben David Deutsch bemutatta tanulmányában egy kvantumszámítógép elméleti működését, ami képes elvégezni a klasszikus számítógép számításait, de kihasználva a kvantummechanika előnyeit. Fontos személy volt még ebben az időszakban Peter Shor, aki 1994-ben megalkotott egy olyan kvantumalgoritmust, ami a napjainkban használt titkosítási eljárásokat veszélybe sodorhatja. Az 1994-2000-es időszakban számos hasonlóan fontos kvantumalgoritmusok született. Ilyen például az 1996-ban készült Grover algoritmus, ami a rendezetlen adatokban való keresést segítette.\cite{WikipediaQHistory,BiróKoczkaPrantner}
 
 Ahogy ezek a felfedezések egyre tovább bővítették a kvantumszámítás fogalmát, úgy felmerült az igény a kvantumlogikai kapukra is. Az 1980-as évek végétől kezdve számos kaput állítottak elő.
 \section{Jelenlegi helyzet}
-A 21. században kialakult egy verseny a kutatóintézetek és tech óriások közt, cél egy kvantumszámítógép megépítése volt. Ehhez a korszakhoz fűződik a kvantumfölény kifejezés is. Ez arra utal, hogy egy kvantumszámítógép képes megoldani egy olyan problémát, melyre klasszikus társai nem képesek lehetséges időn belül.
+A 21. században kialakult egy verseny a kutatóintézetek és tech óriások közt, cél egy kvantumszámítógép megépítése volt. Ehhez a korszakhoz fűződik a kvantumfölény\footnote{Egy kvantumszámítógép képes megoldani egy olyan problémát, melyre klasszikus társai nem képesek lehetséges időn belül.} kifejezés is.
 
-2011-ben a D-Wave Systems cég volt az első, akik azt állították, hogy megépítették az első kereskedelmi forgalomban kapható kvantumszámítógépet, a D-Wave One-t, ami 128 qubites lapkakészleten működött.
+2011-ben a D-Wave Systems cég volt az első, akik azt állították, hogy megépítették az első kereskedelmi forgalomban kapható kvantumszámítógépet, a D-Wave One-t, ami 128 qubites lapkakészleten működött.\cite{DebreceniQComputer}
 
-Fontos esemény volt még a 2019-ben a Google által bejelentett kvantumfölény. 53 qubites Sycamore processzorával rendelkező kvantumszámítógépük 200 másodperc alatt megoldott egy konkrét problémát, amelyhez egy klasszikus szuperszámítógépnek körülbelül 10 000 év alatt végzett volna el. Ugyanebben az évben jelent meg az IBM első kvantumszámítógépe is, az IMB Quantum System One.
+Fontos esemény volt még a 2019-ben a Google által bejelentett kvantumfölény. 53 qubites Sycamore processzorával rendelkező kvantumszámítógépük 200 másodperc alatt megoldott egy konkrét problémát, amelyhez egy klasszikus szuperszámítógépnek körülbelül 10 000 év alatt végzett volna el. Ugyanebben az évben jelent meg az IBM első kvantumszámítógépe is, az IMB Quantum System One.\cite{WikipediaQcomuputer}
 
-Ebben az időszakban elért jelentős előrelépés ellenére számos kihívás még mindig fennáll, ilyen például a kvantumbitek minősége és stabilitása. Az olyan cégek, mint az IBM, Google és a Microsoft továbbra is jelentős összegeket fektet a kvantumszámítógépek fejlesztésébe. Ezen kívül számos ország és nagyhatalom is foglalkozik ezzel a tudományággal.
+Ebben az időszakban elért jelentős előrelépés ellenére számos kihívás még mindig fennáll, ilyen például a kvantumbitek minősége és stabilitása. Az olyan cégek, mint az IBM, Google és a Microsoft továbbra is jelentős összegeket fektet a kvantumszámítógépek fejlesztésébe. Ezen kívül számos ország és nagyhatalom is foglalkozik ezzel a tudományággal.\cite{BiróKoczkaPrantner}
 
 Hazai viszonylatban is folyamatos kutatások történnek, ezeket különböző egyetemek mellett a Kvantuminformatikai Nemzeti Laboratórium és a HunQuTech konzorcium vezeti. Céljuk elérni a nemzetközi szintet.
 
 Ebben az időszakban több megközelítés is született a kvantumszámítógépekre, ezáltal több típusról is beszélhetünk, például:
 
 \begin{enumerate}
-	\item Ioncsapdás: A kvantumbitek a csapdában lévő részecske állapotai alapján definiálódnak. 
-	\item Szupravezetős: Szupravezető áramköröket használnak a qubitek létrehozására és manipulálására. Rendkívül alacsony hőmérsékleten, az abszolút nulla közelében működnek, hogy fenntartsák állapotukat. Például az IBM Q System One is ilyen.
+	\item Ioncsapdás: A kvantumbitek a csapdában lévő részecske állapotai alapján definiálódnak.\cite{DebreceniQComputer}
+	\item Szupravezetős: Szupravezető áramköröket használnak a qubitek létrehozására és manipulálására. Rendkívül alacsony hőmérsékleten, az abszolút nulla közelében működnek, hogy fenntartsák állapotukat.\cite{DebreceniQComputer} Például az IBM Q System One is ilyen.
 	\item Fotonikus: Fotonokat használnak kvantumbitként. Nagy sebességű kommunikációra és információfeldolgozásra képesek.
 	\item Quantum Annealing: Speciális kvantumszámítógép, Optimalizálási problémák megoldására tervezték.
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{SystemOne}
 	\caption{IBM Q System One}
@@ -102,7 +102,7 @@ Ebben az időszakban több megközelítés is született a kvantumszámítógép
 \section{Nehézségek}
 Mint láttuk, a kvantumszámítógépek jelenleg is kísérletezés alatt állnak, valamint számos kihívások továbbra is feltáratlanok maradtak. Egy kvantumszámítógép építése és karbantartása, azok speciális igényük és építőelemeik miatt mai napig nagy költségeket ölelnek fel.
 
-A kvantumbitek minősége és stabilitása szintén egy jelentős probléma. A jelenlegi kvantumszámítógépek kevés qubittel rendelkeznek, skálázhatóságuk limitált, emiatt szűk körben használhatóak, számos komplex feladat megoldására továbbra is képtelenek.
+A kvantumbitek minősége és stabilitása szintén egy jelentős probléma. A jelenlegi kvantumszámítógépek kevés qubittel rendelkeznek, skálázhatóságuk limitált, emiatt szűk körben használhatóak, számos komplex feladat megoldására továbbra is képtelenek.\cite{BiróKoczkaPrantner}
 
 Környezetre való érzékenysége miatt, extrém környezetekben tárolják őket. Az olyan tényezők, mint például a zaj, számítási problémákat okozhat, amik kijavítása rendkívül időigényes.
 
@@ -111,11 +111,11 @@ Nehézségei ellenére a kvantumszámítógépek számos lehetőséget is hordoz
 
 Legfontosabb potenciáljuk a gyorsaságuk. Egy kvantumszámítógép sokkal gyorsabban képes elvégezni számításokat, mint a klasszikus számítógépek. Ez annak köszönhető, hogy egy klasszikus számítógép szekvenciálisan végzi feladatait, ezzel szemben a kvantumszámítógépek párhuzamosságra képesek.
 
-Bár számos komplex feladat megoldására jelenleg is képtelenek, léteznek olyan összetettebb problémák, amiben a kvantumszámítógépek megfelelőnek bizonyultak, míg a klasszikus számítógépek számára megoldhatatlanok voltak. Ilyenek például különböző optimalizálási problémák, illetve faktoriális számítás. Ezek mögött számos kvantumalgoritmus jelenik meg, amely hasonlóan egy új ága a kvantuminformatikának.
+Bár számos komplex feladat megoldására jelenleg is képtelenek, léteznek olyan összetettebb problémák, amiben a kvantumszámítógépek megfelelőnek bizonyultak, míg a klasszikus számítógépek számára megoldhatatlanok voltak. Ilyenek például különböző optimalizálási problémák, illetve faktoriális számítás. Ezek mögött számos kvantumalgoritmus jelenik meg, amely hasonlóan egy új ága a kvantuminformatikának.\cite{WikipediaQcomuputer}
 
 A gyorsasági és számítási előnyei miatt több más iparág segítésére is szolgálhatnak a kvantumszámítógépek, többek között az anyag- és a gyógyszerkutatás is ide tartozik.
 
-Viszont ezek az előnyök veszélyeket is hordozhatnak magukban. A már említett Shor algoritmus egy szám prímtényezős felbontását végzi el hatékonyan. A problémát az okozza, hogy a jelenlegi titkosítási algoritmusok (például az RSA) nagy része emiatt védtelen lesz, mivel ezek prímszámokat használnak titkosításra. Természetesen ezekre a problémákra is léteznek kutatások, így született a kvantumkriptográfia területe, ami fejlettebb biztonságot ígér.
+Viszont ezek az előnyök veszélyeket is hordozhatnak magukban. A már említett Shor algoritmus egy szám prímtényezős felbontását végzi el hatékonyan. A problémát az okozza, hogy a jelenlegi titkosítási algoritmusok (például az RSA\footnote{\emph{''Ez napjaink egyik leggyakrabban használt titkosítási eljárása. Az eljárás elméleti alapjait a moduláris számelmélet és a prímszámelmélet egyes tételei jelentik.''\cite{RSA}}}) nagy része emiatt védtelen lesz, mivel ezek prímszámokat használnak titkosításra. Természetesen ezekre a problémákra is léteznek kutatások, így született a kvantumkriptográfia területe, ami fejlettebb biztonságot ígér.\cite{BiróKoczkaPrantner}
 
 A sok új lehetőség és a felsorolt előnyök nem léteznének a kvantum logikai kapuk nélkül, amik az alapkövei a kvantumszámítógépeknek.
 
@@ -125,7 +125,7 @@ Elektromos impulzusokhoz értékeket társítunk, az alapján hogy küldtünk-e 
 
 Ezekhez az impulzusokhoz többnyire logikai kapukat társítunk, melyek bináris operátorokat foglalnak magukban. A logikai kapuk alapvető építőkövei az elektronikának és számos célra használják őket. Összekapcsolásukkal áramköröket alakíthatunk ki, amik lineárisak és balról jobbra értelmezzük őket. A bal oldali vezetékek jelentik a bemenetet, míg a jobb oldaliak a kimenetet. Az ismertebb kapukhoz speciális ábrák és igazságtáblák tartoznak.
 
-Az igazságtáblák a klasszikus logika alapvető eszközei, amelyek segítségével értelmezhetjük az adott műveleteket, valamint ellenőrizhetjük áramköreinket. Megmutatják az összes lehetséges bemeneti kombinációt, illetve a műveletek alkalmazása után a várható kimenetet is. Ezek a logikai műveleteket, kifejezéseket Boole-algebrának nevezzük, amely egy 19. századi matematikus, George Boole nevét viseli
+Az igazságtáblák a klasszikus logika alapvető eszközei, amelyek segítségével értelmezhetjük az adott műveleteket, valamint ellenőrizhetjük áramköreinket. Megmutatják az összes lehetséges bemeneti kombinációt, illetve a műveletek alkalmazása után a várható kimenetet is. Ezek a logikai műveleteket, kifejezéseket Boole-algebrának nevezzük, amely egy 19. századi matematikus, George Boole nevét viseli.\cite{Chris Bernhardt}
 \subsection{Logikai kapuk}
 \subsubsection{Buffer}
 A buffer kapuk kimenete megegyezik a kimenetükkel, egy biten értelmezzük. Jele: $A$
@@ -320,7 +320,7 @@ A kizáró vagy negáltja, értéke akkor hamis, ha a bemenetek különböznek J
 \subsection{Univerzális kapuk}
 Léteznek olyan logikai kapuk, amelyek képesek reprodukálni bármely másik működését. Ezek az univerzális kapuk lehetővé teszik akármelyik logikai függvény leképezését, ami azt jelenti, hogy akár tetszőleges áramkör is megvalósítható velük.
 
-Bizonyítható, hogy bármilyen logikai függvény összeállítható csak NOT és AND, vagy NOT és OR függvények kombinációival. Mint láttuk, ezek a kapuk ötvözhetőek, erre szolgálnak a NAND és NOR kapuk.
+Bizonyítható, hogy bármilyen logikai függvény összeállítható csak NOT és AND, vagy NOT és OR függvények kombinációival. Mint láttuk, ezek a kapuk ötvözhetőek, erre szolgálnak a NAND és NOR kapuk.\cite{Chris Bernhardt}
 
 Ebből következtethető, hogy bármilyen Boole-függvény megvalósítható olyan áramkörrel, amely csak NAND vagy NOR kapukat alkalmaz. Gyakran emiatt előnyt élveznek, mivel más kapuknak nincs ilyen tulajdonsága.
 
@@ -341,7 +341,7 @@ A kvantumbit, röviden qubit, a kvantuminformatika alapvető építőeleme, és 
 	\label{fig:bitqubit}
 \end{figure}
 
-Ahogy az \az{\ref{fig:bitqubit}}.~ábrán látható, a qubit számos állapotát egy úgynevezett Bloch gömbön ábrázoljuk, északi pólusán $\ket{0}$, déli pólusán pedig $\ket{1}$ helyezkedik el. A $\ket{}$ és $\bra{}$ jelöléseket braket-nek nevezzük, de Dirac jelölésként is ismert, és a kvantumállapotok jelölésében segít. A ket ($\ket{\Psi}$) egy oszlopvektort, a bra ($\bra{\Psi}$) pedig egy sorvektort jelöl.
+Ahogy az \az{\ref{fig:bitqubit}}.~ábrán látható, a qubit számos állapotát egy úgynevezett Bloch-gömbön ábrázoljuk, északi pólusán $\ket{0}$, déli pólusán pedig $\ket{1}$ helyezkedik el. A $\ket{}$ és $\bra{}$ jelöléseket braket-nek nevezzük, de Dirac jelölésként is ismert, és a kvantumállapotok jelölésében segít. A ket ($\ket{\Psi}$) egy oszlopvektort, a bra ($\bra{\Psi}$) pedig egy sorvektort jelöl.\cite{Chris Bernhardt}
 
 A kvantummechanika alapelvei és a qubitok sajátos tulajdonságai lehetővé teszik
 olyan számítási feladatok elvégzését, amelyek a hagyományos számítógépek számára gyakorlatilag lehetetlenek lennének.
@@ -352,12 +352,12 @@ Egy qubit állapotát a következőképpen adhatjuk meg:
 \begin{equation}\label{qubitallapot}
 	\ket{\Psi}=\alpha\ket{0}+\beta\ket{1},
 \end{equation}
-ahol $\alpha$ és $\beta$ komplex számok, valamint teljesül, hogy $|\alpha|^2+|\beta|^2=1$. Ez azt jelenti, hogy a $\ket{\Psi}$ kvantumbit $|\alpha|^2$ eséllyel 0, $|\beta|^2$-el pedig 1 lesz. Ezt szuperpozíciónak nevezzük. A két szélső érték, azaz $\ket{0}$ vagy $\ket{1}$ akkor áll elő, ha $\alpha$ 0 vagy 1, $\beta$ pedig ennek ellentettje. A szuperpozíció legjobban a Schrödinger macskája gondolatkísérlettel prezentálható, melyet Erwin Schrödinger fogalmazott meg 1935-ben.
+ahol $\alpha$ és $\beta$ komplex számok, valamint teljesül, hogy $|\alpha|^2+|\beta|^2=1$. Ez azt jelenti, hogy a $\ket{\Psi}$ kvantumbit $|\alpha|^2$ eséllyel 0, $|\beta|^2$-el pedig 1 lesz. Ezt szuperpozíciónak nevezzük. A két szélső érték, azaz $\ket{0}$ vagy $\ket{1}$ akkor áll elő, ha $\alpha$ 0 vagy 1, $\beta$ pedig ennek ellentettje. A szuperpozíció legjobban a Schrödinger macskája gondolatkísérlettel prezentálható, melyet Erwin Schrödinger fogalmazott meg 1935-ben.\cite{Geszti Tamás,LandauLifsic}
 
-A qubit másik fontos jelensége a kvantum-összefonódás. Ez egy olyan jelenség a kvantummechanikában, amelyben két vagy több részecske állapota olyan összekapcsolt módon van, hogy az egyiken végzett mérések azonnal hatnak a másikra, függetlenül attól, hogy a részecskék milyen fizikai távolságra vannak egymástól.
+A qubit másik fontos jelensége a kvantum-összefonódás. Ez egy olyan jelenség a kvantummechanikában, amelyben két vagy több részecske állapota olyan összekapcsolt módon van, hogy az egyiken végzett mérések azonnal hatnak a másikra, függetlenül attól, hogy a részecskék milyen fizikai távolságra vannak egymástól.\cite{Chris Bernhardt}
 
 \subsection{Qubit mérése}
-Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése során az eredmény kvantumállapota "összeomlik" az adott értékre, amelyet a mérés során megfigyeltünk. Azaz elveszti a szuperpozícióját és az összefonódottságát, ami azt jelenti, hogy a mérés után a rendszer elveszíti a kvantumos jellegét, és klasszikus állapotba kerül. Ez az összeomlás a kvantummechanika alapvető jelensége, amely lehetővé teszi a kvantumrendszer állapotának rögzítését a mérés pillanatában. Emiatt a mérések kritikus szerepet játszanak.
+Méréskor eredményként egyetlen klasszikus bitet kapunk. A qubit mérése során az eredmény kvantumállapota összeomlik az adott értékre, amelyet a mérés során megfigyeltünk. Azaz elveszti a szuperpozícióját és az összefonódottságát, ami azt jelenti, hogy a mérés után a rendszer elveszíti a kvantumos jellegét, és klasszikus állapotba kerül. Ez az összeomlás a kvantummechanika alapvető jelensége, amely lehetővé teszi a kvantumrendszer állapotának rögzítését a mérés pillanatában. Emiatt a mérések kritikus szerepet játszanak.\cite{Chris Bernhardt}
 
 \begin{figure}[H]
 	\centering
@@ -403,7 +403,7 @@ Ez egy tetszőleges kvantumbiten:
 
 
 \subsubsection{X, vagy Pauli-X}
-A klasszikus NOT kapunak felel meg, bit-flipnek is hívják. A Bloch gömb $X$ tengelyére tükröz. Egy qubiten működik. Alakja:
+A klasszikus NOT kapunak felel meg, bit-flipnek is hívják. A Bloch-gömb $X$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
 \begin{equation}
 	X= 
@@ -443,7 +443,7 @@ Az X kapu hatására a valószínűségi amplitúdók cserélődnek. Inverze saj
 
 
 \subsubsection{Y, vagy Pauli-Y}
-Az X kapuhoz hasonlóan felcseréli a $\ket{0}$-t és az $\ket{1}$-t, viszont az Y kapu a relatív fázist is megváltoztatja. A Bloch gömb $Y$ tengelyére tükröz. Egy qubiten működik. Alakja:
+Az X kapuhoz hasonlóan felcseréli a $\ket{0}$-t és az $\ket{1}$-t, viszont az Y kapu a relatív fázist is megváltoztatja. A Bloch-gömb $Y$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
 \begin{equation}
 	Y= 
@@ -482,7 +482,7 @@ ahol $i$ komplex szám. Inverze saját maga, tehát például:
 
 
 \subsubsection{Z, vagy Pauli-Z}
-Phase-flip kapunak is hívják, ebből adódóan a fázist cseréli meg. A Bloch gömb $Z$ tengelyére tükröz. Egy qubiten működik. Alakja:
+Phase-flip kapunak is hívják, ebből adódóan a fázist cseréli meg. A Bloch-gömb $Z$ tengelyére tükröz. Egy qubiten működik. Alakja:
 
 \begin{equation}
 	Z= 
@@ -585,7 +585,7 @@ A Hadamard kapu inverze saját maga, tehát például:
 
 
 \subsubsection{S, vagy Phase}
-Más néven fáziseltolási kapu. $\pi/2$ fáziseltolást alkalmaz a qubit állapotára. A Bloch gömb körül az óramutató járásával megegyező irányban forgat $\pi/2$ radiánnal. Egy qubiten működik. Alakja:
+Más néven fáziseltolási kapu. $\pi/2$ fáziseltolást alkalmaz a qubit állapotára. A Bloch-gömb körül az óramutató járásával megegyező irányban forgat $\pi/2$ radiánnal. Egy qubiten működik. Alakja:
 
 \begin{equation}
 	S= 
@@ -618,7 +618,7 @@ Ez egy tetszőleges kvantumbiten:
 
 
 \subsubsection{T, vagy $\pi/8$}
-A T kapu, hasonlóan az S kapuhoz, fáziseltolást alkalmaz egy qubit állapotára. Az állapotvektort $\pi/4$ radiánnal forgat a Bloch gömb körül, óramutató járással megegyező irányban. Alakja:
+A T kapu, hasonlóan az S kapuhoz, fáziseltolást alkalmaz egy qubit állapotára. Az állapotvektort $\pi/4$ radiánnal forgat a Bloch-gömb körül, óramutató járással megegyező irányban. Alakja:
 
 \begin{equation}
 	T= 
@@ -720,7 +720,7 @@ Ahogy az \az{\ref{fig:toffoligate}}.~ábrán látható, a Toffoli kapu CNOT műv
 
 
 \subsection{Univerzális kvantumkapuk}
-Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, mivel csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk univerzális megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.
+Klasszikus esetben tapasztaltuk, hogy léteznek univerzális kapuk. Ez amiatt lehetséges, mivel csak végesen sok Boole-függvény van egy adott számú változó esetén. Kvantumkapuknál elmondható, hogy a lehetséges kapuk száma végtelen sok. Emiatt a fontos különbség miatt univerzális kvantumkapuk halmaza sem létezik. Ellenben, ha a kapuknak vesszük egy véges számú gyűjteményét, akkor beszélhetünk univerzális megoldásokról, viszont ezek sem használhatóak minden lehetséges kvantumáramkörre, csak hozzávetőlegesen.\cite{Chris Bernhardt}
 
 \section{Reverzibilis kapuk}
 Megfordítható kapuknak is nevezik őket. Két alapvető tulajdonsága van:
@@ -729,7 +729,7 @@ Megfordítható kapuknak is nevezik őket. Két alapvető tulajdonsága van:
 	\item Lehetővé teszik a bemenetek helyreállítását a kimenetekből anélkül, hogy információt veszítenének.
 \end{enumerate}
 
-Vegyük például az OR kaput. Mint láttuk, értéke csak akkor hamis, ha bemenetei hamisak. Viszont minden más esetben nem tudjuk megállapítani, hogy melyik volt az aktuális bemenet a háromból, hacsak nincs további információnk. Tehát az OR kapuról elmondható, hogy irreverzibilis (nem reverzibilis) kapu. A legtöbb klasszikus logikai kapu szintén ebbe a csoportba tartozik, a már említett kapuk közül ez alól a CNOT és a Toffoli kivétel.
+Vegyük például az OR kaput. Mint láttuk, értéke csak akkor hamis, ha bemenetei hamisak. Viszont minden más esetben nem tudjuk megállapítani, hogy melyik volt az aktuális bemenet a háromból, hacsak nincs további információnk. Tehát az OR kapuról elmondható, hogy irreverzibilis (nem reverzibilis) kapu. A legtöbb klasszikus logikai kapu szintén ebbe a csoportba tartozik, a már említett kapuk közül ez alól a CNOT és a Toffoli kivétel.\cite{Chris Bernhardt}
 
 Lehetőség van klasszikus logikai művelet végrehajtására csak reverzibilis kapuk használatával, de ilyen esetekben gyakran szükségessé válik a segédbitek használata.
 
@@ -737,18 +737,46 @@ Alapvetően bármilyen reverzibilis klasszikus kapu megvalósítható kvantumsz�
 
 A klasszikus logikai kapukkal ellentétben, a kvantum kapuk közül mindegyik reverzibilis.
 
+\chapter{Kvantumlogikai kapuk oktatása}
+Az előző fejezetekben bemutatott ismeretek csak a szakdolgozathoz szükséges tartalommal rendelkeznek. A témakör még bővebben fejthető, viszont elmondható, hogy már megfelelő kezdést nyújtanak egy olyan ember számára, aki még csak ismerkedni szeretne a kvantumlogikai kapukkal.
+
+Oktatás szempontjából a magyarországi Programtervező informatikus BSc képzésekben a matematikai és számítástudományi ismeretek témakörei elegendő háttérismeretet nyújtanak a kvantumlogikai kapuk alapvető jellemzőjének megértéséhez, amennyiben azok hangsúlyozásra kerülnek. Szükséges megjegyezni, hogy a kvantuminformatika egyéb témaköreihez már ez nem elegendő, de ez jelen szakdolgozatnak nem célja. 
+\section{Szükséges ismeretek}
+Mint ahogy azt láttuk, a kvantumlogikai kapuk működésének megértéséhez az alábbi matematikai háttér szükséges:
+\begin{itemize}
+	\item Számításhoz:
+	\begin{itemize}
+		\item Valós- és komplex számok.
+		\item Mátrixok és azokkal folytatott szorzás.
+	\end{itemize}
+	\item Reprezentációhoz (Bloch-gömb):
+	\begin{itemize}
+		\item Koordináta geometria, ezen belül gömbkoordináták.
+		\item Trigonometrikus függvények.
+	\end{itemize}
+\end{itemize}
+
+Oktatás céljától függően a reprezentáció elhagyható, mivel a kapuk lényege és működése a számításokból is érthető. Ennek ellenére a könnyebb megértés érdekében javasolt, hogy követni tudják a hallgatók a qubit állapot változásokat egy Bloch-gömbön.
+
+\section{Egyetem és középiskola}
+Kutatásom során megvizsgáltam a magyarországi Programtervező Informatikus BSc képzések matematikai és számítástudományi ismereteit, valamint a fizika és matematika alapok miatt az aktuális NAT-ot\footnote{Nemzeti alaptanterv} is. Elsősorban az előző alfejezetben említett szükséges háttérismeretek alapján folytattam az elemzést.
+
+Az egyetemek szempontjából elmondható, hogy a számításokhoz szükséges matematikai háttérismeret amit nyújtanak az elegendő mennyiségű, mélységű. A komplex számok és a trigonometrikus függvények viszont nem kapnak kellő hangsúlyt, hogy ezt a hallgató később magabiztosan alkalmazni tudja. A reprezentáció megértéséhez szükséges koordinátageometriai ismeretek viszont nem elegendőek.
+
+Ezen eredmények javítására a lehetséges megoldások közé tartoznak különböző alapozó tárgyak bevezetései, valamint a meglévők bővítése, átformálása. Érdemes továbbá a tantárgyi koncentrációk erősítése, hogy a hallgatók több területről is alkalmazni tudják ismereteiket. Itt javasolt olyan kurzusok bevonása, melyek alapvetően is kötődhetnek a kvantumlogikai kapuk témaköréhez, például algoritmusokkal foglalkozó tárgyak.
+
 \chapter{Tanulás segítő program és applikáció}
 \section{Technológiai körültekintés}
-A különböző technológiák és eszközök közötti választás nem mindig egyértelmű. Ezért szükséges részletesen mérlegelni és összehasonlítani az elérhető lehetőségeket. A nyelv, keretrendszer vagy platform kiválasztása előtt érdemes megfontolni a különböző szempontokat, mint például a teljesítmény, a fejlesztési idő és a támogatottság. Szakdolgozatom írásának kezdetekor, a nyelv és keretrendszer választásnál figyelembe vettem az alábbi elképzeléseket:
+A különböző technológiák és eszközök közötti választás nem mindig egyértelmű. Ezért szükséges részletesen mérlegelni és összehasonlítani az elérhető lehetőségeket. A nyelv, keretrendszer\footnote{A keretrendszer egy előre meghatározott struktúra és szabványok összessége, amelyek segítségével könnyebben fejleszthetők és működtethetők a programok.} vagy platform kiválasztása előtt érdemes megfontolni a különböző szempontokat, mint például a teljesítmény, a fejlesztési idő és a támogatottság. Szakdolgozatom írásának kezdetekor, a nyelv és keretrendszer választásnál figyelembe vettem az alábbi elképzeléseket:
 \begin{enumerate}
 	\item Két részből álljon: egy telefonos applikációból és egy asztali alkalmazásból, mindkettő angol nyelven.
 	\item Az egy kvantumbites kapuk egy csoportját mutassa be, ezeket interaktív, tanulást segítő formában.
 	\item A telefonos applikáció képes legyen csatlakozni az asztali alkalmazásra, majd szenzor adatokat küldeni. Fontos volt továbbá, hogy rövid ismertetőket tudjon a felhasználó olvasni az adott kapukról.
 	\item A program egy letisztult felületet nyújtson, ahol a felhasználó válogathat az adott egy kvantumbites kapuk közül. Ezekről kapja meg azt a leírást, ami a telefonon is elérhető, valamint animációkat is tudjon nézni róluk.
-	\item A program középpontja egy Bloch gömb legyen, egy állapotvektorral. Ezt a felhasználó tudja állítani, valamint amennyiben csatlakoztatott telefont, ki is tudja próbálni az adott kapukat. A telefon forgatásával képes legyen a cél állapotba igazítani a vektort, ez egy minimális hibatűréssel történjen.
+	\item A program középpontja egy Bloch-gömb legyen, egy állapotvektorral. Ezt a felhasználó tudja állítani, valamint amennyiben csatlakoztatott telefont, ki is tudja próbálni az adott kapukat. A telefon forgatásával képes legyen a cél állapotba igazítani a vektort, ez egy minimális hibatűréssel történjen.
 \end{enumerate}
 
-A program lehetőségeit szűkítette a tény, hogy minél pontosabb ábrákat, reprezentációkat kellett keresnem. A gömb forgatását vettem a legmeghatározóbb tényezőnek választásnál. Egy egyszerű 3D-s objektumot több nyelv és keretrendszer is támogat. Kipróbáltam, hogy ez Java Fx-ben valamint  PythonQt-ban hogy jelenik meg. Viszont, mint ahogy azt \az{\ref{fig:bitqubit}}.~ábrán is látható, a Bloch gömb tartalmaz egy vektort, aminek pozíciója változhat, ami miatt a klasszikus megjelenítés nem elegendő, hiszen nem az objektumot forgatjuk. Emiatt fontos volt áttekintenem, hogy milyen kvantumáramkörökkel foglalkozó könyvtárakkal szolgálnak a keretrendszerek.
+A program lehetőségeit szűkítette a tény, hogy minél pontosabb ábrákat, reprezentációkat kellett keresnem. A gömb forgatását vettem a legmeghatározóbb tényezőnek választásnál. Egy egyszerű 3D-s objektumot több nyelv és keretrendszer is támogat. Kipróbáltam, hogy ez Java Fx-ben valamint  PythonQt-ban hogy jelenik meg. Viszont, mint ahogy azt \az{\ref{fig:bitqubit}}.~ábrán is látható, a Bloch-gömb tartalmaz egy vektort, aminek pozíciója változhat, ami miatt a klasszikus megjelenítés nem elegendő, hiszen nem az objektumot forgatjuk. Emiatt fontos volt áttekintenem, hogy milyen kvantumáramkörökkel foglalkozó könyvtárakkal szolgálnak a keretrendszerek.
 
 A telefonos applikáció kapcsán fontos volt, hogy a választott operációs rendszer minél több felhasználót lefedjen, valamint közel pontos szenzor adatot legyen képes küldeni.
 
@@ -757,7 +785,7 @@ A telefonos applikáció kapcsán fontos volt, hogy a választott operációs re
 \subsubsection{Python}
 A Python egy magas szintű, interpretált programozási nyelv, amely egyszerűségéről és könnyen olvashatóságáról ismert. Manapság a legnépszerűbb nyelv.
 
-Szintaxisát úgy tervezték, hogy intuitív és olvasható legyen, így kezdők és tapasztalt programozók számára egyaránt nagyszerű választás. Hangsúlyozza a kód olvashatóságát, és lehetővé teszi a fejlesztők számára, hogy más nyelvekhez képest kevesebb kódsorban oldjanak meg problémákat.
+Szintaxisát úgy tervezték, hogy intuitív és olvasható legyen, így kezdők és tapasztalt programozók számára egyaránt nagyszerű választás. Hangsúlyozza a kód olvashatóságát, és lehetővé teszi a fejlesztők számára, hogy más nyelvekhez képest kevesebb kódsorban oldjanak meg problémákat.\cite{Python}
 
 A Python emellett egy interpreteres  nyelv, ami azt jelenti, hogy a Pythonban írt kód soronként hajtódik végre, nem pedig előzetesen gépi kódba fordítva. Ez megkönnyíti a fejlesztést és a hibakeresést, mivel a kód azonnal végrehajtható külön fordítási lépés nélkül.
 
@@ -779,10 +807,10 @@ A PySide lehetővé teszi a fejlesztők számára, hogy Qt alapú alkalmazásoka
 Az alkalmazás Pyside6-ot használ, ami Qt6-ot támogat
 
 \subsubsection{Qiskit könyvtár}
-A legjobban elterjedt nyílt forráskódú Python könyvtár ami kvantumáramkörökkel foglalkozik, az IBM fejleszti. Segítségével különböző áramköröket alakíthatunk ki, és szimulálhatunk. Lehetőség van az adott qubit állapotokat Bloch gömbön is reprezentálni. Hasonló könyvtárakhoz képest sokkal kvantumáramkör és kvantumszámítás központúbb, ami az asztali alkalmazás magját adja.
+A legjobban elterjedt nyílt forráskódú Python könyvtár ami kvantumáramkörökkel foglalkozik, az IBM fejleszti. Segítségével különböző áramköröket alakíthatunk ki, és szimulálhatunk. Lehetőség van az adott qubit állapotokat Bloch-gömbön is reprezentálni. Hasonló könyvtárakhoz képest sokkal kvantumáramkör és kvantumszámítás központúbb, ami az asztali alkalmazás magját adja.\cite{Qiskit}
 
 \subsubsection{Matplotlib könyvtár}
-A Qiskit-ben kialakított áramköröket és Bloch gömböket a Matplotlib könyvtárral könnyen meg lehet jeleníteni. A könyvtár széles körben biztosít megjelenítést különböző diagramokhoz, 2D és 3D objektumokhoz, és még sok máshoz. A Matplotlib egy népszerű Python-könyvtár, amelyet statikus, interaktív és animált vizualizációk létrehozására használnak Pythonban. Széles körben használják különféle területeken.
+A Qiskit-ben kialakított áramköröket és Bloch-gömböket a Matplotlib könyvtárral könnyen meg lehet jeleníteni. A könyvtár széles körben biztosít megjelenítést különböző diagramokhoz, 2D és 3D objektumokhoz, és még számos más lehetőséghez. A Matplotlib egy népszerű Python-könyvtár, amelyet statikus, interaktív és animált vizualizációk létrehozására használnak Pythonban. Széles körben használják különféle területeken.
 
 A Matplotlib könyvtárral előállított objektumokat egyszerűen hozzá lehet adni a PySide projektekhez. 
 
@@ -798,7 +826,7 @@ Ez könyvtár a telefon csatlakoztatása miatt szükséges.
 
 \subsection{Applikáció}
 \subsubsection{Android Studio}
-Android-alkalmazások fejlesztésének hivatalos integrált fejlesztői környezete (IDE). A Google fejlesztette, és a JetBrains IntelliJ IDEA szoftverén alapul. 
+Android-alkalmazások fejlesztésének hivatalos integrált fejlesztői környezete (IDE). A Google fejlesztette, és a JetBrains IntelliJ IDEA szoftverén alapul.\cite{Android Studio}
 
 Felhasználóbarát felülettel rendelkezik, amely különböző paneleket tartalmaz a kód szerkesztéséhez, az elrendezések megtervezéséhez, a projektfájlok kezeléséhez, valamint a naplók és hibák megtekintéséhez.
 
@@ -815,7 +843,7 @@ A Java egy széles körben használt, magas szintű objektum-orientált programo
 
 A Java szintaxis hasonló a C nyelvekhez, így az ezeket ismerő fejlesztők viszonylag könnyen megtanulhatják. 
 
-A Java egy átfogó könyvtárral rendelkezik. Java Development Kit (JDK) néven ismert, amely számos segítséget kínál különféle feladatokhoz. A könyvtár segít a fejlesztőknek robusztus és funkciókban gazdag alkalmazások hatékonyabb felépítésében.
+A Java egy átfogó könyvtárral rendelkezik. Java Development Kit (JDK) néven ismert, amely számos segítséget kínál különféle feladatokhoz. A könyvtár segít a fejlesztőknek robusztus és funkciókban gazdag alkalmazások hatékonyabb felépítésében.\cite{Java}
 
 Ezek mellett széles közössége és támogatottsága miatt a telefonos applikáció fejlesztésénél számomra egyértelmű volt a Java használata.
 
@@ -835,7 +863,7 @@ Az ablak megjelenítéséért a Window osztály konstruktora, valamint a hozzá 
 \end{figure}
 
 \subsubsection{Menü}
-A program tartalmaz egy felső menü sávot, ebben egy States menüponttal. Ezen belül találhatóak az egyes bázisvektor állítási lehetőségek a Bloch gömbhöz. 
+A program tartalmaz egy felső menü sávot, ebben egy States menüponttal. Ezen belül találhatóak az egyes bázisvektor állítási lehetőségek a Bloch-gömbhöz. 
 
 \begin{lstlisting}[caption={Menü inicializálása}]
 # Menu Bar
@@ -859,14 +887,14 @@ self.menu_states.addAction(self.one_state_option)
 self.menu.addMenu(self.menu_states)
 \end{lstlisting}
 
-\subsubsection{Bloch gömb}
-A Bloch gömb megvalósítása a Qiskit visualization csomagjának segítségével történt. Ez tartalmaz egy plot függvényt, ami egy matplotlib ábrával tér vissza.A programban paraméterei közé tartozik egy három elemű tömb, ami alapján a gömb készül, valamint a koordináta típusa. 
+\subsubsection{Bloch-gömb}
+A Bloch-gömb megvalósítása a Qiskit visualization csomagjának segítségével történt. Ez tartalmaz egy plot függvényt, ami egy matplotlib ábrával tér vissza.A programban paraméterei közé tartozik egy három elemű tömb, ami alapján a gömb készül, valamint a koordináta típusa. 
 
-Az elkészült matplotlib ábrát a Pyside FigureCanvasQTAgg osztály egy példányához adom, ezzel egy "vásznat" biztosítva a Bloch gömbnek. Ez a futás során folyamatosan frissül a különböző vektorállapotok miatt.
+Az elkészült matplotlib ábrát a Pyside FigureCanvasQTAgg osztály egy példányához adom, ezzel egy vásznat biztosítva a Bloch-gömbnek. Ez a futás során folyamatosan frissül a különböző vektorállapotok miatt.
 
 A vásznat egy QHBoxLayout példányhoz adom, ami horizontálisan jeleníti meg az elemeket.
 
-\begin{lstlisting}[caption={A Bloch gömb kezdő állapota a konstruktorban},label=blochspherestart]
+\begin{lstlisting}[caption={A Bloch-gömb kezdő állapota a konstruktorban},label=blochspherestart]
 # Bloch sphere part
 self.bloch_vector = BlochVector.BlochVector(0.0, 0.0)
 self.fig = plot_bloch_vector([1, self.bloch_vector.theta, self.bloch_vector.phi], coord_type='spherical')
@@ -874,7 +902,7 @@ self.canvas = FigureCanvasQTAgg(self.fig)
 \end{lstlisting}
 
 \subsubsection{Jobb oldali információ panel}
-A Bloch gömb mellett a másik legfontosabb rész a felületen.
+A Bloch-gömb mellett a másik legfontosabb rész a felületen.
 
 A panel legfelső részén a szerver ip címe látható, ami a QLabel osztály példánya. A címet az általam létrehozott Server osztály egy példányából nyerem ki.
 
@@ -884,11 +912,11 @@ A következő elem a leírás. Ez egy QTextEdit példány, ami tartalmazza az ad
 
 A leíráshoz tartozik egy áramkörrajz a kapuról. Ez az alkalmazás indulásakor nem látszódik, csak amennyiben ellépünk a kezdő oldalról. A rajzot külön generáltattam és lementettem a Qiskit QuantumCircuit csomagjával.
 
-Az áramkör rajzhoz hasonlóan két gomb sem látszódik a kezdő állapotban, amik a QPushButton példányai. Mindkettő függ attól, hogy melyik kapu van kiválasztva. Az első felel az animációs ablak megjelenítéséért. A második gomb lenyomásával a program alkalmazza a kiválasztott kaput a Bloch gömbön és elindít egy forgatási metódust, amennyiben a felhasználó csatlakoztatott telefont. Ha ez nem történt meg, a program egy felugró ablakban figyelmeztet, hogy csatlakoztasson telefont. Az ablak egy QMessageBox példánnyal valósul meg
+Az áramkör rajzhoz hasonlóan két gomb sem látszódik a kezdő állapotban, amik a QPushButton példányai. Mindkettő függ attól, hogy melyik kapu van kiválasztva. Az első felel az animációs ablak megjelenítéséért. A második gomb lenyomásával a program alkalmazza a kiválasztott kaput a Bloch-gömbön és elindít egy forgatási metódust, amennyiben a felhasználó csatlakoztatott telefont. Ha ez nem történt meg, a program egy felugró ablakban figyelmeztet, hogy csatlakoztasson telefont. Az ablak egy QMessageBox példánnyal valósul meg
 
 A panel legalsó részén két QLabel példány látható, amik tartalmazzák a gömb jelenlegi koordinátáit, valamint a forgatás során megjelennek a célkoordináták is.
 
-A felsorolt elemeket egy QVBoxLayout példányhoz adom, ami vertikálisan jeleníti meg őket. Ezt pedig a már említett QHBoxLayout példányhoz adom, hogy a Bloch gömb mellett jelenjen meg.
+A felsorolt elemeket egy QVBoxLayout példányhoz adom, ami vertikálisan jeleníti meg őket. Ezt pedig a már említett QHBoxLayout példányhoz adom, hogy a Bloch-gömb mellett jelenjen meg.
 
 \begin{lstlisting}[caption={A jobb oldali panel és elemeinek létrehozása a konstruktorban}]
 # Right side of the program
@@ -1035,12 +1063,12 @@ def get_data(self):
 Ugyan a felhasználó nem érzékeli, de a program jelentős része háttérszámításokon alapul. Ehhez kialakítottam egy BlochVector osztályt, ahol az adott gömbkoordináták alapján tud az alkalmazás számításokat végezni.
 
 \subsubsection{Gömbkoordináták}
-A bejövő szenzor adatok és a számítások egyszerűsítése miatt gömb koordináta-rendszert használtam. Amennyiben ezt nem adom meg a Bloch gömb rajzolásakor, a Qiskit automatikusan a másik opciót, azaz a  Descartes-féle koordináta rendszert használja. Ennek megfelelően a paraméterében a három elemű tömb tartalma rendre (ami \az{\ref{blochspherestart}}.~kódban is látható):
+A bejövő szenzor adatok és a számítások egyszerűsítése miatt gömb koordináta-rendszert használtam. Amennyiben ezt nem adom meg a Bloch-gömb rajzolásakor, a Qiskit automatikusan a másik opciót, azaz a  Descartes-féle koordináta rendszert használja. Ennek megfelelően a paraméterében a három elemű tömb tartalma rendre (ami \az{\ref{blochspherestart}}.~kódban is látható):
 
 \begin{enumerate}
-	\item Az origótól mért távolság, tehát a gömb sugara. Ez jelen esetben mindig egy lesz. Jele: $r$
-	\item Azimut szög, azaz a pont és a $\phi=0$ tengely által meghatározott sík, valamint $\theta=0$ sík közötti hajlásszög az $x-y$ koordinátasíkban. Jele: $\theta$
-	\item A pontot és az origót összekötő egyenes hajlásszöge a $\phi=0$ irányhoz, azaz az $z$ tengellyel bezárt szög. Jele: $\phi$
+	\item Az origótól mért távolság, tehát a gömb sugara. Ez jelen esetben mindig egy lesz. Jele: $r$\cite{Dr. Kovács Emőd}
+	\item Azimut szög, azaz a pont és a $\phi=0$ tengely által meghatározott sík, valamint $\theta=0$ sík közötti hajlásszög az $x-y$ koordinátasíkban. Jele: $\theta$\cite{Dr. Kovács Emőd}
+	\item A pontot és az origót összekötő egyenes hajlásszöge a $\phi=0$ irányhoz, azaz az $z$ tengellyel bezárt szög. Jele: $\phi$\cite{Dr. Kovács Emőd}
 \end{enumerate}
 
 Mivel a gömb sugara nem változik, így a továbbiakban csak a $\theta$ és a $\phi$ értékei változnak.
@@ -1048,15 +1076,15 @@ Mivel a gömb sugara nem változik, így a továbbiakban csak a $\theta$ és a $
 A Qiskit csomagja mellett létrehoztam egy BlochVector osztályt, mely konstruktorában tárolja a szükséges értékeket a későbbi számításokhoz, megjelenítésekhez.
 
 \subsubsection{Standard- és véletlenszerű bázisvektorok generálása}
-Az alkalmazás menüsávjában a felhasználó kiválaszthatja, hogy milyen bázisvektor állást szeretne magának a gömb forgatása előtt használni. A kiválasztott opció elindítja az ahhoz tartozó eljárást, ami beállítja a Bloch gömb állapotát.
+Az alkalmazás menüsávjában a felhasználó kiválaszthatja, hogy milyen bázisvektor állást szeretne magának a gömb forgatása előtt használni. A kiválasztott opció elindítja az ahhoz tartozó eljárást, ami beállítja a Bloch-gömb állapotát.
 
-A véletlenszerű generálás esetén a metódus $\theta$ értékét 0 és $\pi$ között, $\phi$~-t pedig 0 és $2\pi$ közt határozza meg, a gömbkoordináta szabályainak megfelelően.
+A véletlenszerű generálás esetén a metódus $\theta$ értékét 0 és $\pi$ között, $\phi$~-t pedig 0 és $2\pi$ közt határozza meg, a gömbkoordináta szabályainak megfelelően.\cite{Dr. Kovács Emőd}
 
 Az említett szabályok alapján a $\ket{0}$ állapot $\theta=0$ $\phi=0$, $\ket{1}$ pedig $\theta=\pi$ $\phi=0$ állapotot fog kapni.
 
 A megadott koordinátákon kívül nincs különbség a három eljárásban, viszont a gombok és egyéb hívások miatt átláthatóbb opció volt ezeket nem egy metódusban tartani.
 
-\begin{lstlisting}[caption={Véletlenszerű bázisvektor generálása és Bloch gömb rajzolása}]
+\begin{lstlisting}[caption={Véletlenszerű bázisvektor generálása és Bloch-gömb rajzolása}]
 def __random_state(self):
 	# Set Bloch sphere to a random state
 	self.bloch_vector.theta = random.uniform(0.0, np.pi)
@@ -1109,7 +1137,7 @@ def pauli_x(self):
 	\ket{\Psi}=(r_\alpha)e^i(\phi a)\ket{0}+(r_\beta)e^i(\phi b)\ket{1}
 \end{equation}
 
-Ebben a formában négy változó van, két valós szám és két képzetes. Ezekből kiindulva az alábbi kód alapján történik théta és fí visszafejtése az új bázisvektorból. Ezeket az adatokat küldi tovább a program a forgatás ellenőrzéséhez.
+Ebben a formában négy változó van, két valós szám és két képzetes. Ezekből kiindulva az alábbi kód alapján történik théta és fí visszafejtése az új bázisvektorból. Ezeket az adatokat küldi tovább a program a forgatás ellenőrzéséhez.\cite{github}
 
 \begin{lstlisting}[caption={Fí és théta kinyerése az új bázisvektorból}]
 def get_spherical_coordinates_from_state_vector(state_vector_after_gate):
@@ -1156,7 +1184,7 @@ Az előző alfejezetekben tárgyalt elemei az asztali alkalmazásnak, mind hozz�
 \subsubsection{Tárolt szenzor adatok feldolgozása}
 A ciklus folyamatosan kéri az új szenzor adatokat. Ha üres tömböt kap, egy felugró ablak üzenete után a gömböt $\ket{0}$ állapotba állítja, újra kapcsolatot vár és kilép a ciklusból, ezzel együtt az eljárásból is.
 
-Ellenkező esetben a kapott adatokat ellenőrzi. Ha a tömb nem két elemű, valamint nem lehet float típusúvá konvertálni, akkor az adatot "eldobja", folytatja a következő érkezett adattal.
+Ellenkező esetben a kapott adatokat ellenőrzi. Ha a tömb nem két elemű, valamint nem lehet float típusúvá konvertálni, akkor az adatot eldobja, folytatja a következő érkezett adattal.
 
 Ezután a beérkezett szenzor adatok közül $\phi$ értékét módosítjuk, hogy 0 és $2\pi$ érték között legyen.
 
@@ -1175,10 +1203,10 @@ while True:
 				angles[1] = angles[1] + 2 * np.pi
 \end{lstlisting}
 
-\subsubsection{Bloch gömb újrarajzolása}
+\subsubsection{Bloch-gömb újrarajzolása}
 Minden új adatnál, a gömb újrarajzolásra kerül. Az előtte megjelenített rajz, valamint a vászon törlésre kerül, memória- és helyfelszabadítás miatt. Helyére egy új gömb jut, ahol $\theta$ és $\phi$ értéke az új szenzoradatokra cserélődik.
 
-\begin{lstlisting}[caption={Bloch gömb újrarajzolása}]
+\begin{lstlisting}[caption={Bloch-gömb újrarajzolása}]
 plt.close()
 self.fig.canvas.flush_events()
 self.fig = plot_bloch_vector([1, angles[0], angles[1]], coord_type='spherical')
@@ -1189,7 +1217,7 @@ self.canvas.draw()
 
 
 \subsubsection{Gömbkoordináta ellenőrzése}
-A Bloch gömb kirajzoltatása után a ciklus végén ellenőrzi a program, hogy a jelenlegi vektor állása megfelel-e a kvantumkapu alkalmazásával kapott bázisvektornak. Az egyszerűbb működés érdekében ez 0.1 relatív- és 0.15 abszolút toleranciával működik. Ha a felhasználó ezeken belül van, a program egy felugró ablakban jelzi hogy megtalálta a keresett bázisvektort és a ciklus leáll. Ezután újra elvégezheti a műveletet, de akár más kaput is választhat, mindaddig, amíg a telefon csatlakoztatva marad.
+A Bloch-gömb kirajzoltatása után a ciklus végén ellenőrzi a program, hogy a jelenlegi vektor állása megfelel-e a kvantumkapu alkalmazásával kapott bázisvektornak. Az egyszerűbb működés érdekében ez 0.1 relatív- és 0.15 abszolút toleranciával működik. Ha a felhasználó ezeken belül van, a program egy felugró ablakban jelzi hogy megtalálta a keresett bázisvektort és a ciklus leáll. Ezután újra elvégezheti a műveletet, de akár más kaput is választhat, mindaddig, amíg a telefon csatlakoztatva marad.
 
 \section{Applikáció bemutatása}
 Mivel a hangsúly elsősorban az asztali alkalmazáson van, így az android applikáció egy egyszerű megvalósítást képvisel, viszont hasonlóan az elképzelések alapján készült, valamint bővíthető.
@@ -1274,7 +1302,7 @@ else
 \end{lstlisting}
 
 \subsection{Szenzor adatok gyűjtése}
-Miután a telefon sikeresen csatlakozott az asztali alkalmazáshoz, az applikáció példányosít egy SensorManager osztályt, ez felel a szenzorok létrehozásáért, valamint fel- és leregisztrálásáért.
+Miután a telefon sikeresen csatlakozott az asztali alkalmazáshoz, az applikáció példányosít egy SensorManager osztályt, ez felel a szenzorok létrehozásáért, valamint fel- és leregisztrálásáért.\cite{Android Studio}
 
 Miután a példányosítás megtörtént, a program létrehoz egy szenzort és regisztrálja azt. Az Android Studio számos szenzortípussal szolgál, ezek mind különböző feladatot látnak el. A forgatás szempontjából számunkra az Orientation szenzor típus a megfelelő. Regisztráláskor fontos megadni a szenzoradat késleltetés idejét. Ez lehet beépített konstans érték, de lehet általunk megadott egyedi érték is. 
 
@@ -1301,15 +1329,15 @@ Kapcsolat bontása esetén a SensorManager példány leregisztrálja a szenzort,
 \section{Tesztelések}
 
 \subsection{Unit tesztek}
-"A unit-teszt, vagy más néven egységteszt, a metódusokat teszteli. Adott paraméterekre ismerjük a
-metódus visszatérési értékét (vagy mellékhatását). A unit-teszt megvizsgálja, hogy a tényleges
-visszatérési érték megegyezik-e az elvárttal. Ha igen, sikeres a teszt, egyébként sikertelen. Elvárás,
-hogy magának a unit-tesztnek ne legyen mellékhatása.
+''\emph{A unit-teszt, vagy más néven egységteszt, a metódusokat teszteli. Adott paraméterekre ismerjük a
+	metódus visszatérési értékét (vagy mellékhatását). A unit-teszt megvizsgálja, hogy a tényleges
+	visszatérési érték megegyezik-e az elvárttal. Ha igen, sikeres a teszt, egyébként sikertelen. Elvárás,
+	hogy magának a unit-tesztnek ne legyen mellékhatása.}
 
-A unit-tesztelést majd minden fejlett programozási környezet (integrated development environment,
-IDE) támogatja, azaz egyszerű ilyen teszteket írni. A jelentőségüket az adja, hogy a futtatásukat is
-támogatják, így egy változtatás után csak lefuttatjuk az összes unit-tesztet, ezzel biztosítjuk
-magunkat, hogy a változás nem okozott hibát. Ezt nevezzük regressziós tesztnek."
+\emph{A unit-tesztelést majd minden fejlett programozási környezet (integrated development environment,
+	IDE) támogatja, azaz egyszerű ilyen teszteket írni. A jelentőségüket az adja, hogy a futtatásukat is
+	támogatják, így egy változtatás után csak lefuttatjuk az összes unit-tesztet, ezzel biztosítjuk
+	magunkat, hogy a változás nem okozott hibát. Ezt nevezzük regressziós tesztnek.}''\cite{KusperRadványi}
 
 Az asztali alkalmazás során fontos volt tesztelni, hogy a bizonyos bázisvektor számítások megfelelőek-e. Mivel a legtöbb kvantumkapu inverze saját maga (pl. \ref{hinverz}.~képlet), így elegendő volt a kapu kétszeri alkalmazásával ellenőrizni, hogy visszakapjuk-e az eredeti állapotot.
 
@@ -1396,14 +1424,14 @@ A legtöbb kvantumkapuval foglalkozó szimulátort sajátosan kialakítható ár
 \subsection{Több kvantumbites kapuk}
 Jelen szakdolgozat ugyan csak egy qubites kapukkal foglalkozik, felmerült hogy későbbiekben ez kibővüljön több kvantumbitre is. Ezek a kapuk ugyanúgy megkapnák azokat az animációkat és pontos ismertetőket.
 
-Ennek a lehetőségnek kihívása az, hogy a jelenleg elérhető Bloch gömb vizualizációkkal körülményes egy olyan forgatás ellenőrzést létrehozni, mint ahogy azt az egy kvantumbites változatoknál láttuk.
+Ennek a lehetőségnek kihívása az, hogy a jelenleg elérhető Bloch-gömb vizualizációkkal körülményes egy olyan forgatás ellenőrzést létrehozni, mint ahogy azt az egy kvantumbites változatoknál láttuk.
 
 Viszont ettől függetlenül a Qiskit lehetőséget nyújt a több kvantumbites kapuk áramkörben történő megjelenítésére és szimulálására. Ezt egy részletes leírással ötvözve szintén egyszerűbb megértést nyújthat a kvantumkapukhoz.
 
 \subsection{Diagramok}
 A Qiskit erősségei közé tartoznak még a szimuláció során kinyerhető adatok, amiket diagramok formájában is megjeleníthetünk. Amennyiben ezt ötvözzük a tetszőleges áramkörök lehetőségével, akkor képes lehet a felhasználó látni, hogy bizonyos helyzetekben hogyan reagálnak a kvantumbitek.
 
-Forgatás szempontjából ez az opció kifejezetten memóriaigényes, mivel csakúgy mint a programban lévő Bloch gömb, a diagramok is folyamatos újrarajzolást igényelnének minden új beérkező szenzor adat után.
+Forgatás szempontjából ez az opció kifejezetten memóriaigényes, mivel csakúgy mint a programban lévő Bloch-gömb, a diagramok is folyamatos újrarajzolást igényelnének minden új beérkező szenzor adat után.
 
 \subsection{Könyvtárak frissen tartása}
 Ahogy a kvantuminformatika, úgy az ezzel foglalkozó Python könyvtárak is rohamosan fejlődnek. A Qiskit jelenleg az 1.0 verziójánál tart és folyamatosan újabb lehetőségekkel, megoldásokkal bővítik könyvtárukat. Ebből adódóan bármikor érkezhet olyan megoldás, ami hozzátenne a programhoz, esetleg hatékonyabbá tenné azt.
@@ -1424,10 +1452,54 @@ Mindezek ellenére úgy gondolom sikerült elérnem a kitűzött céljaim a proj
 
 \begin{thebibliography}{2}
 \addcontentsline{toc}{chapter}{\bibname}
-%\bibitem{Fazekas}
-%\textsc{Fazekas István}: \emph{Valószínűségszámítás}, Debreceni Egyetem, Debrecen, 2004.
-%\bibitem{Tomacs}
-%\textsc{Tómács Tibor}: \emph{A valószínűségszámítás alapjai}, Líceum Kiadó, Eger, 2005.
+
+\bibitem{WikipediaQHistory}
+\textsc{Wikipedia}: \emph{A kvantummechanika története}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://hu.wikipedia.org/wiki/A_kvantummechanika_t%C3%B6rt%C3%A9nete}
+
+\bibitem{RSA}
+\textsc{Wikipedia}: \emph{RSA-eljárás}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://hu.wikipedia.org/wiki/RSA-elj%C3%A1r%C3%A1s}
+
+\bibitem{BiróKoczkaPrantner}
+\textsc{Dr. Biró Csaba, Koczka Ferenc, Prantner Csilla}: \emph{Milyen kérdéseket vet fel az oktatás területén a
+	kvantumszámítógépek megjelenése?}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://people.inf.elte.hu/szlavi/InfoDidact22/Manuscripts/BCsKFPCs.pdf}
+	
+\bibitem{WikipediaQcomuputer}
+\textsc{Wikipedia}: \emph{Quantum Computing}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://en.wikipedia.org/wiki/Quantum_computing}
+
+\bibitem{DebreceniQComputer}
+\textsc{Nagy Benedek}: \emph{Bevezetés az intervallum-értékű, a DNS-, a membrán- és a kvantumszámítógépek elméletébe}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://gyires.inf.unideb.hu/GyBITT/28/index.html}
+
+\bibitem{Chris Bernhardt}
+\textsc{Chris Bernhardt}: \emph{Kvantum-számítástechnika közérthetően}, Massachusetts Institute of Technology, 2019.
+
+\bibitem{Geszti Tamás}
+\textsc{Geszti Tamás}: \emph{Kvantummechanika}, Typotex, 2007.
+
+\bibitem{LandauLifsic}
+\textsc{L. D. Landau, E. M. Lifsic}: \emph{kvantum-mechanika}, Moszkva, 1978.
+
+\bibitem{Qiskit}
+\textsc{Czégel András}: \emph{Kvantum programozás Jegyzet}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://www.inf.u-szeged.hu/~czegel/kvantumjegyzet.pdf}
+
+\bibitem{Android Studio}
+\textsc{Android Studio}: \emph{Dokumentáció}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://developer.android.com/guide}
+
+\bibitem{Python}
+\textsc{Python}: \emph{Dokumentáció}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://docs.python.org/3/}
+
+\bibitem{Java}
+\textsc{Java}: \emph{Dokumentáció}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://docs.oracle.com/en/java/}
+
+\bibitem{Dr. Kovács Emőd}
+\textsc{Dr. Kovács Emőd}: \emph{Komputergrafika – Matematikai alapok}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://aries.ektf.hu/~hz/pdf-tamop/pdf-01/html/index.html}
+
+\bibitem{github}
+\textsc{Github}: \emph{Cartesian and Spherical Coordinates of a randomly generated Statevector on Bloch Sphere}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://github.com/jayeshparashar/Bloch-sphere-/blob/main/Cartesian%20and%20Spherical%20Coordinates%20of%20a%20randomly%20generated%20Statevector%20on%20Bloch%20Sphere%20-%20qiskit%20sample%20(2).ipynb?fbclid=IwAR2aMeaBfu5lgDFFuTyE6HCwNJec_h04Lj5UN6SB8RwXfA21kgjZAeLInsU_aem_AbzyiuKiiaIDXxHC913jNUF1hkpGa3u0jznvN85dP3vc_sYMUh7tHMxWG5JJdbef5dmEl-mb8QUxLCT-3YzqMG7u}
+
+\bibitem{KusperRadványi}
+\textsc{Dr. Kusper Gábor, Dr. Radványi Tibor}: \emph{Jegyzet a projekt labor című
+	tárgyhoz - A szoftver is csak egy termék, olyan, mint egy doboz müzli}, Online; hozzáférés dátuma: 2024. [Online]. Elérhető: \url{https://aries.ektf.hu/~hz/pdf-tamop/pdf-xx/ProgTechJegyzet.1.1.6.pdf}
+
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére
